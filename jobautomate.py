@@ -7,6 +7,9 @@ Description: This script when completed will hopefully assist those with the
 dire need to apply for jobs.
 """
 from selenium import webdriver
+from selenium.webdriver.common.by import By
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
 
 job = input('Please enter a job:')
 city = input('Please enter a city:')
@@ -46,6 +49,13 @@ def apply_to_job():
     If the Indeed apply button does not exist, the new window closes."""
     try:
         driver.find_element_by_class_name('indeed-apply-button').click()
+        wait = WebDriverWait(driver, 10)
+        frame = wait.until(EC.presence_of_element_located(
+            (By.CSS_SELECTOR, "iframe[name$=modal-iframe]")))
+        driver.switch_to.frame(frame)
+        driver.switch_to.frame(0)
+        driver.find_element_by_id('applicant.name').send_keys('full name')
+        driver.find_element_by_id('applicant.email').send_keys('email')
     except:
         driver.close()
 
