@@ -4,7 +4,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException
 
-driver = webdriver.Firefox()
+driver = webdriver.PhantomJS()
 
 job = input('Please enter a job:')
 city = input('Please enter a city:')
