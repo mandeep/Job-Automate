@@ -17,16 +17,6 @@ with open('application.txt', 'r') as file:
     email = data[3]
 
 
-def main():
-    initiate_search()
-    sort_results()
-    click_job()
-    switch_window()
-    click_apply()
-    switch_frames()
-    fill_application()
-
-
 def initiate_search():
     """Enter user input for job and city to begin a search."""
     driver.set_window_size(1024, 768)
@@ -91,4 +81,10 @@ def fill_application():
         driver.find_element_by_id('apply').click()
 
 if __name__ == "__main__":
-    main()
+    initiate_search()
+    sort_results()
+    click_job()
+    switch_window()
+    click_apply()
+    switch_frames()
+    fill_application()
