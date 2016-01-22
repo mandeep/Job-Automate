@@ -9,12 +9,9 @@ city = input('Please enter a city:')
 
 driver = webdriver.Firefox()
 
-with open('application.txt', 'r') as file:
+with open('information.txt', 'r') as file:
     data = file.read().replace('\n', '').split(',')
-    first_name = data[0]
-    last_name = data[1]
-    phone_number = data[2]
-    email = data[3]
+    first_name, last_name, email, phone_number = data
 
 
 def initiate_search():
