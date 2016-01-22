@@ -9,6 +9,13 @@ city = input('Please enter a city:')
 
 driver = webdriver.Firefox()
 
+with open('application.txt', 'r') as file:
+    data = file.read().replace('\n', '').split(',')
+    first_name = data[0]
+    last_name = data[1]
+    phone_number = data[2]
+    email = data[3]
+
 
 def main():
     initiate_search()
@@ -66,21 +73,20 @@ def switch_frames():
 
 def fill_application():
     """Submit the full name, email address, and resume of the job applicant.
-    The function will assume that the full name is needed, however some applications
-    will require a first name and last name."""
+    The function will assume that the full name is needed, however some
+    applications will require a first name and last name."""
     try:
-        driver.find_element_by_id('applicant.name').send_keys('Applicant Full Name')
-        driver.find_element_by_id('applicant.email').send_keys('Email Address')
-        driver.find_element_by_id('resume').send_keys('/home/usr/resume.doc')
-        driver.find_element_by_id('applicant.applicationMessage').send_keys('Cover Letter')
+        driver.find_element_by_id('applicant.name').send_keys(first_name + " " + last_name)
+        driver.find_element_by_id('applicant.email').send_keys(email)
+        driver.find_element_by_id('applicant.phoneNumber').send_keys(phone_number)
+        driver.find_element_by_id('resume').send_keys('resume.docx')
         driver.find_element_by_link_text('Continue').click()
     except NoSuchElementException:
-        driver.find_element_by_id('applicant.firstName').send_keys('Applicant First Name')
-        driver.find_element_by_id('applicant.lastName').send_keys('Applicant Last Name')
-        driver.find_element_by_id('applicant.email').send_keys('Email address')
-        driver.find_element_by_id('applicant.phoneNumber').send_keys('123-456-7890')
-        driver.find_element_by_id('resume').send_keys('/home/usr/resume.docx')
-        driver.find_element_by_id('applicant.applicationMessage').send_keys('Cover Letter')
+        driver.find_element_by_id('applicant.firstName').send_keys(first_name)
+        driver.find_element_by_id('applicant.lastName').send_keys(last_name)
+        driver.find_element_by_id('applicant.email').send_keys(email)
+        driver.find_element_by_id('applicant.phoneNumber').send_keys(phone_number)
+        driver.find_element_by_id('resume').send_keys('resume.docx')
         driver.find_element_by_link_text('Continue').click()
         driver.find_element_by_id('apply').click()
 
