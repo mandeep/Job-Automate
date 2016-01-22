@@ -4,10 +4,10 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException
 
+driver = webdriver.Firefox()
+
 job = input('Please enter a job:')
 city = input('Please enter a city:')
-
-driver = webdriver.Firefox()
 
 with open('information.txt', 'r') as file:
     data = file.read().replace('\n', '').split(',')
