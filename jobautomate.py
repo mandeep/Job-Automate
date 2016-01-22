@@ -67,15 +67,22 @@ def fill_application():
         driver.find_element_by_id('applicant.email').send_keys(email_address)
         driver.find_element_by_id('applicant.phoneNumber').send_keys(phone_number)
         driver.find_element_by_id('resume').send_keys('resume.docx')
-        driver.find_element_by_link_text('Continue').click()
+        try:
+            driver.find_element_by_id('apply').click()
+        except NoSuchElementException:
+            driver.find_element_by_link_text('Continue').click()
+            driver.find_element_by_id('apply').click()
     except NoSuchElementException:
         driver.find_element_by_id('applicant.firstName').send_keys(first_name)
         driver.find_element_by_id('applicant.lastName').send_keys(last_name)
         driver.find_element_by_id('applicant.email').send_keys(email_address)
         driver.find_element_by_id('applicant.phoneNumber').send_keys(phone_number)
         driver.find_element_by_id('resume').send_keys('resume.docx')
-        driver.find_element_by_link_text('Continue').click()
-        driver.find_element_by_id('apply').click()
+        try:
+            driver.find_element_by_id('apply').click()
+        except NoSuchElementException:
+            driver.find_element_by_link_text('Continue').click()
+            driver.find_element_by_id('apply').click()
 
 if __name__ == "__main__":
     initiate_search()
