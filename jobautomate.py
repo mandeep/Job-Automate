@@ -85,3 +85,4 @@ if __name__ == "__main__":
     click_apply()
     switch_frames()
     fill_application()
+    driver.quit()
