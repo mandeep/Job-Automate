@@ -1,11 +1,3 @@
-"""
-Title: Job Search Automation
-Author: Mandeep Bhutani
-Date: 01/05/2016
-
-Description: This script when completed will hopefully assist those with the
-dire need to apply for jobs.
-"""
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
