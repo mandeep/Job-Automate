@@ -10,16 +10,26 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import NoSuchElementException, TimeoutException
+from selenium.common.exceptions import NoSuchElementException
 
 job = input('Please enter a job:')
 city = input('Please enter a city:')
 
-driver = webdriver.PhantomJS()
+driver = webdriver.Firefox()
+
+
+def main():
+    initiate_search()
+    sort_results()
+    click_job()
+    switch_window()
+    click_apply()
+    switch_frames()
+    fill_application()
 
 
 def initiate_search():
-    """Enter user input job and city to begin a search."""
+    """Enter user input for job and city to begin a search."""
     driver.set_window_size(1024, 768)
     driver.get('https://www.indeed.com/')
     driver.find_element_by_name('q').send_keys(job)
@@ -39,7 +49,7 @@ def click_job():
 
 
 def switch_window():
-    """Switch windows to the newly opened job opening window."""
+    """Switch windows to the newly opened job application window."""
     driver.switch_to.window(driver.window_handles[1])
 
 
@@ -52,21 +62,35 @@ def click_apply():
         driver.close()
 
 
-def apply_to_job():
+def switch_frames():
+    """The job application is inside a nested frame. In order to navigate to
+    the appication, each frame must be selected."""
     wait = WebDriverWait(driver, 10)
     frame = wait.until(EC.presence_of_element_located(
         (By.CSS_SELECTOR, "iframe[name$=modal-iframe]")))
     driver.switch_to.frame(frame)
     driver.switch_to.frame(0)
-    driver.implicitly_wait(5)
-    driver.find_element_by_id('applicant.name').send_keys('full name')
-    driver.find_element_by_id('applicant.email').send_keys('email')
 
+
+def fill_application():
+    """Submit the full name, email address, and resume of the job applicant.
+    The function will assume that the full name is needed, however some applications
+    will require a first name and last name."""
+    try:
+        driver.find_element_by_id('applicant.name').send_keys('Applicant Full Name')
+        driver.find_element_by_id('applicant.email').send_keys('Email Address')
+        driver.find_element_by_id('resume').send_keys('/home/usr/resume.doc')
+        driver.find_element_by_id('applicant.applicationMessage').send_keys('Cover Letter')
+        driver.find_element_by_link_text('Continue').click()
+    except NoSuchElementException:
+        driver.find_element_by_id('applicant.firstName').send_keys('Applicant First Name')
+        driver.find_element_by_id('applicant.lastName').send_keys('Applicant Last Name')
+        driver.find_element_by_id('applicant.email').send_keys('Email address')
+        driver.find_element_by_id('applicant.phoneNumber').send_keys('123-456-7890')
+        driver.find_element_by_id('resume').send_keys('/home/usr/resume.docx')
+        driver.find_element_by_id('applicant.applicationMessage').send_keys('Cover Letter')
+        driver.find_element_by_link_text('Continue').click()
+        driver.find_element_by_id('apply').click()
 
 if __name__ == "__main__":
-    initiate_search()
-    sort_results()
-    click_job()
-    switch_window()
-    click_apply()
-    apply_to_job()
+    main()
