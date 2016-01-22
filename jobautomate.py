@@ -11,7 +11,7 @@ driver = webdriver.Firefox()
 
 with open('information.txt', 'r') as file:
     data = file.read().replace('\n', '').split(',')
-    first_name, last_name, email, phone_number = data
+    first_name, last_name, email_address, phone_number = data
 
 
 def initiate_search():
@@ -64,14 +64,14 @@ def fill_application():
     applications will require a first name and last name."""
     try:
         driver.find_element_by_id('applicant.name').send_keys(first_name + " " + last_name)
-        driver.find_element_by_id('applicant.email').send_keys(email)
+        driver.find_element_by_id('applicant.email').send_keys(email_address)
         driver.find_element_by_id('applicant.phoneNumber').send_keys(phone_number)
         driver.find_element_by_id('resume').send_keys('resume.docx')
         driver.find_element_by_link_text('Continue').click()
     except NoSuchElementException:
         driver.find_element_by_id('applicant.firstName').send_keys(first_name)
         driver.find_element_by_id('applicant.lastName').send_keys(last_name)
-        driver.find_element_by_id('applicant.email').send_keys(email)
+        driver.find_element_by_id('applicant.email').send_keys(email_address)
         driver.find_element_by_id('applicant.phoneNumber').send_keys(phone_number)
         driver.find_element_by_id('resume').send_keys('resume.docx')
         driver.find_element_by_link_text('Continue').click()
