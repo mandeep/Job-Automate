@@ -82,7 +82,7 @@ def fill_application():
         except NoSuchElementException:
             driver.find_element_by_link_text('Continue').click()
             driver.find_element_by_id('apply').click()
-        driver.close()
+    driver.close()
 
 if __name__ == "__main__":
     initiate_search()
