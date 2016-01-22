@@ -50,7 +50,7 @@ def click_apply():
 
 def switch_frames():
     """The job application is inside a nested frame. In order to navigate to
-    the appication, each frame must be selected."""
+    the application, each frame must be selected."""
     wait = WebDriverWait(driver, 10)
     frame = wait.until(EC.presence_of_element_located(
         (By.CSS_SELECTOR, "iframe[name$=modal-iframe]")))
@@ -59,9 +59,8 @@ def switch_frames():
 
 
 def fill_application():
-    """Submit the full name, email address, and resume of the job applicant.
-    The function will assume that the full name is needed, however some
-    applications will require a first name and last name."""
+    """Indeed gives employers four applications to choose from. Some fields
+    are not required; however, they are filled just in case."""
     try:
         driver.find_element_by_id('applicant.name').send_keys(first_name + " " + last_name)
         driver.find_element_by_id('applicant.email').send_keys(email_address)
@@ -83,6 +82,7 @@ def fill_application():
         except NoSuchElementException:
             driver.find_element_by_link_text('Continue').click()
             driver.find_element_by_id('apply').click()
+        driver.close()
 
 if __name__ == "__main__":
     initiate_search()
