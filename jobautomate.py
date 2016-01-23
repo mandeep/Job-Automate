@@ -60,8 +60,8 @@ def switch_frames():
 
 def fill_application():
     """Indeed gives employers four applications to choose from. The function
-    uses try/except to identify the applicatoin Some fields are not required; 
-    however, they are filled just in case."""
+    uses try/except to identify the application Some fields are not required; 
+    however, they are filled out just in case."""
     try:
         driver.find_element_by_id('applicant.name').send_keys(first_name + " " + last_name)
         driver.find_element_by_id('applicant.email').send_keys(email_address)
