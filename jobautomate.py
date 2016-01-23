@@ -15,7 +15,7 @@ with open('information.txt', 'r') as file:
 
 
 def initiate_search():
-    """Enter user input for job and city to begin a search."""
+    """Enter user input for job and city to begin an Indeed search."""
     driver.set_window_size(1024, 768)
     driver.get('https://www.indeed.com/')
     driver.find_element_by_name('q').send_keys(job)
