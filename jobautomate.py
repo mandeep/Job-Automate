@@ -111,5 +111,5 @@ if __name__ == "__main__":
             link.click()
             switch_window()
             click_apply()
-        driver.find_element_by_link_text('Next')
+        driver.find_element_by_link_text('Next »').click()
         page += 1
