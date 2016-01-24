@@ -69,7 +69,7 @@ def fill_application():
         driver.find_element_by_id('applicant.name').send_keys(first_name + " " + last_name)
         driver.find_element_by_id('applicant.email').send_keys(email_address)
         driver.find_element_by_id('applicant.phoneNumber').send_keys(phone_number)
-        driver.find_element_by_id('resume').send_keys('/home/mandeep/Dropbox/GitHub/Job-Automate/resume.docx')
+        driver.find_element_by_id('resume').send_keys('resume.docx')
         try:
             driver.find_element_by_id('apply').click()
         except ElementNotVisibleException:
