@@ -27,6 +27,7 @@ def initiate_search():
     except:
         pass
 
+
 def sort_results():
     """Sort the results by newest job first."""
     driver.find_element_by_link_text('date').click()
@@ -84,8 +85,9 @@ def fill_application():
 
 
 def click_apply():
-    """Click the Indeed apply button to easily apply to the job.
-    If the Indeed apply button does not exist, the new window closes."""
+    """Click the Indeed apply button to easily apply to the job if it exists.
+    If the application is identified as an Easily Apply job, the application
+    is filled out. Otherwise, the new job window closes."""
     try:
         driver.find_element_by_class_name('indeed-apply-button').click()
         switch_frames()
