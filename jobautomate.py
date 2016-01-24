@@ -38,6 +38,10 @@ def click_job():
     return driver.find_elements_by_xpath("//a[@data-tn-element='jobTitle']")
 
 
+def main_window():
+    driver.switch_to.window(driver.window_handles[0])
+
+
 def switch_window():
     """Switch windows to the newly opened job application window."""
     driver.switch_to.window(driver.window_handles[1])
@@ -54,9 +58,7 @@ def switch_frames():
 
 
 def fill_application():
-    """Indeed gives employers four applications to choose from. The function
-    uses try/except to identify the application Some fields are not required; 
-    however, they are filled out just in case."""
+    """"""
     try:
         driver.find_element_by_id('applicant.name').send_keys(first_name + " " + last_name)
         driver.find_element_by_id('applicant.email').send_keys(email_address)
@@ -64,24 +66,25 @@ def fill_application():
         driver.find_element_by_id('resume').send_keys('/home/mandeep/Desktop/resume.docx')
         try:
             driver.find_element_by_id('apply').click()
+            print('Application Successful.')
         except ElementNotVisibleException:
-            driver.find_element_by_link_text('Continue').click()
-            driver.find_element_by_id('apply').click()
-        else:
             driver.close()
+            print('Application Failed.')
+            main_window()
+
     except NoSuchElementException:
         driver.find_element_by_id('applicant.firstName').send_keys(first_name)
         driver.find_element_by_id('applicant.lastName').send_keys(last_name)
         driver.find_element_by_id('applicant.email').send_keys(email_address)
         driver.find_element_by_id('applicant.phoneNumber').send_keys(phone_number)
-        driver.find_element_by_id('resume').send_keys('/home/mandeep/Desktop/resume.docx').submit()
+        driver.find_element_by_id('resume').send_keys('/home/mandeep/Desktop/resume.docx')
         try:
             driver.find_element_by_id('apply').click()
+            print('Application Successful.')
         except ElementNotVisibleException:
-            driver.find_element_by_link_text('Continue').click()
-            driver.find_element_by_id('apply').click()
-        else:
             driver.close()
+            print('Application Failed.')
+            main_window()
 
 
 def click_apply():
@@ -92,9 +95,11 @@ def click_apply():
         driver.find_element_by_class_name('indeed-apply-button').click()
         switch_frames()
         fill_application()
-    except NoSuchElementException:
         driver.close()
-        driver.switch_to.window(driver.window_handles[0])
+        main_window()
+    except (NoSuchElementException, ElementNotVisibleException):
+        driver.close()
+        main_window()
 
 
 if __name__ == "__main__":
@@ -104,3 +109,4 @@ if __name__ == "__main__":
         link.click()
         switch_window()
         click_apply()
+    driver.quit()
