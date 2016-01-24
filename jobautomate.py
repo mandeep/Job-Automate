@@ -2,9 +2,9 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import NoSuchElementException, ElementNotVisibleException
 
-driver = webdriver.PhantomJS()
+driver = webdriver.Firefox()
 
 job = input('Please enter a job:')
 city = input('Please enter a city:')
@@ -22,7 +22,10 @@ def initiate_search():
     driver.find_element_by_id('where').clear()
     driver.find_element_by_id('where').send_keys(city)
     driver.find_element_by_id('fj').click()
-
+    try:
+        driver.find_element_by_id('prime-popover-close-button').click()
+    except:
+        pass
 
 def sort_results():
     """Sort the results by newest job first."""
@@ -31,7 +34,7 @@ def sort_results():
 
 def click_job():
     """Click the link that redirects to the job application."""
-    driver.find_element_by_xpath("//a[@data-tn-element='jobTitle']").click()
+    return driver.find_elements_by_xpath("//a[@data-tn-element='jobTitle']")
 
 
 def switch_window():
@@ -66,10 +69,10 @@ def fill_application():
         driver.find_element_by_id('applicant.name').send_keys(first_name + " " + last_name)
         driver.find_element_by_id('applicant.email').send_keys(email_address)
         driver.find_element_by_id('applicant.phoneNumber').send_keys(phone_number)
-        driver.find_element_by_id('resume').send_keys('resume.docx')
+        driver.find_element_by_id('resume').send_keys('/home/mandeep/Dropbox/GitHub/Job-Automate/resume.docx')
         try:
             driver.find_element_by_id('apply').click()
-        except NoSuchElementException:
+        except ElementNotVisibleException:
             driver.find_element_by_link_text('Continue').click()
             driver.find_element_by_id('apply').click()
     except NoSuchElementException:
@@ -77,10 +80,10 @@ def fill_application():
         driver.find_element_by_id('applicant.lastName').send_keys(last_name)
         driver.find_element_by_id('applicant.email').send_keys(email_address)
         driver.find_element_by_id('applicant.phoneNumber').send_keys(phone_number)
-        driver.find_element_by_id('resume').send_keys('resume.docx')
+        driver.find_element_by_id('resume').send_keys('resume.docx').submit()
         try:
             driver.find_element_by_id('apply').click()
-        except NoSuchElementException:
+        except ElementNotVisibleException:
             driver.find_element_by_link_text('Continue').click()
             driver.find_element_by_id('apply').click()
     driver.close()
@@ -88,9 +91,9 @@ def fill_application():
 if __name__ == "__main__":
     initiate_search()
     sort_results()
-    click_job()
-    switch_window()
-    click_apply()
-    switch_frames()
-    fill_application()
-    driver.quit()
+    for link in click_job():
+        link.click()
+        switch_window()
+        click_apply()
+        switch_frames()
+        fill_application()
