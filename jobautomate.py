@@ -49,6 +49,7 @@ def click_apply():
         driver.find_element_by_class_name('indeed-apply-button').click()
     except NoSuchElementException:
         driver.close()
+        driver.switch_to.window(driver.window_handles[0])
 
 
 def switch_frames():
@@ -98,5 +99,3 @@ if __name__ == "__main__":
         link.click()
         switch_window()
         click_apply()
-        switch_frames()
-        fill_application()
