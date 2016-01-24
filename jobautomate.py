@@ -62,7 +62,7 @@ def switch_frames():
 def fill_application():
     """"""
     try:
-        driver.find_element_by_id('applicant.name').send_keys(first_name + " " + last_name)
+        driver.find_element_by_id('applicant.name').send_keys("{} {}" .format(first_name, last_name))
         driver.find_element_by_id('applicant.email').send_keys(email_address)
         driver.find_element_by_id('applicant.phoneNumber').send_keys(phone_number)
         driver.find_element_by_id('resume').send_keys('/home/mandeep/Desktop/resume.docx')
