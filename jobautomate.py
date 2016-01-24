@@ -75,6 +75,8 @@ def fill_application():
         except ElementNotVisibleException:
             driver.find_element_by_link_text('Continue').click()
             driver.find_element_by_id('apply').click()
+        else:
+            driver.close()
     except NoSuchElementException:
         driver.find_element_by_id('applicant.firstName').send_keys(first_name)
         driver.find_element_by_id('applicant.lastName').send_keys(last_name)
@@ -86,7 +88,8 @@ def fill_application():
         except ElementNotVisibleException:
             driver.find_element_by_link_text('Continue').click()
             driver.find_element_by_id('apply').click()
-    driver.close()
+        else:
+            driver.close()
 
 if __name__ == "__main__":
     initiate_search()
