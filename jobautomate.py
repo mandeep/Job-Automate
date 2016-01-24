@@ -4,10 +4,10 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException, ElementNotVisibleException
 
-driver = webdriver.Firefox()
-
 job = input('Please enter a job:')
 city = input('Please enter a city:')
+
+driver = webdriver.Firefox()
 
 with open('information.txt', 'r') as file:
     data = file.read().replace('\n', '').split(',')
@@ -40,16 +40,6 @@ def click_job():
 def switch_window():
     """Switch windows to the newly opened job application window."""
     driver.switch_to.window(driver.window_handles[1])
-
-
-def click_apply():
-    """Click the Indeed apply button to easily apply to the job.
-    If the Indeed apply button does not exist, the new window closes."""
-    try:
-        driver.find_element_by_class_name('indeed-apply-button').click()
-    except NoSuchElementException:
-        driver.close()
-        driver.switch_to.window(driver.window_handles[0])
 
 
 def switch_frames():
@@ -91,6 +81,19 @@ def fill_application():
             driver.find_element_by_id('apply').click()
         else:
             driver.close()
+
+
+def click_apply():
+    """Click the Indeed apply button to easily apply to the job.
+    If the Indeed apply button does not exist, the new window closes."""
+    try:
+        driver.find_element_by_class_name('indeed-apply-button').click()
+        switch_frames()
+        fill_application()
+    except NoSuchElementException:
+        driver.close()
+        driver.switch_to.window(driver.window_handles[0])
+
 
 if __name__ == "__main__":
     initiate_search()
