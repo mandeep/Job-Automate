@@ -4,8 +4,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException, ElementNotVisibleException
 
-job = input('Please enter a job:')
-city = input('Please enter a city:')
+job = input('Enter a job:')
+city = input('Enter a location:')
 
 driver = webdriver.Firefox()
 
@@ -95,7 +95,6 @@ def click_apply():
         driver.find_element_by_class_name('indeed-apply-button').click()
         switch_frames()
         fill_application()
-        driver.close()
         main_window()
     except (NoSuchElementException, ElementNotVisibleException):
         driver.close()
