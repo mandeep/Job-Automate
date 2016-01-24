@@ -105,8 +105,11 @@ def click_apply():
 if __name__ == "__main__":
     initiate_search()
     sort_results()
-    for link in click_job():
-        link.click()
-        switch_window()
-        click_apply()
-    driver.quit()
+    page = 1
+    while page <= 100:
+        for link in click_job():
+            link.click()
+            switch_window()
+            click_apply()
+        driver.find_element_by_link_text('Next')
+        page += 1
