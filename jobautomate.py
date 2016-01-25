@@ -1,4 +1,5 @@
 import os
+import unittest
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -109,10 +110,9 @@ if __name__ == "__main__":
     sort_results()
     page = 1
     while page <= 100:
-        for link in click_job():
+        """for link in click_job():
             link.click()
             switch_window()
-            click_apply()
+            click_apply()"""
         driver.find_element_by_link_text('Next »').click()
-        driver.find_element_by_xpath('//*[@id="popover-x"]/span').click()
         page += 1
