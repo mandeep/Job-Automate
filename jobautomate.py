@@ -7,7 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException, ElementNotVisibleException
 
 
-def indeed_search():
+def indeed_params():
     """Use Indeed API to obtain job application links.
     :param q: job description
     :param l: job location; searches entire U.S. when left blank
@@ -19,7 +19,6 @@ def indeed_search():
     :param userip: ip of client (required)
     :param useragent: user agent of client (required)
     """
-    client = IndeedClient('7458209865285883')
 
     params = {'q': 'analyst',
               'l': "",
@@ -31,10 +30,16 @@ def indeed_search():
               'userip': "1.2.3.4",
               'useragent': "Mozilla/5.0 (X11; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/43.0"
               }
+    return params
 
+
+
+def indeed_urls(params):
+    client = IndeedClient('7458209865285883')
     response = client.search(**params)
     urls = [str(links['url']) for links in response['results']]
     return urls
+    
 
 driver = webdriver.Firefox()
 
