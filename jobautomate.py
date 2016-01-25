@@ -10,7 +10,7 @@ from selenium.common.exceptions import NoSuchElementException, ElementNotVisible
 def indeed_search():
     """Use Indeed API to obtain job application links.
     :param q: job description
-    :param l: job location
+    :param l: job location; searches entire U.S. when left blank
     :param sort: sort results by relevance or date
     :param sr: direct hire only or include staffing agencies
     :param limit: number of results, 0-25
