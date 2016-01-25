@@ -20,6 +20,7 @@ def indeed_search():
     :param useragent: user agent of client (required)
     """
     client = IndeedClient('7458209865285883')
+
     params = {'q': 'analyst',
               'l': "",
               'sort': 'date',
@@ -30,6 +31,7 @@ def indeed_search():
               'userip': "1.2.3.4",
               'useragent': "Mozilla/5.0 (X11; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/43.0"
               }
+
     response = client.search(**params)
     urls = [str(links['url']) for links in response['results']]
     return urls
@@ -39,20 +41,6 @@ driver = webdriver.Firefox()
 with open('information.txt', 'r') as file:
     data = file.read().replace('\n', '').split(',')
     first_name, last_name, email_address, phone_number = data
-
-
-def initiate_search():
-    """Enter user input for job and city to begin an Indeed search."""
-    driver.set_window_size(1024, 768)
-    driver.get('https://www.indeed.com/')
-    driver.find_element_by_name('q').send_keys(job)
-    driver.find_element_by_id('where').clear()
-    driver.find_element_by_id('where').send_keys(city)
-    driver.find_element_by_id('fj').click()
-    try:
-        driver.find_element_by_id('prime-popover-close-button').click()
-    except:
-        pass
 
 
 def sort_results():
