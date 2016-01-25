@@ -1,5 +1,5 @@
 import os
-import unittest
+from indeed import IndeedClient
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
@@ -8,8 +8,23 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException, ElementNotVisibleException
 
-job = input('Enter a job:')
-city = input('Enter a location:')
+
+client = IndeedClient('7458209865285883')
+
+params = {'q': 'analyst',
+          'l': "",
+          'sort': 'date',
+          'sr': 'directhire',
+          'limit': 25,
+          'fromage': 30,
+          'start': 0,
+          'userip': "1.2.3.4",
+          'useragent': "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_8_2)"
+          }
+
+response = client.search(**params)
+
+urls = [str(links['url']) for links in response['results']]
 
 driver = webdriver.PhantomJS()
 
