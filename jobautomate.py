@@ -43,23 +43,8 @@ with open('information.txt', 'r') as file:
     first_name, last_name, email_address, phone_number = data
 
 
-def sort_results():
-    """Sort the results by newest job first."""
-    driver.find_element_by_link_text('date').click()
-
-
-def click_job():
-    """Click the link that redirects to the job application."""
-    return driver.find_elements_by_xpath("//a[@data-tn-element='jobTitle']")
-
-
 def main_window():
     driver.switch_to.window(driver.window_handles[0])
-
-
-def switch_window():
-    """Switch windows to the newly opened job application window."""
-    driver.switch_to.window(driver.window_handles[1])
 
 
 def switch_frames():
@@ -116,14 +101,4 @@ def click_apply():
         main_window()
 
 
-if __name__ == "__main__":
-    initiate_search()
-    sort_results()
-    page = 1
-    while page <= 100:
-        for link in click_job():
-            link.click()
-            switch_window()
-            click_apply()
-        driver.find_element_by_link_text('Next »').click()
-        page += 1
+if __name__ == "__main__": pass
