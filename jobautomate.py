@@ -11,7 +11,7 @@ from selenium.common.exceptions import NoSuchElementException, ElementNotVisible
 job = input('Enter a job:')
 city = input('Enter a location:')
 
-driver = webdriver.Firefox()
+driver = webdriver.PhantomJS()
 
 with open('information.txt', 'r') as file:
     data = file.read().replace('\n', '').split(',')
@@ -110,9 +110,9 @@ if __name__ == "__main__":
     sort_results()
     page = 1
     while page <= 100:
-        """for link in click_job():
+        for link in click_job():
             link.click()
             switch_window()
-            click_apply()"""
+            click_apply()
         driver.find_element_by_link_text('Next »').click()
         page += 1
