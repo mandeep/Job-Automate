@@ -6,7 +6,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException, ElementNotVisibleException
 
-driver = webdriver.Firefox()
+driver = webdriver.PhantomJS()
 
 with open('information.txt', 'r') as file:
     data = file.read().replace('\n', '').split(',')
@@ -64,7 +64,6 @@ def fill_application():
         driver.find_element_by_id('applicant.phoneNumber').send_keys(phone_number)
         driver.find_element_by_id('resume').send_keys(os.path.abspath('resume.docx'))
         try:
-            driver.find_element_by_link_text('Continue').click()
             driver.find_element_by_id('apply').click()
             print('Application Successful.')
         except ElementNotVisibleException:
@@ -78,7 +77,6 @@ def fill_application():
         driver.find_element_by_id('applicant.phoneNumber').send_keys(phone_number)
         driver.find_element_by_id('resume').send_keys(os.path.abspath('resume.docx'))
         try:
-            driver.find_element_by_link_text('Continue').click()
             driver.find_element_by_id('apply').click()
             print('Application Successful.')
         except ElementNotVisibleException:
