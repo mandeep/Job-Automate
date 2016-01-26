@@ -101,4 +101,6 @@ def click_apply():
 
 
 if __name__ == "__main__":
-    indeed_parameters(input('Enter a job title:'), input('Enter a location:'))
+    user_parameters = indeed_parameters(raw_input('Enter a job title:'), raw_input('Enter a location:'))
+    for url in indeed_urls(user_parameters):
+        print url
