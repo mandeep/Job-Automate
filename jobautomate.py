@@ -6,8 +6,14 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException, ElementNotVisibleException
 
+driver = webdriver.Firefox()
 
-def indeed_params():
+with open('information.txt', 'r') as file:
+    data = file.read().replace('\n', '').split(',')
+    first_name, last_name, email_address, phone_number = data
+
+
+def indeed_parameters():
     """Use Indeed API to obtain job application links.
     :param q: job description
     :param l: job location; searches entire U.S. when left blank
@@ -33,23 +39,11 @@ def indeed_params():
     return params
 
 
-
-def indeed_urls(params):
+def indeed_urls(parameters):
     client = IndeedClient('7458209865285883')
-    response = client.search(**params)
+    response = client.search(**parameters)
     urls = [str(links['url']) for links in response['results']]
     return urls
-    
-
-driver = webdriver.Firefox()
-
-with open('information.txt', 'r') as file:
-    data = file.read().replace('\n', '').split(',')
-    first_name, last_name, email_address, phone_number = data
-
-
-def main_window():
-    driver.switch_to.window(driver.window_handles[0])
 
 
 def switch_frames():
@@ -75,7 +69,7 @@ def fill_application():
         except ElementNotVisibleException:
             driver.close()
             print('Application Failed.')
-            main_window()
+            driver.switch_to.window(driver.window_handles[0])
 
     except NoSuchElementException:
         driver.find_element_by_id('applicant.firstName').send_keys(first_name)
@@ -89,7 +83,7 @@ def fill_application():
         except ElementNotVisibleException:
             driver.close()
             print('Application Failed.')
-            main_window()
+            driver.switch_to.window(driver.window_handles[0])
 
 
 def click_apply():
@@ -100,10 +94,11 @@ def click_apply():
         driver.find_element_by_class_name('indeed-apply-button').click()
         switch_frames()
         fill_application()
-        main_window()
+        driver.switch_to.window(driver.window_handles[0])
     except (NoSuchElementException, ElementNotVisibleException):
         driver.close()
-        main_window()
+        driver.switch_to.window(driver.window_handles[0])
 
 
-if __name__ == "__main__": pass
+if __name__ == "__main__":
+    pass
