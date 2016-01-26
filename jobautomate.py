@@ -6,7 +6,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException, ElementNotVisibleException
 
-driver = webdriver.PhantomJS()
+driver = webdriver.Firefox()
 
 with open('information.txt', 'r') as file:
     data = file.read().replace('\n', '').split(',')
@@ -40,18 +40,20 @@ def indeed_parameters(what, where):
 
 
 def indeed_urls(parameters):
+    """Use Indeed publisher ID in order to gain access to the API. With
+    parameters from indeed_paramters(), return a list of job application links."""
     client = IndeedClient('7458209865285883')
     response = client.search(**parameters)
     urls = [str(links['url']) for links in response['results']]
     return urls
 
 
-def switch_frames():
+def switch_frames(frame_name):
     """The job application is inside a nested frame. In order to navigate to
     the application, each frame must be selected."""
     wait = WebDriverWait(driver, 10)
     frame = wait.until(EC.presence_of_element_located(
-        (By.CSS_SELECTOR, "iframe[name$=modal-iframe]")))
+        (By.CSS_SELECTOR, frame_name)))
     driver.switch_to.frame(frame)
     driver.switch_to.frame(0)
 
@@ -90,7 +92,7 @@ def apply_to_job():
     is filled out. Otherwise, the new job window closes."""
     try:
         driver.find_element_by_class_name('indeed-apply-button').click()
-        switch_frames()
+        switch_frames("iframe[name$=modal-iframe]")
         fill_application()
     except (NoSuchElementException, ElementNotVisibleException):
         pass
