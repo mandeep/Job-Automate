@@ -86,7 +86,7 @@ def fill_application():
             driver.switch_to.window(driver.window_handles[0])
 
 
-def apply():
+def apply_to_job():
     """Click the Indeed apply button to easily apply to the job if it exists.
     If the application is identified as an Easily Apply job, the application
     is filled out. Otherwise, the new job window closes."""
@@ -102,4 +102,4 @@ if __name__ == "__main__":
     user_parameters = indeed_parameters(raw_input('Enter a job title:'), raw_input('Enter a location:'))
     for url in indeed_urls(user_parameters):
         driver.get(url)
-        apply()
+        apply_to_job()
