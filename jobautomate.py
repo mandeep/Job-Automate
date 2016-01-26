@@ -13,7 +13,7 @@ with open('information.txt', 'r') as file:
     first_name, last_name, email_address, phone_number = data
 
 
-def indeed_parameters():
+def indeed_parameters(what, where):
     """Use Indeed API to obtain job application links.
     :param q: job description
     :param l: job location; searches entire U.S. when left blank
@@ -26,8 +26,8 @@ def indeed_parameters():
     :param useragent: user agent of client (required)
     """
 
-    params = {'q': 'analyst',
-              'l': "",
+    params = {'q': what,
+              'l': where,
               'sort': 'date',
               'sr': 'directhire',
               'limit': 25,
@@ -101,4 +101,4 @@ def click_apply():
 
 
 if __name__ == "__main__":
-    pass
+    indeed_parameters(input('Enter a job title:'), input('Enter a location:'))
