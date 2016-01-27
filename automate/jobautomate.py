@@ -31,7 +31,7 @@ def indeed_parameters(what, where):
               'sort': 'date',
               'sr': 'directhire',
               'limit': 25,
-              'fromage': 30,
+              'fromage': 90,
               'start': 0,
               'userip': "1.2.3.4",
               'useragent': "Mozilla/5.0 (X11; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/43.0"
