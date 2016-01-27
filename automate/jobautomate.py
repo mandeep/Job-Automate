@@ -68,6 +68,8 @@ def fill_application(cv_resume):
         driver.find_element_by_id('applicant.email').send_keys(email_address)
         driver.find_element_by_id('resume').send_keys(os.path.abspath(cv_resume))
         try:
+            driver.find_element_by_link_text('Continue').click()
+            driver.find_element_by_xpath('//*[@id="q_0"]').click()
             driver.find_element_by_id('apply').click()
             print('Application Successful.')
         except ElementNotVisibleException:
@@ -79,6 +81,8 @@ def fill_application(cv_resume):
         driver.find_element_by_id('applicant.email').send_keys(email_address)
         driver.find_element_by_id('resume').send_keys(os.path.abspath(cv_resume))
         try:
+            driver.find_element_by_link_text('Continue').click()
+            driver.find_element_by_xpath('//*[@id="q_0"]').click()
             driver.find_element_by_id('apply').click()
             print('Application Successful.')
         except ElementNotVisibleException:
