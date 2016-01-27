@@ -97,4 +97,4 @@ def main():
             switch_frames('iframe[name$=modal-iframe]')
             fill_application('resume.docx')
         except (NoSuchElementException, ElementNotVisibleException):
-            pass
+            print('Not an easily apply application.')
