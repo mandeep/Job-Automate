@@ -86,7 +86,7 @@ def fill_application(cv_resume):
             driver.switch_to.window(driver.window_handles[0])
 
 
-if __name__ == "__main__":
+def main():
     user_parameters = indeed_parameters(raw_input('Enter a job title:'), raw_input('Enter a location:'))
     for url in indeed_urls(user_parameters):
         driver.get(url)
