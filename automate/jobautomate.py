@@ -59,7 +59,9 @@ def switch_frames(frame_name):
 
 
 def fill_application(cv_resume):
-    """"""
+    """Search for one application type. If it does not exist search for a
+    different application type. When the apply button is clicked the
+    application is submitted."""
     try:
         driver.find_element_by_id('applicant.name').send_keys("{} {}" .format(first_name, last_name))
         driver.find_element_by_id('applicant.email').send_keys(email_address)
