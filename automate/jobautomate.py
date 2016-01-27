@@ -7,10 +7,11 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException, ElementNotVisibleException
 
 driver = webdriver.Firefox()
+driver.set_window_size(1024, 768)
 
 with open('information.txt', 'r') as file:
     data = file.read().replace('\n', '').split(',')
-    first_name, last_name, email_address, phone_number = data
+    first_name, last_name, email_address = data
 
 
 def indeed_parameters(what, where):
@@ -65,7 +66,6 @@ def fill_application(cv_resume):
     try:
         driver.find_element_by_id('applicant.name').send_keys("{} {}" .format(first_name, last_name))
         driver.find_element_by_id('applicant.email').send_keys(email_address)
-        driver.find_element_by_id('applicant.phoneNumber').send_keys(phone_number)
         driver.find_element_by_id('resume').send_keys(os.path.abspath(cv_resume))
         try:
             driver.find_element_by_id('apply').click()
@@ -78,7 +78,6 @@ def fill_application(cv_resume):
         driver.find_element_by_id('applicant.firstName').send_keys(first_name)
         driver.find_element_by_id('applicant.lastName').send_keys(last_name)
         driver.find_element_by_id('applicant.email').send_keys(email_address)
-        driver.find_element_by_id('applicant.phoneNumber').send_keys(phone_number)
         driver.find_element_by_id('resume').send_keys(os.path.abspath(cv_resume))
         try:
             driver.find_element_by_id('apply').click()
