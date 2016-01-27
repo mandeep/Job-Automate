@@ -58,13 +58,13 @@ def switch_frames(frame_name):
     driver.switch_to.frame(0)
 
 
-def fill_application():
+def fill_application(cv_resume):
     """"""
     try:
         driver.find_element_by_id('applicant.name').send_keys("{} {}" .format(first_name, last_name))
         driver.find_element_by_id('applicant.email').send_keys(email_address)
         driver.find_element_by_id('applicant.phoneNumber').send_keys(phone_number)
-        driver.find_element_by_id('resume').send_keys(os.path.abspath('resume.docx'))
+        driver.find_element_by_id('resume').send_keys(os.path.abspath(cv_resume))
         try:
             driver.find_element_by_id('apply').click()
             print('Application Successful.')
@@ -77,7 +77,7 @@ def fill_application():
         driver.find_element_by_id('applicant.lastName').send_keys(last_name)
         driver.find_element_by_id('applicant.email').send_keys(email_address)
         driver.find_element_by_id('applicant.phoneNumber').send_keys(phone_number)
-        driver.find_element_by_id('resume').send_keys(os.path.abspath('resume.docx'))
+        driver.find_element_by_id('resume').send_keys(os.path.abspath(cv_resume))
         try:
             driver.find_element_by_id('apply').click()
             print('Application Successful.')
@@ -86,20 +86,13 @@ def fill_application():
             driver.switch_to.window(driver.window_handles[0])
 
 
-def apply_to_job():
-    """Click the Indeed apply button to easily apply to the job if it exists.
-    If the application is identified as an Easily Apply job, the application
-    is filled out. Otherwise, the new job window closes."""
-    try:
-        driver.find_element_by_class_name('indeed-apply-button').click()
-        switch_frames("iframe[name$=modal-iframe]")
-        fill_application()
-    except (NoSuchElementException, ElementNotVisibleException):
-        pass
-
-
 if __name__ == "__main__":
     user_parameters = indeed_parameters(raw_input('Enter a job title:'), raw_input('Enter a location:'))
     for url in indeed_urls(user_parameters):
         driver.get(url)
-        apply_to_job()
+        try:
+            driver.find_element_by_class_name('indeed-apply-button').click()
+            switch_frames('iframe[name$=modal-iframe]')
+            fill_application('resume.docx')
+        except (NoSuchElementException, ElementNotVisibleException):
+            pass
