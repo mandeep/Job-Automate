@@ -74,6 +74,9 @@ def fill_application(cv_resume):
             driver.find_element_by_id('apply').click()
             print('Application Successful.')
         except ElementNotVisibleException:
+            driver.find_element_by_id('apply').click()
+            print('Application Successful.')
+        else:
             print('Application Failed.')
             driver.switch_to.window(driver.window_handles[0])
     except NoSuchElementException:
@@ -88,6 +91,9 @@ def fill_application(cv_resume):
             driver.find_element_by_id('apply').click()
             print('Application Successful.')
         except ElementNotVisibleException:
+            driver.find_element_by_id('apply').click()
+            print('Application Successful.')
+        else:
             print('Application Failed.')
             driver.switch_to.window(driver.window_handles[0])
 
