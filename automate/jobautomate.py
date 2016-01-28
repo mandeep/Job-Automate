@@ -101,11 +101,15 @@ def fill_application(cv_resume):
 
 def main():
     user_parameters = indeed_parameters(raw_input('Enter a job title:'), raw_input('Enter a location:'))
-    for url in indeed_urls(user_parameters):
-        driver.get(url)
-        try:
-            driver.find_element_by_class_name('indeed-apply-button').click()
-            switch_frames('iframe[name$=modal-iframe]')
-            fill_application('resume.docx')
-        except (NoSuchElementException, ElementNotVisibleException):
-            print('Not an easily apply application.')
+    count = 0
+    while count < 40:
+        for url in indeed_urls(user_parameters):
+            driver.get(url)
+            try:
+                driver.find_element_by_class_name('indeed-apply-button').click()
+                switch_frames('iframe[name$=modal-iframe]')
+                fill_application('resume.docx')
+            except (NoSuchElementException, ElementNotVisibleException):
+                print('Not an easily apply application.')
+        user_parameters['start'] += 25
+        count += 1
