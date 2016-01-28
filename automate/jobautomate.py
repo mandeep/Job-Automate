@@ -73,13 +73,13 @@ def fill_application(cv_resume):
                 radio_button.click()
             driver.find_element_by_id('apply').click()
             print('Application Successful.')
-        except ElementNotVisibleException:
+        except (ElementNotVisibleException, NoSuchElementException):
             driver.find_element_by_id('apply').click()
             print('Application Successful.')
         else:
             print('Application Failed.')
             driver.switch_to.window(driver.window_handles[0])
-    except NoSuchElementException:
+    except (NoSuchElementException, ElementNotVisibleException):
         driver.find_element_by_id('applicant.firstName').send_keys(first_name)
         driver.find_element_by_id('applicant.lastName').send_keys(last_name)
         driver.find_element_by_id('applicant.email').send_keys(email_address)
@@ -90,7 +90,7 @@ def fill_application(cv_resume):
                 radio_button.click()
             driver.find_element_by_id('apply').click()
             print('Application Successful.')
-        except ElementNotVisibleException:
+        except (ElementNotVisibleException, NoSuchElementException):
             driver.find_element_by_id('apply').click()
             print('Application Successful.')
         else:
