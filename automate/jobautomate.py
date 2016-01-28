@@ -60,7 +60,12 @@ def switch_frames(frame_name):
 
 
 def fill_application(cv_resume):
-    """."""
+    """There are two application types: one that requires a full name and one
+    that requires a first and last name. A try/except is used to identify which
+    is used. Then, there are two types of apply methods. One applies after
+    clicking the apply button, and the other applies after clicking the
+    continue button and then answering some questions. A try/except is used
+    again here to identify which is used."""
     try:
         driver.find_element_by_id('applicant.name').send_keys("{} {}" .format(first_name, last_name))
         driver.find_element_by_id('applicant.email').send_keys(email_address)
