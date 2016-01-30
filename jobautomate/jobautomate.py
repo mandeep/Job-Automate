@@ -100,7 +100,7 @@ def fill_application(cv_resume):
 
 
 def main():
-    user_parameters = indeed_parameters(raw_input('Enter a job title:'), raw_input('Enter a location:'))
+    user_parameters = indeed_parameters(input('Enter a job title:'), input('Enter a location:'))
     count = 0
     while count < 40:
         for url in indeed_urls(user_parameters):
