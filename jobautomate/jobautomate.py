@@ -74,9 +74,15 @@ def fill_application(cv_resume):
             driver.find_element_by_link_text('Continue').click()
             for radio_button in driver.find_elements_by_xpath('//*[@type="radio" and @value="0"]'):
                 radio_button.click()
+            job_title = driver.find_element_by_class_name("jobtitle").text
+            company = driver.find_element_by_class_name("jobcompany").text
+            print("Applying for: {} at {}".format(job_title, company))
             driver.find_element_by_id('apply').click()
             print('Application Successful.')
         except (ElementNotVisibleException, NoSuchElementException):
+            job_title = driver.find_element_by_class_name("jobtitle").text
+            company = driver.find_element_by_class_name("jobcompany").text
+            print("Applying for: {} at {}".format(job_title, company))
             driver.find_element_by_id('apply').click()
             print('Application Successful.')
         else:
@@ -90,9 +96,15 @@ def fill_application(cv_resume):
             driver.find_element_by_link_text('Continue').click()
             for radio_button in driver.find_elements_by_xpath('//*[@type="radio" and @value="0"]'):
                 radio_button.click()
+            job_title = driver.find_element_by_class_name("jobtitle").text
+            company = driver.find_element_by_class_name("jobcompany").text
+            print("Applying for: {} at {}".format(job_title, company))
             driver.find_element_by_id('apply').click()
             print('Application Successful.')
         except (ElementNotVisibleException, NoSuchElementException):
+            job_title = driver.find_element_by_class_name("jobtitle").text
+            company = driver.find_element_by_class_name("jobcompany").text
+            print("Applying for: {} at {}".format(job_title, company))
             driver.find_element_by_id('apply').click()
             print('Application Successful.')
         else:
@@ -102,7 +114,7 @@ def fill_application(cv_resume):
 def main():
     user_parameters = indeed_parameters(input('Enter a job title:'), input('Enter a location:'))
     count = 0
-    while count < 40:
+    while count < 4:
         for url in indeed_urls(user_parameters):
             driver.get(url)
             try:
