@@ -4,9 +4,9 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import NoSuchElementException, ElementNotVisibleException
+from selenium.common.exceptions import NoSuchElementException, ElementNotVisibleException, NoSuchFrameException
 
-driver = webdriver.PhantomJS()
+driver = webdriver.Firefox()
 
 with open('information.txt', 'r') as file:
     data = file.read().replace('\n', '').split(',')
@@ -51,7 +51,7 @@ def indeed_urls(parameters):
 def switch_frames(frame_name):
     """The job application is inside a nested frame. In order to navigate to
     the application, each frame must be selected."""
-    wait = WebDriverWait(driver, 10)
+    wait = WebDriverWait(driver, 30)
     frame = wait.until(EC.presence_of_element_located(
         (By.CSS_SELECTOR, frame_name)))
     driver.switch_to.frame(frame)
@@ -120,7 +120,7 @@ def main():
                 driver.find_element_by_class_name('indeed-apply-button').click()
                 switch_frames('iframe[name$=modal-iframe]')
                 fill_application('resume.docx')
-            except (NoSuchElementException, ElementNotVisibleException):
+            except (NoSuchElementException, ElementNotVisibleException, NoSuchFrameException):
                 print('Not an easily apply application.')
         user_parameters['start'] += 25
         count += 1
