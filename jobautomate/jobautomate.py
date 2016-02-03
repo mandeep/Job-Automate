@@ -7,7 +7,6 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException, ElementNotVisibleException
 
 driver = webdriver.PhantomJS()
-driver.set_window_size(1024, 768)
 
 with open('information.txt', 'r') as file:
     data = file.read().replace('\n', '').split(',')
@@ -32,7 +31,7 @@ def indeed_parameters(what, where):
               'sort': 'date',
               'sr': 'directhire',
               'limit': 25,
-              'fromage': 90,
+              'fromage': 365,
               'start': 0,
               'userip': "1.2.3.4",
               'useragent': "Mozilla/5.0 (X11; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/43.0"
@@ -114,7 +113,7 @@ def fill_application(cv_resume):
 def main():
     user_parameters = indeed_parameters(input('Enter a job title:'), input('Enter a location:'))
     count = 0
-    while count < 4:
+    while count < 40:
         for url in indeed_urls(user_parameters):
             driver.get(url)
             try:
