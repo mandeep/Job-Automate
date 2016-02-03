@@ -6,7 +6,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException, ElementNotVisibleException
 
-driver = webdriver.Firefox()
+driver = webdriver.PhantomJS()
 driver.set_window_size(1024, 768)
 
 with open('information.txt', 'r') as file:
