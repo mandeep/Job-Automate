@@ -8,8 +8,8 @@ from selenium.common.exceptions import NoSuchElementException, ElementNotVisible
 
 driver = webdriver.Firefox()
 
-with open('information.txt', 'r') as file:
-    data = file.read().replace('\n', '').split(',')
+with open('information.txt', 'r') as f:
+    data = f.read().replace('\n', '').split(',')
     first_name, last_name, email_address = data
 
 
