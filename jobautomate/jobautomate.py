@@ -6,7 +6,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException, ElementNotVisibleException
 
-driver = webdriver.Firefox()
+driver = webdriver.PhantomJS()
 
 with open('information.txt', 'r') as f:
     data = f.read().replace('\n', '').split(',')
@@ -51,11 +51,11 @@ def indeed_urls(parameters):
 def switch_frames(frame_name):
     """The job application is inside a nested frame. In order to navigate to
     the application, each frame must be selected."""
-    wait = WebDriverWait(driver, 30)
+    wait = WebDriverWait(driver, 10)
     frame = wait.until(EC.presence_of_element_located(
         (By.CSS_SELECTOR, frame_name)))
     driver.switch_to.frame(frame)
-    driver.switch_to.frame(0)
+    wait.until(EC.frame_to_be_available_and_switch_to_it(0))
 
 
 def fill_application(cv_resume):
