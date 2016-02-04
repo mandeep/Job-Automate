@@ -4,7 +4,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import NoSuchElementException, ElementNotVisibleException, NoSuchFrameException
+from selenium.common.exceptions import NoSuchElementException, ElementNotVisibleException
 
 driver = webdriver.Firefox()
 
@@ -113,14 +113,14 @@ def fill_application(cv_resume):
 def main():
     user_parameters = indeed_parameters(input('Enter a job title:'), input('Enter a location:'))
     count = 0
-    while count < 40:
+    while count < 20:
         for url in indeed_urls(user_parameters):
             driver.get(url)
             try:
                 driver.find_element_by_class_name('indeed-apply-button').click()
                 switch_frames('iframe[name$=modal-iframe]')
                 fill_application('resume.docx')
-            except (NoSuchElementException, ElementNotVisibleException, NoSuchFrameException):
+            except (NoSuchElementException, ElementNotVisibleException):
                 print('Not an easily apply application.')
         user_parameters['start'] += 25
         count += 1
