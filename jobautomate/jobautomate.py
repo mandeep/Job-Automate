@@ -120,9 +120,7 @@ def main():
                 driver.find_element_by_class_name('indeed-apply-button').click()
                 switch_frames('iframe[name$=modal-iframe]')
                 fill_application('resume.docx')
-                print(url)
             except (NoSuchElementException, ElementNotVisibleException):
                 print('Not an easily apply application.')
-                print(url)
         user_parameters['start'] += 25
         count += 1
