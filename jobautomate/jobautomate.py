@@ -78,7 +78,7 @@ def fill_application(cv_resume):
             print("Applying for: {} at {}".format(job_title, company))
             driver.find_element_by_id('apply').click()
             print('Application Successful.')
-        except (ElementNotVisibleException, NoSuchElementException):
+        except (NoSuchElementException):
             job_title = driver.find_element_by_class_name("jobtitle").text
             company = driver.find_element_by_class_name("jobcompany").text
             print("Applying for: {} at {}".format(job_title, company))
@@ -86,7 +86,7 @@ def fill_application(cv_resume):
             print('Application Successful.')
         else:
             driver.switch_to.window(driver.window_handles[0])
-    except (NoSuchElementException, ElementNotVisibleException):
+    except (NoSuchElementException):
         driver.find_element_by_id('applicant.firstName').send_keys(first_name)
         driver.find_element_by_id('applicant.lastName').send_keys(last_name)
         driver.find_element_by_id('applicant.email').send_keys(email_address)
@@ -100,7 +100,7 @@ def fill_application(cv_resume):
             print("Applying for: {} at {}".format(job_title, company))
             driver.find_element_by_id('apply').click()
             print('Application Successful.')
-        except (ElementNotVisibleException, NoSuchElementException):
+        except (NoSuchElementException):
             job_title = driver.find_element_by_class_name("jobtitle").text
             company = driver.find_element_by_class_name("jobcompany").text
             print("Applying for: {} at {}".format(job_title, company))
@@ -112,14 +112,18 @@ def fill_application(cv_resume):
 
 def main():
     user_parameters = indeed_parameters(input('Enter a job title:'), input('Enter a location:'))
-    while len(indeed_urls(user_parameters)) < 1:
-        print("No matches found.")
-        user_parameters = indeed_parameters(input('Re-enter a job title:'), input('Re-enter a location:'))
-    for url in indeed_urls(user_parameters):
-        driver.get(url)
-        try:
-            driver.find_element_by_class_name('indeed-apply-button').click()
-            switch_frames('iframe[name$=modal-iframe]')
-            fill_application('resume.docx')
-        except (NoSuchElementException, ElementNotVisibleException):
-            print('Not an easily apply application.')
+    count = 0
+    while count < 2:
+        while len(indeed_urls(user_parameters)) < 1:
+            print("No matches found.")
+            user_parameters = indeed_parameters(input('Re-enter a job title:'), input('Re-enter a location:'))
+        for url in indeed_urls(user_parameters):
+            driver.get(url)
+            try:
+                driver.find_element_by_class_name('indeed-apply-button').click()
+                switch_frames('iframe[name$=modal-iframe]')
+                fill_application('resume.docx')
+            except (NoSuchElementException):
+                print('Not an easily apply application.')
+        user_parameters['start'] += 25
+        count += 1
