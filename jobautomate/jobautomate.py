@@ -72,10 +72,10 @@ def fill_application(cv_resume):
         try:
             job_title = driver.find_element_by_class_name("jobtitle").text
             company = driver.find_element_by_class_name("jobcompany").text
-            print("Applying for: {} at {}".format(job_title, company))
             driver.find_element_by_link_text('Continue').click()
             for radio_button in driver.find_elements_by_xpath('//*[@type="radio" and @value="0"]'):
                 radio_button.click()
+            print("Applying for: {} at {}".format(job_title, company))
             driver.find_element_by_id('apply').click()
             print('Application Successful.')
         except (NoSuchElementException, ElementNotVisibleException):
@@ -94,10 +94,10 @@ def fill_application(cv_resume):
         try:
             job_title = driver.find_element_by_class_name("jobtitle").text
             company = driver.find_element_by_class_name("jobcompany").text
-            print("Applying for: {} at {}".format(job_title, company))
             driver.find_element_by_link_text('Continue').click()
             for radio_button in driver.find_elements_by_xpath('//*[@type="radio" and @value="0"]'):
                 radio_button.click()
+            print("Applying for: {} at {}".format(job_title, company))
             driver.find_element_by_id('apply').click()
             print('Application Successful.')
         except (NoSuchElementException, ElementNotVisibleException):
