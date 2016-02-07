@@ -70,15 +70,15 @@ def fill_application(cv_resume):
         driver.find_element_by_id('applicant.email').send_keys(email_address)
         driver.find_element_by_id('resume').send_keys(os.path.abspath(cv_resume))
         try:
-            driver.find_element_by_link_text('Continue').click()
-            for radio_button in driver.find_elements_by_xpath('//*[@type="radio" and @value="0"]'):
-                radio_button.click()
             job_title = driver.find_element_by_class_name("jobtitle").text
             company = driver.find_element_by_class_name("jobcompany").text
             print("Applying for: {} at {}".format(job_title, company))
+            driver.find_element_by_link_text('Continue').click()
+            for radio_button in driver.find_elements_by_xpath('//*[@type="radio" and @value="0"]'):
+                radio_button.click()
             driver.find_element_by_id('apply').click()
             print('Application Successful.')
-        except (NoSuchElementException):
+        except (NoSuchElementException, ElementNotVisibleException):
             job_title = driver.find_element_by_class_name("jobtitle").text
             company = driver.find_element_by_class_name("jobcompany").text
             print("Applying for: {} at {}".format(job_title, company))
@@ -86,21 +86,21 @@ def fill_application(cv_resume):
             print('Application Successful.')
         else:
             driver.switch_to.window(driver.window_handles[0])
-    except (NoSuchElementException):
+    except (NoSuchElementException, ElementNotVisibleException):
         driver.find_element_by_id('applicant.firstName').send_keys(first_name)
         driver.find_element_by_id('applicant.lastName').send_keys(last_name)
         driver.find_element_by_id('applicant.email').send_keys(email_address)
         driver.find_element_by_id('resume').send_keys(os.path.abspath(cv_resume))
         try:
-            driver.find_element_by_link_text('Continue').click()
-            for radio_button in driver.find_elements_by_xpath('//*[@type="radio" and @value="0"]'):
-                radio_button.click()
             job_title = driver.find_element_by_class_name("jobtitle").text
             company = driver.find_element_by_class_name("jobcompany").text
             print("Applying for: {} at {}".format(job_title, company))
+            driver.find_element_by_link_text('Continue').click()
+            for radio_button in driver.find_elements_by_xpath('//*[@type="radio" and @value="0"]'):
+                radio_button.click()
             driver.find_element_by_id('apply').click()
             print('Application Successful.')
-        except (NoSuchElementException):
+        except (NoSuchElementException, ElementNotVisibleException):
             job_title = driver.find_element_by_class_name("jobtitle").text
             company = driver.find_element_by_class_name("jobcompany").text
             print("Applying for: {} at {}".format(job_title, company))
@@ -123,7 +123,7 @@ def main():
                 driver.find_element_by_class_name('indeed-apply-button').click()
                 switch_frames('iframe[name$=modal-iframe]')
                 fill_application('resume.docx')
-            except (NoSuchElementException):
+            except (NoSuchElementException, ElementNotVisibleException):
                 print('Not an easily apply application.')
         user_parameters['start'] += 25
         count += 1
