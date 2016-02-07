@@ -66,7 +66,7 @@ def fill_application(cv_resume):
     continue button and then answering some questions. A try/except is used
     again here to identify which is used."""
     try:
-        driver.find_element_by_id('applicant.name').send_keys("{} {}".format(first_name, last_name))
+        driver.find_element_by_id('applicant.name').send_keys("{} {}" .format(first_name, last_name))
         driver.find_element_by_id('applicant.email').send_keys(email_address)
         driver.find_element_by_id('resume').send_keys(os.path.abspath(cv_resume))
         try:
@@ -111,14 +111,12 @@ def fill_application(cv_resume):
 
 
 def main():
-    user_parameters = indeed_parameters(input('Enter a job title:'),
-                                        input('Enter a location:'))
+    user_parameters = indeed_parameters(input('Enter a job title:'), input('Enter a location:'))
     count = 0
     while count < 2:
         while len(indeed_urls(user_parameters)) < 1:
             print("No matches found.")
-            user_parameters = indeed_parameters(input('Re-enter a job title:'),
-                                                input('Re-enter a location:'))
+            user_parameters = indeed_parameters(input('Re-enter a job title:'), input('Re-enter a location:'))
         for url in indeed_urls(user_parameters):
             driver.get(url)
             try:
