@@ -111,12 +111,12 @@ def fill_application(cv_resume):
 
 
 def main():
-    user_parameters = indeed_parameters(input('Enter a job title:'), input('Enter a location:'))
+    user_parameters = indeed_parameters(raw_input('Enter a job title:'), raw_input('Enter a location:'))
     count = 0
     while count < 2:
         while len(indeed_urls(user_parameters)) < 1:
             print("No matches found.")
-            user_parameters = indeed_parameters(input('Re-enter a job title:'), input('Re-enter a location:'))
+            user_parameters = indeed_parameters(raw_input('Re-enter a job title:'), raw_input('Re-enter a location:'))
         for url in indeed_urls(user_parameters):
             driver.get(url)
             try:
