@@ -58,56 +58,43 @@ def switch_frames(frame_name):
     wait.until(EC.frame_to_be_available_and_switch_to_it(0))
 
 
-def fill_application(cv_resume):
+def fill_application(cv):
     """There are two application types: one that requires a full name and one
     that requires a first and last name. A try/except is used to identify which
-    is used. Then, there are two types of apply methods. One applies after
-    clicking the apply button, and the other applies after clicking the
-    continue button and then answering some questions. A try/except is used
-    again here to identify which is used."""
+    is used."""
     try:
         driver.find_element_by_id('applicant.name').send_keys("{} {}" .format(first_name, last_name))
         driver.find_element_by_id('applicant.email').send_keys(email_address)
-        driver.find_element_by_id('resume').send_keys(os.path.abspath(cv_resume))
-        try:
-            job_title = driver.find_element_by_class_name("jobtitle").text
-            company = driver.find_element_by_class_name("jobcompany").text
-            driver.find_element_by_link_text('Continue').click()
-            for radio_button in driver.find_elements_by_xpath('//*[@type="radio" and @value="0"]'):
-                radio_button.click()
-            print("Applying for: {} at {}".format(job_title, company))
-            driver.find_element_by_id('apply').click()
-            print('Application Successful.')
-        except (NoSuchElementException, ElementNotVisibleException):
-            job_title = driver.find_element_by_class_name("jobtitle").text
-            company = driver.find_element_by_class_name("jobcompany").text
-            print("Applying for: {} at {}".format(job_title, company))
-            driver.find_element_by_id('apply').click()
-            print('Application Successful.')
-        else:
-            driver.switch_to.window(driver.window_handles[0])
+        driver.find_element_by_id('resume').send_keys(os.path.abspath(cv))
     except (NoSuchElementException, ElementNotVisibleException):
         driver.find_element_by_id('applicant.firstName').send_keys(first_name)
         driver.find_element_by_id('applicant.lastName').send_keys(last_name)
         driver.find_element_by_id('applicant.email').send_keys(email_address)
-        driver.find_element_by_id('resume').send_keys(os.path.abspath(cv_resume))
-        try:
-            job_title = driver.find_element_by_class_name("jobtitle").text
-            company = driver.find_element_by_class_name("jobcompany").text
-            driver.find_element_by_link_text('Continue').click()
-            for radio_button in driver.find_elements_by_xpath('//*[@type="radio" and @value="0"]'):
-                radio_button.click()
-            print("Applying for: {} at {}".format(job_title, company))
-            driver.find_element_by_id('apply').click()
-            print('Application Successful.')
-        except (NoSuchElementException, ElementNotVisibleException):
-            job_title = driver.find_element_by_class_name("jobtitle").text
-            company = driver.find_element_by_class_name("jobcompany").text
-            print("Applying for: {} at {}".format(job_title, company))
-            driver.find_element_by_id('apply').click()
-            print('Application Successful.')
-        else:
-            driver.switch_to.window(driver.window_handles[0])
+        driver.find_element_by_id('resume').send_keys(os.path.abspath(cv))
+
+
+def apply_or_continue():
+    """Then, there are two types of apply methods. One applies after
+    clicking the apply button, and the other applies after clicking the
+    continue button and then answering some questions. A try/except is used
+    again here to identify which is used."""
+    try:
+        job_title = driver.find_element_by_class_name("jobtitle").text
+        company = driver.find_element_by_class_name("jobcompany").text
+        driver.find_element_by_link_text('Continue').click()
+        for radio_button in driver.find_elements_by_xpath('//*[@type="radio" and @value="0"]'):
+            radio_button.click()
+        print("Applying for: {} at {}".format(job_title, company))
+        driver.find_element_by_id('apply').click()
+        print('Application Successful.')
+    except (NoSuchElementException, ElementNotVisibleException):
+        job_title = driver.find_element_by_class_name("jobtitle").text
+        company = driver.find_element_by_class_name("jobcompany").text
+        print("Applying for: {} at {}".format(job_title, company))
+        driver.find_element_by_id('apply').click()
+        print('Application Successful.')
+    finally:
+        driver.switch_to.window(driver.window_handles[0])
 
 
 def main():
@@ -123,6 +110,7 @@ def main():
                 driver.find_element_by_class_name('indeed-apply-button').click()
                 switch_frames('iframe[name$=modal-iframe]')
                 fill_application('resume.docx')
+                apply_or_continue()
             except (NoSuchElementException, ElementNotVisibleException):
                 print('Not an easily apply application.')
         user_parameters['start'] += 25
