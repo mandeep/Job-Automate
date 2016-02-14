@@ -25,7 +25,6 @@ def indeed_parameters(what, where):
     :param userip: ip of client (required)
     :param useragent: user agent of client (required)
     """
-
     params = {'q': what,
               'l': where,
               'sort': 'date',
@@ -34,7 +33,8 @@ def indeed_parameters(what, where):
               'fromage': 365,
               'start': 0,
               'userip': "1.2.3.4",
-              'useragent': "Mozilla/5.0 (X11; Linux x86_64; rv:31.0) Gecko/20100101 Firefox/43.0"
+              'useragent': "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, \
+                            like Gecko) Chrome/48.0.2564.82 Safari/537.36"
               }
     return params
 
@@ -82,12 +82,12 @@ def apply_or_continue():
     company = driver.find_element_by_class_name("jobcompany").text
     print("Applying for: {} at {}".format(job_title, company))
     try:
-        driver.find_element_by_link_text('Continue').click()
-        for radio_button in driver.find_elements_by_xpath('//*[@type="radio" and @value="0"]'):
-            radio_button.click()
         driver.find_element_by_id('apply').click()
         print('Application Successful.')
     except (NoSuchElementException, ElementNotVisibleException):
+        driver.find_element_by_link_text('Continue').click()
+        for radio_button in driver.find_elements_by_xpath('//*[@type="radio" and @value="0"]'):
+            radio_button.click()
         driver.find_element_by_id('apply').click()
         print('Application Successful.')
     finally:
