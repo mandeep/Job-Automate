@@ -74,13 +74,13 @@ def fill_application(cv):
 
 
 def apply_or_continue():
-    """Then, there are two types of apply methods. One applies after
+    """There are two types of apply methods: one applies after
     clicking the apply button, and the other applies after clicking the
-    continue button and then answering some questions. A try/except is used
+    continue button and answering some questions. A try/except is used
     again here to identify which is used."""
+    job_title = driver.find_element_by_class_name("jobtitle").text
+    company = driver.find_element_by_class_name("jobcompany").text
     try:
-        job_title = driver.find_element_by_class_name("jobtitle").text
-        company = driver.find_element_by_class_name("jobcompany").text
         driver.find_element_by_link_text('Continue').click()
         for radio_button in driver.find_elements_by_xpath('//*[@type="radio" and @value="0"]'):
             radio_button.click()
@@ -88,8 +88,6 @@ def apply_or_continue():
         driver.find_element_by_id('apply').click()
         print('Application Successful.')
     except (NoSuchElementException, ElementNotVisibleException):
-        job_title = driver.find_element_by_class_name("jobtitle").text
-        company = driver.find_element_by_class_name("jobcompany").text
         print("Applying for: {} at {}".format(job_title, company))
         driver.find_element_by_id('apply').click()
         print('Application Successful.')
