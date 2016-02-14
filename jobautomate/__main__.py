@@ -1,3 +1,4 @@
-from jobautomate import main
+import jobautomate
 
-main()
+if __name__ == '__main__':
+    jobautomate.main()
