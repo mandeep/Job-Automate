@@ -94,7 +94,7 @@ def apply_or_continue():
         driver.switch_to.window(driver.window_handles[0])
 
 
-def send_to_django(what, where):
+def run_script(what, where):
     user_parameters = indeed_parameters(what, where)
     count = 0
     while count < 2:
