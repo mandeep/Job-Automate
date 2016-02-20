@@ -4,4 +4,5 @@ from django.shortcuts import render
 
 def index(request):
     context = {}
+    request.POST.get("job_title", "job_location")
     return render(request, 'web_search/index.html', context)
