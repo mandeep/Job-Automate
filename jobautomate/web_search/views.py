@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from jobautomate import run_script
+import jobautomate
 
 
 def index(request):
@@ -8,5 +8,5 @@ def index(request):
     if request.POST.get('run'):
         what = request.POST['job_title']
         where = request.POST['job_location']
-        run_script(what, where)
+        jobautomate.run_script(what, where)
     return render(request, 'web_search/index.html', context)
