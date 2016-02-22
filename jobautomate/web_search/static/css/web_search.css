@@ -1,16 +1,53 @@
 h1 {
-    color: #00B1F4;
+    color: #565656;
     font-family: 'Lato', sans-serif;
     font-size: 30px;
+    font-weight: 700;
+    margin-top: 10px;
+    margin-bottom: 4px;
+}
+
+body {
+    background-color: #FEFEFE;
+    text-align: center;
+    font-family: 'Lato', sans-serif;
 }
 
 .page-header {
-    background-color: #FEFEFE;
+    background-color: #F7F7oF7;
     margin-top: 0;
     padding: 1px 1px 8px;
 
 }
 
-body {
-    background-color: #F7F7F7;
+.overview {
+    font-size: 80px;
+    font-weight: 300;
+    color: #00B1F4;
+    margin-bottom: 0px;
+}
+
+.description {
+    font-weight: 300;
+    font-size: 21px;
+    color: #3D3D3D;
+    margin-top: 0px;
+    margin-bottom: 30px;
+}
+
+input[type=text] {
+
+    height: 25px;
+}
+
+input[type=submit] {
+    background: #00B1F4;
+    color: #FFFFFF;
+    border: 0;
+    height: 25px;    
+    width: 70px;
+}
+
+input[type=submit]:hover{
+    background:#34C8FF;
 }
