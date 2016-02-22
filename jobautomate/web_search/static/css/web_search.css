@@ -1,16 +1,16 @@
 h1 {
-    color: #FFFFFF;
-    font-family: 'Permanent Marker', cursive;
-    font-size: 80px;
+    color: #00B1F4;
+    font-family: 'Lato', sans-serif;
+    font-size: 30px;
 }
 
 .page-header {
-    background-color: #00B1F4;
+    background-color: #FEFEFE;
     margin-top: 0;
-    padding: 20px 20px 20px 40px;
+    padding: 1px 1px 5px;
 
 }
 
 body {
-    background-color: #EBEBEB;
+    background-color: #F7F7F7;
 }
