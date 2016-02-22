@@ -35,11 +35,41 @@ body {
     margin-bottom: 30px;
 }
 
+.information_details {
+    font-weight: 300;
+    font-size: 17px;
+    color: #3D3D3D;
+    margin-top: 0px;
+    margin-bottom: 30px;
+}
+
+.job_text {
+    font-weight: 300;
+    font-size: 17px;
+    color: #3D3D3D;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+.file_upload {
+
+}
+
 input[type=text] {
 
     height: 25px;
 }
 
+input[type=email] {
+
+    height: 25px;
+    margin-right: 90px;
+}
+
+input[type=file] {
+
+    height: 25px;
+    
+}
 input[type=submit] {
     background: #00B1F4;
     color: #FFFFFF;
