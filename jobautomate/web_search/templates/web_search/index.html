@@ -21,7 +21,30 @@
             Enter a job description and a location then let Jobomate handle the rest!
             </p>
         </div>
-        <div class="forms">
+        <div class ="information_details">
+            <p>
+            First tell us who you are!
+            </p>
+        </div>
+        <div>
+        <p>
+            <form method="POST">
+            {% csrf_token %}
+            <input type="text" size="50" maxlength="50" name="first_name" placeholder="First Name..." />
+            <input type="text" size="50" maxlength="50" name="last_name" placeholder="Last Name..." />
+            <br><br>
+            <input type="email" size="50" maxlength="50" name="email" placeholder="Email address..." />
+            <label class="file_upload">
+            <input type="file" size="50" name="resume" />
+            </label>
+            </p>
+        </div>
+        <div class="job_text">
+            <p>
+            Now let's search for some jobs!
+            </p>
+        </div>
+        <div class="job_forms">
             <p>
                 <form method="POST">
                 {% csrf_token %}
