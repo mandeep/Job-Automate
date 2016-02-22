@@ -8,6 +8,8 @@ setup(name='jobautomate',
       install_requires=[
         'indeed',
         'selenium',
+        'django'
+        'requests'
       ],
       entry_points='''
         [console_scripts]
