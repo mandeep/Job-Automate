@@ -1,16 +1,26 @@
+{% load staticfiles %}
 <!DOCTYPE html>
 <html>
     <head>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'css/web_search.css' %}">
+        <link href='https://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
         <title>Job Automate</title>
     </head>
     <body>
-        <p>
-            <form method="POST">
-            {% csrf_token %}
-            <input type="text" size="30" maxlength="100" name="job_title">
-            <input type="text" size="30" maxlength="100" name="job_location">
-            <input type="submit" name="run">
-            </form>
-        </p>
+        <div class="page-header">
+            <h1 style="text-align: center">Job Automate</h1>
+        </div>
+        <div class="forms">
+            <p><center>
+                <form method="POST">
+                {% csrf_token %}
+                <input type="text" size="50" maxlength="100" name="job_title">
+                <input type="text" size="50" maxlength="100" name="job_location">
+                <input type="submit" name="run">
+                </form>
+                </center>
+            </p>
+        </div>
     </body>
 </html>

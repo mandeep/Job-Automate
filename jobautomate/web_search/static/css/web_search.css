@@ -1,0 +1,16 @@
+h1 {
+    color: #FFFFFF;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 80px;
+}
+
+.page-header {
+    background-color: #00B1F4;
+    margin-top: 0;
+    padding: 20px 20px 20px 40px;
+
+}
+
+body {
+    background-color: #EBEBEB;
+}
