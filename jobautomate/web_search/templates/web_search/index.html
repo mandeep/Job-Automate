@@ -25,9 +25,9 @@
             <p>
                 <form method="POST">
                 {% csrf_token %}
-                <input type="text" size="50" maxlength="100" name="job_title">
-                <input type="text" size="50" maxlength="100" name="job_location">
-                <input type="submit" name="run" value="Search">
+                <input type="text" size="50" maxlength="100" name="job_title" placeholder="Job..." />
+                <input type="text" size="50" maxlength="100" name="job_location" placeholder="Location..." />
+                <input type="submit" name="run" value="Search" />
                 </form>
             </p>
         </div>
