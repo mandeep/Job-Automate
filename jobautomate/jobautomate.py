@@ -8,10 +8,6 @@ from selenium.common.exceptions import NoSuchElementException, ElementNotVisible
 
 driver = webdriver.PhantomJS()
 
-with open('information.txt', 'r') as f:
-    data = f.read().replace('\n', '').split(',')
-    first_name, last_name, email_address = data
-
 
 def indeed_parameters(what, where):
     """Use Indeed API to obtain job application links.
@@ -58,7 +54,7 @@ def switch_frames(frame_name):
     wait.until(EC.frame_to_be_available_and_switch_to_it(0))
 
 
-def fill_application(cv):
+def fill_application(cv, first_name, last_name, email_address):
     """There are two application types: one that requires a full name and one
     that requires a first and last name. A try/except is used to identify which
     is used."""
@@ -94,7 +90,7 @@ def apply_or_continue():
         driver.switch_to.window(driver.window_handles[0])
 
 
-def run_script(what, where):
+def run_script(what, where, cv, first_name, last_name, email_address):
     user_parameters = indeed_parameters(what, where)
     count = 0
     while count < 2:
@@ -103,7 +99,7 @@ def run_script(what, where):
             try:
                 driver.find_element_by_class_name('indeed-apply-button').click()
                 switch_frames('iframe[name$=modal-iframe]')
-                fill_application('resume.docx')
+                fill_application(cv, first_name, last_name, email_address)
                 apply_or_continue()
             except (NoSuchElementException, ElementNotVisibleException):
                 print('Not an easily apply application.')
