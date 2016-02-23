@@ -28,7 +28,7 @@
         </div>
         <div class="container">
         <p>
-            <form method="POST">
+            <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
             <input type="text" size="50" maxlength="50" name="first_name" placeholder="First Name..." />
             <input type="text" size="50" maxlength="50" name="last_name" placeholder="Last Name..." />
