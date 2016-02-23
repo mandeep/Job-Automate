@@ -5,11 +5,11 @@ h1 {
     font-weight: 700;
     margin-top: 10px;
     margin-bottom: 4px;
+    text-align: center;
 }
 
 body {
     background-color: #FEFEFE;
-    text-align: center;
     font-family: 'Lato', sans-serif;
 }
 
@@ -25,6 +25,7 @@ body {
     font-weight: 300;
     color: #00B1F4;
     margin-bottom: 0px;
+    text-align: center;
 }
 
 .description {
@@ -33,6 +34,7 @@ body {
     color: #3D3D3D;
     margin-top: 0px;
     margin-bottom: 30px;
+    text-align: center;
 }
 
 .information_details {
@@ -41,6 +43,12 @@ body {
     color: #3D3D3D;
     margin-top: 0px;
     margin-bottom: 30px;
+    text-align: center;
+}
+
+.container{
+    padding-left: 225px
+
 }
 
 .job_text {
@@ -49,9 +57,11 @@ body {
     color: #3D3D3D;
     margin-top: 30px;
     margin-bottom: 30px;
+    text-align: center;
 }
-.file_upload {
-
+.job_forms {
+    text-align: center;
+    padding-left: 84px;
 }
 
 input[type=text] {
@@ -62,7 +72,6 @@ input[type=text] {
 input[type=email] {
 
     height: 25px;
-    margin-right: 90px;
 }
 
 input[type=file] {
