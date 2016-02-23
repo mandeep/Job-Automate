@@ -21,12 +21,12 @@
             Enter a job description and a location then let Jobomate handle the rest!
             </p>
         </div>
-        <div class ="information_details">
+        <div class="information_details">
             <p>
-            First tell us who you are!
+            First tell us who you are and upload a resume!
             </p>
         </div>
-        <div>
+        <div class="container">
         <p>
             <form method="POST">
             {% csrf_token %}
@@ -37,7 +37,7 @@
             <label class="file_upload">
             <input type="file" size="50" name="resume" />
             </label>
-            </p>
+            </p>    
         </div>
         <div class="job_text">
             <p>
