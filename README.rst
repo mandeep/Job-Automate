@@ -1,6 +1,8 @@
-# Job Automate
+============
+Job Automate
+============
 
-## Overview
+Overview
 
 jobautomate.py takes user input for a job description and a location then searches for jobs
 using the Indeed API. The script will only apply to jobs that use the 'Easily Apply' application.
