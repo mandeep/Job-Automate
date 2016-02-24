@@ -89,16 +89,13 @@ def apply_or_continue():
 
 def run_script(what, where, cv, first_name, last_name, email_address):
     user_parameters = indeed_parameters(what, where)
-    count = 0
-    while count < 2:
-        for url in indeed_urls(user_parameters):
-            driver.get(url)
-            try:
-                driver.find_element_by_class_name('indeed-apply-button').click()
-                switch_frames('iframe[name$=modal-iframe]')
-                fill_application(cv, first_name, last_name, email_address)
-                apply_or_continue()
-            except (NoSuchElementException, ElementNotVisibleException):
-                pass
-        user_parameters['start'] += 25
-        count += 1
+    for url in indeed_urls(user_parameters):
+        driver.get(url)
+        try:
+            driver.find_element_by_class_name('indeed-apply-button').click()
+            switch_frames('iframe[name$=modal-iframe]')
+            fill_application(cv, first_name, last_name, email_address)
+            apply_or_continue()
+        except (NoSuchElementException, ElementNotVisibleException):
+            pass
+    user_parameters['start'] += 25
