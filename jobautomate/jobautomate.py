@@ -76,16 +76,13 @@ def apply_or_continue():
     again here to identify which is used."""
     job_title = driver.find_element_by_class_name("jobtitle").text
     company = driver.find_element_by_class_name("jobcompany").text
-    print("Applying for: {} at {}".format(job_title, company))
     try:
         driver.find_element_by_id('apply').click()
-        print('Application Successful.')
     except (NoSuchElementException, ElementNotVisibleException):
         driver.find_element_by_link_text('Continue').click()
         for radio_button in driver.find_elements_by_xpath('//*[@type="radio" and @value="0"]'):
             radio_button.click()
         driver.find_element_by_id('apply').click()
-        print('Application Successful.')
     finally:
         driver.switch_to.window(driver.window_handles[0])
 
@@ -102,6 +99,6 @@ def run_script(what, where, cv, first_name, last_name, email_address):
                 fill_application(cv, first_name, last_name, email_address)
                 apply_or_continue()
             except (NoSuchElementException, ElementNotVisibleException):
-                print('Not an easily apply application.')
+                pass
         user_parameters['start'] += 25
         count += 1
