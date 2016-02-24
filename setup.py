@@ -10,6 +10,7 @@ setup(name='jobautomate',
         'selenium',
         'django',
         'requests',
+        'gunicorn'
       ],
       entry_points='''
         [console_scripts]
