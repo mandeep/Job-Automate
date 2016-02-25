@@ -106,7 +106,7 @@ def main():
             try:
                 driver.find_element_by_class_name('indeed-apply-button').click()
                 switch_frames('iframe[name$=modal-iframe]')
-                fill_application('resume.docx')
+                fill_application('resume.pdf')
                 apply_or_continue()
             except (NoSuchElementException, ElementNotVisibleException):
                 print('Not an easily apply application.')

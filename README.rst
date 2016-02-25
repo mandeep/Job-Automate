@@ -1,5 +1,5 @@
 ============
-Job Automate
+Jobomate
 ============
 
 Overview
