@@ -11,7 +11,7 @@ from jobautomate.jobautomate import indeed_parameters, indeed_urls
 class JobAutomateTest(unittest.TestCase):
 
     def setUp(self):
-        self.driver = webdriver.Firefox()
+        self.driver = webdriver.PhantomJS()
 
     def tearDown(self):
         self.driver.quit()
