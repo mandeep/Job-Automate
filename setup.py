@@ -1,20 +1,17 @@
 from setuptools import setup, find_packages
 
 setup(name='jobautomate',
-      version='0.0.1',
+      version='0.0.2',
       author='Mandeep Bhutani',
       packages=find_packages(),
       include_package_data=True,
       install_requires=[
         'indeed',
         'selenium',
-        'django',
         'requests',
-        'gunicorn',
-        'whitenoise'
       ],
       entry_points='''
         [console_scripts]
-        jobautomate=cli:main
+        jobautomate=jobautomate:main
         ''',
       )
