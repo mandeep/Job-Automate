@@ -1,5 +1,5 @@
 from django.shortcuts import render
-import jobautomate
+from django_script import django_view
 
 
 def index(request):
@@ -11,6 +11,6 @@ def index(request):
         last_name = request.POST['last_name']
         email = request.POST['email']
         resume = request.FILES['resume'].read()
-        jobautomate.django_view(what, where, first_name,
+        django_view(what, where, first_name,
                                 last_name, email, resume)
     return render(request, 'web_search/index.html', context)
