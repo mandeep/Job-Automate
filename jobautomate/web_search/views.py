@@ -11,5 +11,6 @@ def index(request):
         last_name = request.POST['last_name']
         email = request.POST['email']
         resume = request.FILES['resume'].read()
-        jobautomate.run_script(what, where, resume, first_name, last_name, email)
+        jobautomate.django_view(what, where, first_name,
+                                last_name, email, resume)
     return render(request, 'web_search/index.html', context)
