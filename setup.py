@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(name='jobautomate',
-      version='0.0.2',
+      version='0.0.3',
       author='Mandeep Bhutani',
       packages=find_packages(),
       include_package_data=True,
