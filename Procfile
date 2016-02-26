@@ -1,1 +1,1 @@
-web: gunicorn --pythonpath jobautomate web_search.wsgi
+web: gunicorn --pythonpath jobautomate web_app.wsgi
