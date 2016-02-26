@@ -12,6 +12,6 @@ setup(name='jobautomate',
       ],
       entry_points='''
         [console_scripts]
-        jobautomate=jobautomate:main
+        jobautomate=commandline:main
         ''',
       )
