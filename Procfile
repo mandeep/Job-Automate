@@ -1,0 +1,1 @@
+web: gunicorn --pythonpath jobautomate web_search.wsgi
