@@ -5,7 +5,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException
-from jobautomate import indeed_parameters, indeed_urls, switch_frames
+from jobautomate.jobautomate import indeed_parameters, indeed_urls
 
 
 class JobAutomateTest(unittest.TestCase):
