@@ -33,7 +33,7 @@ body {
     font-size: 21px;
     color: #3D3D3D;
     margin-top: 0px;
-    margin-bottom: 30px;
+    margin-bottom: 40px;
     text-align: center;
 }
 
@@ -42,13 +42,13 @@ body {
     font-size: 17px;
     color: #3D3D3D;
     margin-top: 0px;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     text-align: center;
 }
 
 .container{
-    padding-left: 215px
-
+    text-align: center;
+    margin-bottom: 30px;
 }
 
 .job_text {
@@ -56,12 +56,25 @@ body {
     font-size: 17px;
     color: #3D3D3D;
     margin-top: 30px;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
     text-align: center;
 }
+
 .job_forms {
     text-align: center;
-    padding-left: 64px;
+}
+
+.resume_text {
+    font-weight: 300;
+    font-size: 17px;
+    color: #3D3D3D;
+    text-align: center;
+    margin-bottom: 15px
+}
+
+.resume_upload {
+    text-align: center;
+    padding-left: 70px
 }
 
 input[type=text] {
@@ -77,6 +90,7 @@ input[type=email] {
 input[type=file] {
 
     height: 25px;
+    display: inline-block;
     
 }
 input[type=submit] {
