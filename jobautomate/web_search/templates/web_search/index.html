@@ -2,6 +2,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet" integrity="sha256-7s5uDGW3AHqw6xtJmNNtr+OBRJUlgkNJEo78P4b0yRw= sha512-nNo+yCHEyn0smMxSswnf/OnX6/KwJuZTlNZBjauKhTK0c+zT+q5JOCx0UFhXQ6rJR9jg6Es8gPuD2uZcYDLqSw==" crossorigin="anonymous">
         <link rel="stylesheet" href="{% static 'css/web_search.css' %}">
         <link href='https://fonts.googleapis.com/css?family=Lato:400,700,300' rel='stylesheet' type='text/css'>
@@ -23,7 +24,7 @@
         </div>
         <div class="information_details">
             <p>
-            First tell us who you are and upload a resume!
+            First tell us who you are!
             </p>
         </div>
         <div class="container">
@@ -34,10 +35,15 @@
             <input type="text" size="50" maxlength="50" name="last_name" placeholder="Last Name..." />
             <br><br>
             <input type="email" size="50" maxlength="50" name="email" placeholder="Email address..." />
-            <label class="file_upload">
-            <input type="file" size="50" name="resume" />
-            </label>
             </p>    
+        </div>
+        <div class="resume_text">
+        <p>Upload a resume!</p>
+        </div>
+        <div class="resume_upload">
+            <label class="file_upload">
+                <input type="file" size="50" name="resume" />
+            </label>
         </div>
         <div class="job_text">
             <p>
@@ -50,7 +56,8 @@
                 {% csrf_token %}
                 <input type="text" size="50" maxlength="100" name="job_title" placeholder="Job..." />
                 <input type="text" size="50" maxlength="100" name="job_location" placeholder="Location..." />
-                <input type="submit" name="run" value="Search" />
+                <br><br>
+                <input type="submit" name="run" value="Search!" />
                 </form>
             </p>
         </div>
