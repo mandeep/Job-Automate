@@ -1,7 +1,7 @@
 from setuptools import setup, find_packages
 
 setup(name='jobautomate',
-      version='0.0.3',
+      version='0.0.4',
       author='Mandeep Bhutani',
       packages=find_packages(),
       include_package_data=True,
@@ -9,6 +9,9 @@ setup(name='jobautomate',
         'indeed',
         'selenium',
         'requests',
+        'django',
+        'gunicorn'
+        'whitenoise'
       ],
       entry_points='''
         [console_scripts]
