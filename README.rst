@@ -36,7 +36,7 @@ will look similar to the image below:
 Web Application
 ================
 
-The web application for jobautomate can be found at https://jobomate.heroku.com/
+The web application for jobautomate can be found at https://jobomate.herokuapp.com/
 
 The app takes in user input for first name, last name, email address, job description
 and job location. The résumé is uploaded via a file input box. Currently, django parses
