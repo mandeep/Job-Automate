@@ -95,12 +95,12 @@ def apply_or_continue():
 
 
 def main():
-    user_parameters = indeed_parameters(input('Enter a job title:'), input('Enter a location:'))
+    user_parameters = indeed_parameters(input('Enter a job title: '), input('Enter a location: '))
     count = 0
     while count < 2:
         while len(indeed_urls(user_parameters)) < 1:
             print("No matches found.")
-            user_parameters = indeed_parameters(input('Re-enter a job title:'), input('Re-enter a location:'))
+            user_parameters = indeed_parameters(input('Re-enter a job title: '), input('Re-enter a location: '))
         for url in indeed_urls(user_parameters):
             driver.get(url)
             try:
@@ -109,6 +109,6 @@ def main():
                 fill_application('resume.pdf')
                 apply_or_continue()
             except (NoSuchElementException, ElementNotVisibleException):
-                pass
+                print('Not an easily apply application')
         user_parameters['start'] += 25
         count += 1
