@@ -73,8 +73,8 @@ body {
 }
 
 .resume_upload {
-    text-align: center;
-    padding-left: 70px
+    width: 200px;
+    margin: 0 auto;
 }
 
 input[type=text] {
