@@ -8,9 +8,9 @@ from selenium.common.exceptions import NoSuchElementException, ElementNotVisible
 
 driver = webdriver.Firefox()
 
-FIRST_NAME = ""
-LAST_NAME = ""
-EMAIL_ADDRESS = ""
+FIRST_NAME = input('Enter your first name: ')
+LAST_NAME = input('Enter your last name: ')
+EMAIL_ADDRESS = input('Enter your email address: ')
 
 
 def indeed_parameters(what, where):
