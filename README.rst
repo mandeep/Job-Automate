@@ -11,6 +11,7 @@ line script (working). Both require user input for first name, last name, and em
 address for the user's details. The résumé is uploaded on the web interface
 and read from file when using the command line interface. 
 
+======================
 Command Line Interface
 ======================
 
@@ -33,6 +34,7 @@ will look similar to the image below:
 
 .. image:: cli.png
 
+================
 Web Application
 ================
 
