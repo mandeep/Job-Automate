@@ -3,9 +3,32 @@ Jobomate
 ============
 
 Overview
+============
 
-jobautomate.py takes user input for a job description and a location then searches for jobs
-using the Indeed API. The script will only apply to jobs that use the 'Easily Apply' application.
-This allows the script to read from file just the name, email address, and resume of the job
-applicant in order to apply to the job. The PhantomJS WebDriver is used to load the job
-application links in its headless browser and to apply to each job individually.
+Jobautomate uses the Indeed API to apply to 'easily apply' jobs posted to Indeed's website.
+Jobautomate comes in two forms. A web application (in development) and a command
+line script (working). Both require user input for first name, last name, and email
+address for the user's details. The resume is uploaded on the web interface
+and read from file when using the command line interface. 
+
+Command Line Interface
+======================
+
+To install the script use the following commands in a command line prompt:
+
+    git clone https://github.com/mandeepbhutani/Job-Automate.git
+    cd Job-Automate
+    python setup.py install
+
+
+Place a resume file in the jobautomate subdirectory and then run the script
+in a command line prompt using the following command:
+
+    jobautomate
+
+The script will ask for first name, last name, email address, job description,
+and job location. Once entered the script will open a Firefox webdriver instance
+and search for 'easily apply' jobs in the URLs given by the Indeed API. The output
+will look similar to the image below:
+
+.. image:: cli.png
