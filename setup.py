@@ -8,7 +8,7 @@ setup(name='jobautomate',
       install_requires=[
         'indeed',
         'selenium',
-        'requests',
+        'requests==2.0.0',
         'django',
         'gunicorn',
         'whitenoise',
