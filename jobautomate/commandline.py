@@ -8,9 +8,9 @@ from selenium.common.exceptions import NoSuchElementException, ElementNotVisible
 
 driver = webdriver.Firefox()
 
-with open('information.txt', 'r') as f:
-    data = f.read().replace('\n', '').split(',')
-    first_name, last_name, email_address = data
+FIRST_NAME = ""
+LAST_NAME = ""
+EMAIL_ADDRESS = ""
 
 
 def indeed_parameters(what, where):
@@ -63,13 +63,13 @@ def fill_application(cv):
     that requires a first and last name. A try/except is used to identify which
     is used."""
     try:
-        driver.find_element_by_id('applicant.name').send_keys("{} {}" .format(first_name, last_name))
-        driver.find_element_by_id('applicant.email').send_keys(email_address)
+        driver.find_element_by_id('applicant.name').send_keys("{} {}" .format(FIRST_NAME, LAST_NAME))
+        driver.find_element_by_id('applicant.email').send_keys(EMAIL_ADDRESS)
         driver.find_element_by_id('resume').send_keys(os.path.abspath(cv))
     except (NoSuchElementException, ElementNotVisibleException):
-        driver.find_element_by_id('applicant.firstName').send_keys(first_name)
-        driver.find_element_by_id('applicant.lastName').send_keys(last_name)
-        driver.find_element_by_id('applicant.email').send_keys(email_address)
+        driver.find_element_by_id('applicant.firstName').send_keys(FIRST_NAME)
+        driver.find_element_by_id('applicant.lastName').send_keys(LAST_NAME)
+        driver.find_element_by_id('applicant.email').send_keys(EMAIL_ADDRESS)
         driver.find_element_by_id('resume').send_keys(os.path.abspath(cv))
 
 
