@@ -14,7 +14,7 @@ and read from file when using the command line interface.
 Command Line Interface
 ======================
 
-To install the script use the following commands in a command line prompt:
+To install the script use the following commands in a command line prompt::
 
     git clone https://github.com/mandeepbhutani/Job-Automate.git
     cd Job-Automate
@@ -22,7 +22,7 @@ To install the script use the following commands in a command line prompt:
 
 
 Place a resume file in the jobautomate subdirectory and then run the script
-in a command line prompt using the following command:
+in a command line prompt using the following command::
 
     jobautomate
 
