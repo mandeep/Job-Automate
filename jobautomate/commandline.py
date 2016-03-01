@@ -91,6 +91,7 @@ def apply_or_continue():
         driver.find_element_by_id('apply').click()
         print('Application Successful.')
     finally:
+        driver.implicitly_wait(3)
         driver.switch_to.window(driver.window_handles[0])
 
 
@@ -106,7 +107,7 @@ def main():
             try:
                 driver.find_element_by_class_name('indeed-apply-button').click()
                 switch_frames('iframe[name$=modal-iframe]')
-                fill_application('resume.pdf')
+                fill_application('resume.docx')
                 apply_or_continue()
             except (NoSuchElementException, ElementNotVisibleException):
                 print('Not an easily apply application')
