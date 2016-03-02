@@ -6,10 +6,12 @@ Overview
 ============
 
 Jobautomate uses the Indeed API to apply to 'easily apply' jobs posted to Indeed's website.
-Jobautomate comes in two forms. A web application (in development) and a command
-line script (working). Both require user input for first name, last name, and email
+Jobautomate comes in two forms. A command line interface (working) and a web application (in development).
+Both require user input for first name, last name, and email
 address for the user's details. The résumé is uploaded on the web interface
 and read from file when using the command line interface. 
+
+Disclaimer: Please be courteous to employers. Nobody enjoys spam emails.
 
 Command Line Interface
 ======================
