@@ -23,7 +23,7 @@ To install the script use the following commands in a command line prompt::
     python setup.py install
 
 
-Place a résumé file in the jobautomate subdirectory and then run the script
+Place a résumé file in your current working directory and then run the script
 in a command line prompt using the following command::
 
     jobautomate
