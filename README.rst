@@ -11,7 +11,7 @@ Both require user input for first name, last name, and email
 address for the user's details. The résumé is uploaded on the web interface
 and read from file when using the command line interface. 
 
-Disclaimer: Please be courteous to employers. Nobody enjoys spam emails.
+Disclaimer: This project was created as a learning experience. Please do not use to abuse employers.
 
 Command Line Interface
 ======================
