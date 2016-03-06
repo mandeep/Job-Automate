@@ -31,10 +31,9 @@
         <p>
             <form method="POST" enctype="multipart/form-data">
             {% csrf_token %}
-            <input type="text" size="50" maxlength="50" name="first_name" placeholder="First Name..." />
-            <input type="text" size="50" maxlength="50" name="last_name" placeholder="Last Name..." />
+            {{ name_form }}
             <br><br>
-            <input type="email" size="50" maxlength="50" name="email" placeholder="Email address..." />
+            {{ email_form }}
             </p>    
         </div>
         <div class="resume_text">
@@ -42,7 +41,8 @@
         </div>
         <div class="resume_upload">
             <label class="file_upload">
-                <input type="file" size="50" name="resume" />
+                {% csrf_token %}
+                {{ upload_form }}
             </label>
         </div>
         <div class="job_text">
@@ -54,8 +54,7 @@
             <p>
                 <form method="POST">
                 {% csrf_token %}
-                <input type="text" size="50" maxlength="100" name="job_title" placeholder="Job..." />
-                <input type="text" size="50" maxlength="100" name="job_location" placeholder="Location..." />
+                {{ job_search_form }}
                 <br><br>
                 <input type="submit" name="run" value="Search!" />
                 </form>
