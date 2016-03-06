@@ -80,6 +80,7 @@ body {
 input[type=text] {
 
     height: 25px;
+    width: 350px;
 }
 
 input[type=email] {
