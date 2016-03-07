@@ -11,7 +11,8 @@ driver = webdriver.Firefox()
 FIRST_NAME = input('Enter your first name: ')
 LAST_NAME = input('Enter your last name: ')
 EMAIL_ADDRESS = input('Enter your email address: ')
-
+JOB_DESCRIPTION = input('Enter a job title: ')
+JOB_LOCATION = input('Enter a location: ')
 
 def indeed_parameters(what, where):
     """Use Indeed API to obtain job application links.
@@ -96,12 +97,9 @@ def apply_or_continue():
 
 
 def main():
-    user_parameters = indeed_parameters(input('Enter a job title: '), input('Enter a location: '))
+    user_parameters = indeed_parameters(JOB_DESCRIPTION, JOB_LOCATION)
     count = 0
     while count < 2:
-        while len(indeed_urls(user_parameters)) < 1:
-            print("No matches found.")
-            user_parameters = indeed_parameters(input('Re-enter a job title: '), input('Re-enter a location: '))
         for url in indeed_urls(user_parameters):
             driver.get(url)
             try:
