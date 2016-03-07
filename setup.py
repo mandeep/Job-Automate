@@ -9,9 +9,6 @@ setup(name='jobautomate',
         'indeed',
         'selenium',
         'requests==2.0.0',
-        'django',
-        'gunicorn',
-        'whitenoise',
       ],
       entry_points='''
         [console_scripts]
