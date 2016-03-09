@@ -14,6 +14,7 @@ EMAIL_ADDRESS = input('Enter your email address: ')
 JOB_DESCRIPTION = input('Enter a job title: ')
 JOB_LOCATION = input('Enter a location: ')
 
+
 def indeed_parameters(what, where):
     """Use Indeed API to obtain job application links.
     :param q: job description
@@ -63,6 +64,9 @@ def fill_application(cv):
     """There are two application types: one that requires a full name and one
     that requires a first and last name. A try/except is used to identify which
     is used."""
+    job_title = driver.find_element_by_class_name("jobtitle").text
+    company = driver.find_element_by_class_name("jobcompany").text
+    print("Applying for: {} at {}".format(job_title, company))
     try:
         driver.find_element_by_id('applicant.name').send_keys("{} {}" .format(FIRST_NAME, LAST_NAME))
         driver.find_element_by_id('applicant.email').send_keys(EMAIL_ADDRESS)
@@ -79,9 +83,6 @@ def apply_or_continue():
     clicking the apply button, and the other applies after clicking the
     continue button and answering some questions. A try/except is used
     again here to identify which is used."""
-    job_title = driver.find_element_by_class_name("jobtitle").text
-    company = driver.find_element_by_class_name("jobcompany").text
-    print("Applying for: {} at {}".format(job_title, company))
     try:
         driver.find_element_by_id('apply').click()
         print('Application Successful.')
@@ -108,6 +109,6 @@ def main():
                 fill_application('resume.docx')
                 apply_or_continue()
             except (NoSuchElementException, ElementNotVisibleException):
-                print('Not an easily apply application')
+                pass
         user_parameters['start'] += 25
         count += 1
