@@ -66,6 +66,7 @@ def fill_application(cv):
     is used."""
     job_title = driver.find_element_by_class_name("jobtitle").text
     company = driver.find_element_by_class_name("jobcompany").text
+    job_details = "{} {}" .format(job_title, company)
     print("Applying for: {} at {}".format(job_title, company))
     try:
         driver.find_element_by_id('applicant.name').send_keys("{} {}" .format(FIRST_NAME, LAST_NAME))
@@ -78,6 +79,7 @@ def fill_application(cv):
         driver.find_element_by_id('resume').send_keys(os.path.abspath(cv))
 
 
+
 def apply_or_continue():
     """There are two types of apply methods: one applies after
     clicking the apply button, and the other applies after clicking the
@@ -85,15 +87,17 @@ def apply_or_continue():
     again here to identify which is used."""
     try:
         driver.find_element_by_id('apply').click()
+        driver.implicitly_wait(1)
         print('Application Successful.')
     except (NoSuchElementException, ElementNotVisibleException):
         driver.find_element_by_link_text('Continue').click()
+        driver.implicitly_wait(1)
         for radio_button in driver.find_elements_by_xpath('//*[@type="radio" and @value="0"]'):
             radio_button.click()
         driver.find_element_by_id('apply').click()
+        driver.implicitly_wait(1)
         print('Application Successful.')
     finally:
-        driver.implicitly_wait(3)
         driver.switch_to.window(driver.window_handles[0])
 
 
