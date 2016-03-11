@@ -14,51 +14,63 @@
         </div>
         <div class="overview">
             <p>
-            Automate your Job Search
+                Automate your Job Search
             </p>
-            </div>
+        </div>
         <div class="description">
             <p>
-            Enter a job description and a location then let Jobomate handle the rest!
+                Enter a job description and a location then let Jobomate handle the rest!
             </p>
         </div>
         <div class="information_details">
             <p>
-            First tell us who you are!
+                First tell us who you are!
             </p>
         </div>
-        <div class="container">
-        <p>
-            <form method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
-            {{ name_form }}
-            <br><br>
-            {{ email_form }}
-            </p>    
+        <div class="row">
+            <div class="col-xl-6">
+                <div class="container">
+                    <p>
+                        <form method="POST" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        {{ name_form }}
+                        <br><br>
+                        {{ email_form }}
+                    </p>    
+                </div>
+            </div>
         </div>
         <div class="resume_text">
-        <p>Upload a resume!</p>
+            <p>Upload a resume!</p>
         </div>
-        <div class="resume_upload">
-            <label class="file_upload">
-                {% csrf_token %}
-                {{ upload_form }}
-            </label>
+        <div class="row">
+            <div class="col-xl-6">
+                <div class="resume_upload">
+                        <label class="file_upload">
+                            {% csrf_token %}
+                            {{ upload_form }}
+                        </label>
+                </div>
+            </div>
         </div>
         <div class="job_text">
             <p>
-            Now let's search for some jobs!
+                Now let's search for some jobs!
             </p>
         </div>
-        <div class="job_forms">
-            <p>
-                <form method="POST">
-                {% csrf_token %}
-                {{ job_search_form }}
-                <br><br>
-                <input type="submit" name="run" value="Search!" />
-                </form>
-            </p>
+        <div class="row">
+            <div class="col-xl-6">
+                <div class="job_forms">
+                    <p>
+                    <form method="POST">
+                        {% csrf_token %}
+                        {{ job_search_form }}
+                        <br><br>
+                        <input type="submit" name="run" value="Search!" />
+                    </form>
+                    </p>
+                </div>
+            </div>
         </div>
     </body>
 </html>
