@@ -6,13 +6,13 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException, ElementNotVisibleException
 
-driver = webdriver.Firefox()
-
 FIRST_NAME = input('Enter your first name: ')
 LAST_NAME = input('Enter your last name: ')
 EMAIL_ADDRESS = input('Enter your email address: ')
 JOB_DESCRIPTION = input('Enter a job title: ')
 JOB_LOCATION = input('Enter a location: ')
+
+driver = webdriver.Firefox()
 
 
 def indeed_parameters(what, where):
@@ -66,7 +66,6 @@ def fill_application(cv):
     is used."""
     job_title = driver.find_element_by_class_name("jobtitle").text
     company = driver.find_element_by_class_name("jobcompany").text
-    job_details = "{} {}" .format(job_title, company)
     print("Applying for: {} at {}".format(job_title, company))
     try:
         driver.find_element_by_id('applicant.name').send_keys("{} {}" .format(FIRST_NAME, LAST_NAME))
@@ -77,7 +76,6 @@ def fill_application(cv):
         driver.find_element_by_id('applicant.lastName').send_keys(LAST_NAME)
         driver.find_element_by_id('applicant.email').send_keys(EMAIL_ADDRESS)
         driver.find_element_by_id('resume').send_keys(os.path.abspath(cv))
-
 
 
 def apply_or_continue():
