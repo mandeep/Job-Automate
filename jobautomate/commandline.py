@@ -51,6 +51,12 @@ def indeed_urls(parameters):
     return urls
 
 
+def find_apply_button(button_name):
+    """
+    """
+    driver.find_element_by_class_name(button_name).click()
+
+
 def switch_frames(frame_name):
     """The job application is inside a nested frame. In order to navigate to
     the application, each frame must be selected."""
@@ -107,7 +113,7 @@ def main():
         for url in indeed_urls(user_parameters):
             driver.get(url)
             try:
-                driver.find_element_by_class_name('indeed-apply-button').click()
+                find_apply_button('indeed-apply-button')
                 switch_frames('iframe[name$=modal-iframe]')
                 fill_application(RESUME)
                 apply_or_continue()
