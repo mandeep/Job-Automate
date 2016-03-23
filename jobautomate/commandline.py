@@ -11,6 +11,7 @@ LAST_NAME = input('Enter your last name: ')
 EMAIL_ADDRESS = input('Enter your email address: ')
 JOB_DESCRIPTION = input('Enter a job title: ')
 JOB_LOCATION = input('Enter a location: ')
+RESUME = input('Enter the filename of your resume: ')
 
 driver = webdriver.Firefox()
 
@@ -108,7 +109,7 @@ def main():
             try:
                 driver.find_element_by_class_name('indeed-apply-button').click()
                 switch_frames('iframe[name$=modal-iframe]')
-                fill_application('resume.docx')
+                fill_application(RESUME)
                 apply_or_continue()
             except (NoSuchElementException, ElementNotVisibleException):
                 pass
