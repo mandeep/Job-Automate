@@ -7,14 +7,14 @@ def index(request):
     if request.method == 'POST':
         name_form = NameForm(request.POST)
         email_form = EmailForm(request.POST)
-        upload_form = UploadForm(request.POST)
+        upload_form = UploadForm(request.POST, request.FILES)
         job_search_form = JobSearchForm(request.POST)
         if name_form.is_valid() and email_form.is_valid() \
                 and upload_form.is_valid() and job_search_form.is_valid():
             first_name = name_form.cleaned_data['first_name']
             last_name = name_form.cleaned_data['last_name']
             email = email_form.cleaned_data['email']
-            resume = upload_form.cleaned_data['resume_upload']
+            resume = request.FILES['resume_upload']
             what = job_search_form.cleaned_data['job_description']
             where = job_search_form.cleaned_data['job_location']
             django_view(what, where, first_name, last_name, email, resume)
