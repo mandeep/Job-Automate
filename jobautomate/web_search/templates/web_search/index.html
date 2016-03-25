@@ -7,6 +7,13 @@
         <link rel="stylesheet" href="{% static 'css/web_search.css' %}">
         <link href='https://fonts.googleapis.com/css?family=Lato:400,700,300' rel='stylesheet' type='text/css'>
         <title>Jobomate</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js">
+        $('form').submit(function() {
+            $(this).find("button[type='submit']").prop("disabled", true);
+            $(this).find("button[type='submit']").css("color", "green");
+            $(this).find("button[type='submit']").html("Success!");
+        });
+        </script>
     </head>
     <body>
         <div class="page-header">
@@ -32,42 +39,41 @@
                 <div class="container">
                     <p>
                         <form method="POST" enctype="multipart/form-data">
-                        {% csrf_token %}
-                        {{ name_form }}
-                        <br><br>
-                        {{ email_form }}
-                    </p>    
-                </div>
-            </div>
-        </div>
-        <div class="resume_text">
-            <p>Upload a resume!</p>
-        </div>
-        <div class="row">
-            <div class="col-xl-6">
-                <div class="resume_upload">
-                        <label class="file_upload">
                             {% csrf_token %}
-                            {{ upload_form }}
-                        </label>
-                </div>
-            </div>
-        </div>
-        <div class="job_text">
-            <p>
-                Now let's search for some jobs!
-            </p>
-        </div>
-        <div class="row">
-            <div class="col-xl-6">
-                <div class="job_forms">
-                    <p>
-                    <form method="POST">
-                        {% csrf_token %}
-                        {{ job_search_form }}
-                        <br><br>
-                        <input type="submit" name="run" value="Search!" />
-                    </form>
+                            {{ name_form }}
+                            <br><br>
+                            {{ email_form }}
+                                        </p>    
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="resume_text">
+                                <p>Upload a resume!</p>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <div class="resume_upload">
+                                            <label class="file_upload">
+                                                {% csrf_token %}
+                                                {{ upload_form }}
+                                            </label>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="job_text">
+                                <p>
+                                    Now let's search for some jobs!
+                                </p>
+                            </div>
+                            <div class="row">
+                                <div class="col-xl-6">
+                                    <div class="job_forms">
+                                        <p>
+                                            {% csrf_token %}
+                                            {{ job_search_form }}
+                                            <br><br>
+                                            <input type="submit" name="run" value="Search!"/>
+                        </form>
                     </p>
                 </div>
             </div>
