@@ -122,6 +122,9 @@ input[type=submit] {
     border: 0;
     height: 48px;    
     width: 140px;
+    font-family: 'Lato';
+    font-weight: 400;
+    font-size: 17px;
 }
 
 input[type=submit]:hover{
