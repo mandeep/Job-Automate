@@ -22,14 +22,14 @@ body {
 
 .overview {
     font-size: 80px;
-    font-weight: 300;
+    font-weight: 700;
     color: #00B1F4;
     margin-bottom: 0px;
     text-align: center;
 }
 
 .description {
-    font-weight: 300;
+    font-weight: 400;
     font-size: 17px;
     color: #3D3D3D;
     margin-top: 0px;
@@ -38,7 +38,7 @@ body {
 }
 
 .information_details {
-    font-weight: 300;
+    font-weight: 400;
     font-size: 17px;
     color: #3D3D3D;
     margin-top: 0px;
@@ -47,7 +47,7 @@ body {
 }
 
 .job_text {
-    font-weight: 300;
+    font-weight: 400;
     font-size: 17px;
     color: #3D3D3D;
     margin-top: 30px;
@@ -60,7 +60,7 @@ body {
 }
 
 .resume_text {
-    font-weight: 300;
+    font-weight: 400;
     font-size: 17px;
     color: #3D3D3D;
     text-align: center;
@@ -83,6 +83,10 @@ input[type=text] {
     outline: none;
     padding: 5px 0px 5px 5px;
     margin: 1px 1px 1px 1px;
+    font-family: 'Lato';
+    font-weight: 400;
+    font-size: 15px;
+    color: #3D3D3D;
 }
 
 input[type=text]:focus {
