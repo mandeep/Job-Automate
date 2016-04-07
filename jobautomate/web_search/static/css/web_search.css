@@ -9,12 +9,12 @@ h1 {
 }
 
 body {
-    background-color: #FEFEFE;
+    background-color: #F5F5F5;
     font-family: 'Lato', sans-serif;
 }
 
 .page-header {
-    background-color: #F7F7F7;
+    background-color: #FFFFFF;
     margin-top: 0;
     padding: 1px 1px 8px;
 
@@ -73,14 +73,33 @@ body {
 }
 
 input[type=text] {
-
-    height: 25px;
+    -webkit-transition: all 0.20s ease-in-out;
+    -moz-transition: all 0.20s ease-in-out;
+    -ms-transition: all 0.20s ease-in-out;
+    -o-transition: all 0.20s ease-in-out;
+    height: 48px;
     width: 350px;
+    border: 0px;
+    outline: none;
+    padding: 5px 0px 5px 5px;
+    margin: 1px 1px 1px 1px;
+}
+
+input[type=text]:focus {
+    box-shadow: 0 0 5px #00B1F4;
+    padding: 5px 0px 5px 5px;
+    border-width: 0px;
+    outline: none;
+
 }
 
 input[type=email] {
 
     height: 25px;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0px 0px 0px 1000px white inset;
 }
 
 input[type=file] {
