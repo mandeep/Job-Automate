@@ -102,6 +102,10 @@ input:-webkit-autofill {
     -webkit-box-shadow: 0px 0px 0px 1000px white inset;
 }
 
+input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0px 0px 0px 1000px white inset;
+}
+
 input[type=file] {
 
     height: 25px;
