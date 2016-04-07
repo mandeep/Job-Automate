@@ -97,17 +97,17 @@ input[type=text]:focus {
 
 }
 
-input[type=email] {
-
-    height: 25px;
-}
-
 input:-webkit-autofill {
     -webkit-box-shadow: 0px 0px 0px 1000px white inset;
 }
 
 input:-webkit-autofill:focus {
     -webkit-box-shadow: 0px 0px 0px 1000px white inset;
+}
+
+input[type=email] {
+
+    height: 25px;
 }
 
 input[type=file] {
@@ -121,7 +121,7 @@ input[type=submit] {
     color: #FFFFFF;
     border: 0;
     height: 48px;    
-    width: 70px;
+    width: 140px;
 }
 
 input[type=submit]:hover{
