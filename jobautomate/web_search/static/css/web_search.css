@@ -113,9 +113,7 @@ input[type=email] {
 
 input[type=file] {
 
-    height: 25px;
-    display: inline-block;
-    
+    height: 25px;    
 }
 input[type=submit] {
     background: #00B1F4;
