@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import HttpResponseRedirect
 from jobautomate.web_application import django_view
 from .forms import NameForm, EmailForm, UploadForm, JobSearchForm
 
@@ -18,6 +19,7 @@ def index(request):
             what = job_search_form.cleaned_data['job_description']
             where = job_search_form.cleaned_data['job_location']
             django_view(what, where, first_name, last_name, email, resume)
+            return HttpResponseRedirect('web_search/index.html')
     else:
         name_form = NameForm()
         email_form = EmailForm()
