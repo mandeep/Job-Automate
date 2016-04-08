@@ -17,7 +17,6 @@ body {
     background-color: #FFFFFF;
     margin-top: 0;
     padding: 1px 1px 8px;
-
 }
 
 .overview {
@@ -95,7 +94,6 @@ input[type=text]:focus {
     padding: 5px 0px 5px 5px;
     border-width: 0px;
     outline: none;
-
 }
 
 input:-webkit-autofill {
@@ -104,11 +102,6 @@ input:-webkit-autofill {
 
 input:-webkit-autofill:focus {
     -webkit-box-shadow: 0px 0px 0px 1000px #FFFFFF inset;
-}
-
-input[type=email] {
-
-    height: 25px;
 }
 
 input[type=file] {
