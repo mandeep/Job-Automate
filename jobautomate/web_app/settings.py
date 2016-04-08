@@ -114,7 +114,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 # Static files (CSS, JavaScript, Images)
