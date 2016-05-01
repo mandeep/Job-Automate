@@ -16,7 +16,7 @@ def index(request):
             first_name = name_form.cleaned_data['first_name']
             last_name = name_form.cleaned_data['last_name']
             email = email_form.cleaned_data['email']
-            resume = ResumeModel(request.FILES['resume_upload'])
+            resume = ResumeModel()
             what = job_search_form.cleaned_data['job_description']
             where = job_search_form.cleaned_data['job_location']
             django_view(what, where, first_name, last_name, email, resume)
