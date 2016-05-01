@@ -1,5 +1,5 @@
 from django import forms
-
+from .models import ResumeModel
 
 class NameForm(forms.Form):
     first_name = forms.CharField(max_length=50, label='',
@@ -13,8 +13,11 @@ class EmailForm(forms.Form):
                              widget=forms.TextInput({'placeholder': 'Email Address'}))
     
 
-class UploadForm(forms.Form):
-    resume_upload = forms.FileField(label='')
+class UploadForm(forms.ModelForm):
+    
+    class Meta:
+        model = ResumeModel
+        fields = '__all__'
 
 
 class JobSearchForm(forms.Form):
