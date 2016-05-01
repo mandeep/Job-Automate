@@ -67,7 +67,7 @@ def fill_application(first_name, last_name, email_address, cv):
         driver.find_element_by_id('applicant.firstName').send_keys(first_name)
         driver.find_element_by_id('applicant.lastName').send_keys(last_name)
         driver.find_element_by_id('applicant.email').send_keys(email_address)
-        driver.find_element_by_id('resume').send_keys(os.path.abspath(cv))
+        driver.find_element_by_id('resume').send_keys(cv)
 
 
 def apply_or_continue():
