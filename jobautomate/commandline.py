@@ -52,8 +52,7 @@ def indeed_urls(parameters):
 
 
 def find_apply_button(button_name):
-    """
-    """
+    """Searches page for the apply now button and clicks it if it exists."""
     driver.find_element_by_class_name(button_name).click()
 
 
