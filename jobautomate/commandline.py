@@ -106,6 +106,10 @@ def apply_or_continue():
 
 
 def main():
+    """When called via entrypoint, main function will take the user input
+    and send it to the Indeed API. The API will return a list of urls that
+    we can visit via web browser. If the url contains an easily apply application,
+    the script will try to apply to the job."""
     user_parameters = indeed_parameters(JOB_DESCRIPTION, JOB_LOCATION)
     count = 0
     while count < 2:
