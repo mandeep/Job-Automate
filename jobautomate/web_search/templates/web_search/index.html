@@ -37,7 +37,7 @@
             </div>
             <form method="POST" enctype="multipart/form-data">
                 <div class="row">
-                    <div class="col-xl-6 text-center">
+                    <div class="col-md-12 text-center">
                         <p>
                             {% csrf_token %}
                             {{ name_form }}
@@ -53,7 +53,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xl-6 resume_upload">
+                    <div class="col-xl-12 resume_upload">
                         <label class="file_upload">
                             {% csrf_token %}
                             {{ upload_form }}
@@ -66,7 +66,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-xl-6 job_forms">
+                    <div class="col-md-12 job_forms">
                         <p>
                             {% csrf_token %}
                             {{ job_search_form }}
