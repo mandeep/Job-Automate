@@ -6,13 +6,6 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException, ElementNotVisibleException
 
-FIRST_NAME = input('Enter your first name: ')
-LAST_NAME = input('Enter your last name: ')
-EMAIL_ADDRESS = input('Enter your email address: ')
-JOB_DESCRIPTION = input('Enter a job title: ')
-JOB_LOCATION = input('Enter a location: ')
-RESUME = input('Enter the filename of your resume: ')
-
 driver = webdriver.Firefox()
 
 
@@ -66,7 +59,7 @@ def switch_frames(frame_name):
     wait.until(EC.frame_to_be_available_and_switch_to_it(0))
 
 
-def fill_application(cv):
+def fill_application(first_name, last_name, email, cv):
     """There are two application types: one that requires a full name and one
     that requires a first and last name. A try/except is used to identify which
     is used."""
@@ -74,13 +67,13 @@ def fill_application(cv):
     company = driver.find_element_by_class_name("jobcompany").text
     print("Applying for: {} at {}".format(job_title, company))
     try:
-        driver.find_element_by_id('applicant.name').send_keys("{} {}" .format(FIRST_NAME, LAST_NAME))
-        driver.find_element_by_id('applicant.email').send_keys(EMAIL_ADDRESS)
+        driver.find_element_by_id('applicant.name').send_keys("{} {}" .format(first_name, last_name))
+        driver.find_element_by_id('applicant.email').send_keys(email)
         driver.find_element_by_id('resume').send_keys(os.path.abspath(cv))
     except (NoSuchElementException, ElementNotVisibleException):
-        driver.find_element_by_id('applicant.firstName').send_keys(FIRST_NAME)
-        driver.find_element_by_id('applicant.lastName').send_keys(LAST_NAME)
-        driver.find_element_by_id('applicant.email').send_keys(EMAIL_ADDRESS)
+        driver.find_element_by_id('applicant.firstName').send_keys(first_name)
+        driver.find_element_by_id('applicant.lastName').send_keys(last_name)
+        driver.find_element_by_id('applicant.email').send_keys(email)
         driver.find_element_by_id('resume').send_keys(os.path.abspath(cv))
 
 
@@ -110,7 +103,13 @@ def main():
     and send it to the Indeed API. The API will return a list of urls that
     we can visit via web browser. If the url contains an easily apply application,
     the script will try to apply to the job."""
-    user_parameters = indeed_parameters(JOB_DESCRIPTION, JOB_LOCATION)
+    first_name = input('Enter your first name: ')
+    last_name = input('Enter your last name: ')
+    email_address = input('Enter your email address: ')
+    job_description = input('Enter a job title: ')
+    job_location = input('Enter a location: ')
+    resume = input('Enter the filename of your resume: ')
+    user_parameters = indeed_parameters(job_description, job_location)
     count = 0
     while count < 2:
         for url in indeed_urls(user_parameters):
@@ -118,7 +117,7 @@ def main():
             try:
                 find_apply_button('indeed-apply-button')
                 switch_frames('iframe[name$=modal-iframe]')
-                fill_application(RESUME)
+                fill_application(first_name, last_name, email_address, resume)
                 apply_or_continue()
             except (NoSuchElementException, ElementNotVisibleException):
                 pass
