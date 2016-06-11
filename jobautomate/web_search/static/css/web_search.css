@@ -27,6 +27,18 @@ body {
     text-align: center;
 }
 
+ @media (max-width: 768px) {
+    .overview {
+        font-size: 60px;
+    }
+ }
+
+ @media (max-width: 500px) {
+    .overview {
+        font-size: 50px;
+    }
+ }
+
 .description {
     font-weight: 400;
     font-size: 17px;
