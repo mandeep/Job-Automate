@@ -38,7 +38,7 @@ def indeed_parameters(what, where):
 def indeed_urls(parameters):
     """Use Indeed publisher ID in order to gain access to the API. With
     parameters from indeed_paramters(), return a list of job application links."""
-    client = IndeedClient('7458209865285883')
+    client = IndeedClient(os.environ['API_KEY'])
     response = client.search(**parameters)
     urls = [str(links['url']) for links in response['results']]
     return urls
@@ -102,7 +102,7 @@ def main():
     """When called via entrypoint, main function will take the user input
     and send it to the Indeed API. The API will return a list of urls that
     we can visit via web browser. If the url contains an easily apply application,
-    the script will try to apply to the job."""
+    the script will attempt to apply to the job."""
     first_name = input('Enter your first name: ')
     last_name = input('Enter your last name: ')
     email_address = input('Enter your email address: ')
