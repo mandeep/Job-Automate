@@ -29,8 +29,8 @@ def indeed_parameters(what, where):
               'fromage': 365,
               'start': 0,
               'userip': "1.2.3.4",
-              'useragent': "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, \
-                            like Gecko) Chrome/48.0.2564.82 Safari/537.36"
+              'useragent': ("Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36"
+                            "(KHTML, like Gecko) Chrome/48.0.2564.82 Safari/537.36")
               }
     return params
 
