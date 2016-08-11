@@ -1,0 +1,17 @@
+language: python
+python:
+  - "3.4"
+notifications:
+  email: false
+before_install:
+  - pip install coveralls
+install:
+  - pip install coverage
+  - python setup.py install
+script:
+  - cd jobautomate/tests/
+  - py.test --driver Firefox
+  - coverage run test_cli.py
+after_success:
+  - coveralls
+
