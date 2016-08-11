@@ -1,35 +1,33 @@
-============
-Jobautomate
-============
+=============
+Job Automate
+=============
 
-Overview
-============
+Job Automate is a command line application written in Python using the Selenium and Click libraries.
+The application uses the Indeed Job Search API to find and apply to 'easily apply' jobs scraped by
+Indeed's job crawler. 
 
-Jobautomate uses the Indeed Job Search API to apply to 'easily apply' jobs posted to Indeed's website.
-Jobautomate comes in two forms. A command line interface (working) and a web application (in development).
-Both require user input for first name, last name, and email
-address for the user's details. The résumé is uploaded on the web interface
-and read from file when using the command line interface. 
+Disclaimer: This project was created as a proof of concept.
 
-Disclaimer: This project was created as a  proof of concept.
-
-Command Line Interface
-======================
+*************
+Installation
+*************
 
 To install the script use the following commands in a command line prompt::
 
     git clone https://github.com/mandeepbhutani/Job-Automate.git
     cd Job-Automate
-    python setup.py install
+    pip install .
 
+************
+Usage
+************
 
-Place a résumé file in your current working directory and then run the script
-in a command line prompt using the following command::
+Once Job Automate is installed, the command line application can be
+invoked with the following command and mandatory arguments::
 
-    jobautomate
+    jobautomate "First Name" "Last Name" "Email Address" "Job Description" "Resume Path"
 
-The script will ask for first name, last name, email address, job description,
-and job location. Once entered the script will open a Firefox webdriver instance
+Once entered the script will open a Firefox webdriver instance
 and search for 'easily apply' jobs in the URLs given by the Indeed API. The output
 will look similar to the image below:
 
