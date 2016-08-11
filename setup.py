@@ -1,14 +1,13 @@
-from setuptools import setup, find_packages
+from setuptools import setup
 
 setup(name='jobautomate',
-      version='0.0.4',
+      version='0.9',
       author='Mandeep Bhutani',
-      packages=find_packages(),
-      include_package_data=True,
+      packages=['jobautomate'],
       install_requires=[
         'indeed',
         'selenium',
-        'requests==2.0.0',
+        'requests',
       ],
       entry_points='''
         [console_scripts]
