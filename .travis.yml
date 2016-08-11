@@ -10,6 +10,8 @@ before_install:
 - pip install coveralls
 install:
 - pip install coverage
+- pip install pytest
+- pip install pytest-selenium
 - python setup.py install
 script:
 - py.test --driver Firefox
