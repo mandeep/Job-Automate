@@ -1,12 +1,11 @@
-import os
+import click
 from indeed import IndeedClient
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException, ElementNotVisibleException
-
-driver = webdriver.Firefox()
+import os
 
 
 def indeed_parameters(what, where):
@@ -44,12 +43,12 @@ def indeed_urls(parameters):
     return urls
 
 
-def find_apply_button(button_name):
+def find_apply_button(driver, button_name):
     """Searches page for the apply now button and clicks it if it exists."""
     driver.find_element_by_class_name(button_name).click()
 
 
-def switch_frames(frame_name):
+def switch_frames(driver, frame_name):
     """The job application is inside a nested frame. In order to navigate to
     the application, each frame must be selected."""
     wait = WebDriverWait(driver, 10)
@@ -59,7 +58,7 @@ def switch_frames(frame_name):
     wait.until(EC.frame_to_be_available_and_switch_to_it(0))
 
 
-def fill_application(first_name, last_name, email, cv):
+def fill_application(driver, first_name, last_name, email, cv):
     """There are two application types: one that requires a full name and one
     that requires a first and last name. A try/except is used to identify which
     is used."""
@@ -77,7 +76,7 @@ def fill_application(first_name, last_name, email, cv):
         driver.find_element_by_id('resume').send_keys(os.path.abspath(cv))
 
 
-def apply_or_continue():
+def apply_or_continue(driver):
     """There are two types of apply methods: one applies after
     clicking the apply button, and the other applies after clicking the
     continue button and answering some questions. A try/except is used
@@ -98,28 +97,29 @@ def apply_or_continue():
         driver.switch_to.window(driver.window_handles[0])
 
 
-def main():
+@click.command()
+@click.argument('first_name')
+@click.argument('last_name')
+@click.argument('email_address')
+@click.argument('job_description')
+@click.argument('resume', type=click.Path(exists=True))
+@click.argument('job_location', default='')
+def cli(first_name, last_name, email_address, job_description, resume, job_location):
     """When called via entrypoint, main function will take the user input
     and send it to the Indeed API. The API will return a list of urls that
     we can visit via web browser. If the url contains an easily apply application,
     the script will attempt to apply to the job."""
-    first_name = input('Enter your first name: ')
-    last_name = input('Enter your last name: ')
-    email_address = input('Enter your email address: ')
-    job_description = input('Enter a job title: ')
-    job_location = input('Enter a location: ')
-    resume = input('Enter the filename of your resume: ')
+    driver = webdriver.Firefox()
     user_parameters = indeed_parameters(job_description, job_location)
-    count = 0
-    while count < 2:
+    while True:
         for url in indeed_urls(user_parameters):
             driver.get(url)
             try:
-                find_apply_button('indeed-apply-button')
-                switch_frames('iframe[name$=modal-iframe]')
-                fill_application(first_name, last_name, email_address, resume)
-                apply_or_continue()
+                find_apply_button(driver, 'indeed-apply-button')
+                switch_frames(driver, 'iframe[name$=modal-iframe]')
+                fill_application(driver, first_name, last_name, email_address, resume)
+                apply_or_continue(driver)
             except (NoSuchElementException, ElementNotVisibleException):
                 pass
+        click.confirm('Would you like to continue?', abort=True)
         user_parameters['start'] += 25
-        count += 1
