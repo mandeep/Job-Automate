@@ -100,13 +100,15 @@ def apply_or_continue(driver):
 
 
 @click.command()
+@click.option('--verbose', is_flag=True,
+              help="Print to standard output jobs that are not easily apply applications.")
 @click.argument('first_name')
 @click.argument('last_name')
 @click.argument('email_address')
 @click.argument('job_description')
 @click.argument('resume', type=click.Path(exists=True))
 @click.argument('job_location', default='')
-def cli(first_name, last_name, email_address, job_description, resume, job_location):
+def cli(verbose, first_name, last_name, email_address, job_description, resume, job_location):
     """Job Automate requires the user's first name, last name, email address, job description,
     and resume location prior to automating a job search. The job location is an optional argument
     that is left blank by default. This allows Job Automate to search for jobs across the
@@ -115,6 +117,10 @@ def cli(first_name, last_name, email_address, job_description, resume, job_locat
 
     An example usage: jobautomate "Homer" "Simpson" "Chunkylover53@aol.com" "Nuclear Technician"
     "/path/to/resume.txt" "Springfield"
+
+    When run, jobautomate will print to terminal the job position and company name tied to
+    the easily apply application. With the --verbose flag, jobautomate will also print to
+    terminal the applications which are not easily apply applications.
     """
     driver = webdriver.Firefox()
     user_parameters = indeed_parameters(job_description, job_location)
@@ -127,6 +133,9 @@ def cli(first_name, last_name, email_address, job_description, resume, job_locat
                 fill_application(driver, first_name, last_name, email_address, resume)
                 apply_or_continue(driver)
             except (NoSuchElementException, ElementNotVisibleException):
-                pass
+                if verbose:
+                    print('Not an easily apply job application.')
+                else:
+                    pass
         click.confirm('Would you like to continue searching for jobs?', abort=True)
         user_parameters['start'] += 25
