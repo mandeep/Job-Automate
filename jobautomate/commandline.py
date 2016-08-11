@@ -35,8 +35,8 @@ def indeed_parameters(what, where):
 
 
 def indeed_urls(parameters):
-    """Use Indeed publisher ID in order to gain access to the API. With
-    parameters from indeed_paramters(), return a list of job application links."""
+    """Uses Indeed publisher ID in order to gain access to the API. With
+    parameters from indeed_paramters(), returns a list of job application links."""
     client = IndeedClient(os.environ['API_KEY'])
     response = client.search(**parameters)
     urls = [str(links['url']) for links in response['results']]
@@ -49,8 +49,8 @@ def find_apply_button(driver, button_name):
 
 
 def switch_frames(driver, frame_name):
-    """The job application is inside a nested frame. In order to navigate to
-    the application, each frame must be selected."""
+    """Navigates nested iframes in order to select the application
+    modal dialog."""
     wait = WebDriverWait(driver, 10)
     frame = wait.until(EC.presence_of_element_located(
         (By.CSS_SELECTOR, frame_name)))
@@ -59,9 +59,10 @@ def switch_frames(driver, frame_name):
 
 
 def fill_application(driver, first_name, last_name, email, cv):
-    """There are two application types: one that requires a full name and one
-    that requires a first and last name. A try/except is used to identify which
-    is used."""
+    """There are two application types: one that requires a full name in a
+    single text box and one that requires a first and last name in separate
+    text boxes. The try/except clause fills the application based on which
+    application type is identified."""
     job_title = driver.find_element_by_class_name("jobtitle").text
     company = driver.find_element_by_class_name("jobcompany").text
     print("Applying for: {} at {}".format(job_title, company))
@@ -79,8 +80,9 @@ def fill_application(driver, first_name, last_name, email, cv):
 def apply_or_continue(driver):
     """There are two types of apply methods: one applies after
     clicking the apply button, and the other applies after clicking the
-    continue button and answering some questions. A try/except is used
-    again here to identify which is used."""
+    continue button and answering some questions. The try/except clause
+    clicks the apply button if it exists, otherwise it will click the continue
+    button and select the radio buttons that indicate 'Yes'."""
     try:
         driver.find_element_by_id('apply').click()
         driver.implicitly_wait(1)
@@ -105,10 +107,15 @@ def apply_or_continue(driver):
 @click.argument('resume', type=click.Path(exists=True))
 @click.argument('job_location', default='')
 def cli(first_name, last_name, email_address, job_description, resume, job_location):
-    """When called via entrypoint, main function will take the user input
-    and send it to the Indeed API. The API will return a list of urls that
-    we can visit via web browser. If the url contains an easily apply application,
-    the script will attempt to apply to the job."""
+    """Job Automate requires the user's first name, last name, email address, job description,
+    and resume location prior to automating a job search. The job location is an optional argument
+    that is left blank by default. This allows Job Automate to search for jobs across the
+    entire United States. Each of the command line arguments requires a string data type. In
+    order to pass a string to each argument, type each argument inside quotation marks.
+
+    An example usage: jobautomate "Homer" "Simpson" "Chunkylover53@aol.com" "Nuclear Technician"
+    "/path/to/resume.txt" "Springfield"
+    """
     driver = webdriver.Firefox()
     user_parameters = indeed_parameters(job_description, job_location)
     while True:
