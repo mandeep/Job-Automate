@@ -3,7 +3,7 @@ from setuptools import setup
 setup(name='jobautomate',
       version='0.9',
       author='Mandeep Bhutani',
-      packages=['jobautomate'],
+      packages=['jobautomate', 'jobautomate.tests'],
       install_requires=[
         'indeed',
         'selenium',
