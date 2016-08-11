@@ -51,7 +51,7 @@ def find_apply_button(driver, button_name):
 def switch_frames(driver, frame_name):
     """Navigates nested iframes in order to select the application
     modal dialog."""
-    wait = WebDriverWait(driver, 10)
+    wait = WebDriverWait(driver, 15)
     frame = wait.until(EC.presence_of_element_located(
         (By.CSS_SELECTOR, frame_name)))
     driver.switch_to.frame(frame)
@@ -128,5 +128,5 @@ def cli(first_name, last_name, email_address, job_description, resume, job_locat
                 apply_or_continue(driver)
             except (NoSuchElementException, ElementNotVisibleException):
                 pass
-        click.confirm('Would you like to continue?', abort=True)
+        click.confirm('Would you like to continue searching for jobs?', abort=True)
         user_parameters['start'] += 25
