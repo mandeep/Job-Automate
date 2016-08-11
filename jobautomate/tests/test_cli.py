@@ -1,25 +1,28 @@
-import unittest
-from unittest.mock import patch
-from indeed import IndeedClient
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.common.exceptions import NoSuchElementException
 import jobautomate.commandline
+from selenium.common.exceptions import NoSuchElementException
+import pytest
 
 
-class JobAutomateTest(unittest.TestCase):
+class TestJobAutomate:
 
-    def setUp(self):
-        self.driver = webdriver.Firefox()
+    def test_indeed_parameters(self):
+        parameters = jobautomate.commandline.indeed_parameters('Financial Analyst', 'New York City')
+        assert isinstance(parameters, dict) is True
+        assert 'Financial Analyst' in parameters.values()
+        assert 'New York City' in parameters.values()
 
-    def tearDown(self):
-        self.driver.quit()
+    def test_indeed_urls(self):
+        parameters = jobautomate.commandline.indeed_parameters('Financial Analyst', 'New York City')
+        job_urls = jobautomate.commandline.indeed_urls(parameters)
+        assert len(job_urls) > 1
+        for url in job_urls:
+            assert 'http://' in url
 
-    def test_parameters(self):
-        self.assertIsNotNone(jobautomate.commandline.
-                             indeed_parameters('Software Developer', 'USA'))
-    def test_urls_retrieval(self):
-        self.assertIsNotNone(jobautomate.commandline.indeed_urls(jobautomate.commandline.
-                                                                 indeed_parameters('Software Developer', 'USA')))
+    def test_apply_button(self, selenium):
+        selenium.get(
+            "http://www.indeed.com/cmp/Discover-Books/jobs/Full-Time-Driver-3ce56851d8772139")
+        selenium.implicitly_wait(7)
+        try:
+            jobautomate.commandline.find_apply_button(selenium, 'indeed-apply-button')
+        except NoSuchElementException:
+            pytest.fail('NoSuchElementException')
