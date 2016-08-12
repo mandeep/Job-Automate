@@ -142,5 +142,8 @@ def cli(debug, verbose, first_name, last_name, email_address, job_description, r
                     print('Not an easily apply job application.')
                 else:
                     pass
-        click.confirm('Would you like to continue searching for jobs?', abort=True)
-        user_parameters['start'] += 25
+        if click.confirm('Would you like to continue searching for jobs?'):
+            user_parameters['start'] += 25
+        else:
+            driver.quit()
+            break
