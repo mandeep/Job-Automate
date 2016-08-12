@@ -29,7 +29,11 @@ Usage
 Once Job Automate is installed, the command line application can be
 invoked with the following command and mandatory arguments::
 
-    jobautomate "First Name" "Last Name" "Email Address" "Job Description" "Resume Path"
+    jobautomate FIRST_NAME LAST_NAME EMAIL_ADDRESS JOB_DESCRIPTION RESUME_PATH
+
+    Example:
+
+    jobautomate "Bender" "Rodriguez" "bender@ilovebender.com" "Metalworking" "girder.doc"
 
 Once entered the script will open a Firefox webdriver instance
 and search for 'easily apply' jobs in the URLs given by the Indeed API. The output
