@@ -1,7 +1,5 @@
 from click.testing import CliRunner
 import jobautomate.commandline
-from selenium.common.exceptions import NoSuchElementException, ElementNotVisibleException
-import pytest
 
 
 class TestJobAutomate:
@@ -67,7 +65,12 @@ class TestJobAutomate:
 
     def test_cli_command(self):
         runner = CliRunner()
-        result = runner.invoke(jobautomate.commandline.cli,
-            ['--debug', 'Homer', 'Simpson', 'Chunkylover53@aol.com', 'Nuclear Technician', 
-             '.travis.yml'], input='No')
+        result = runner.invoke(
+            jobautomate.commandline.cli, ['--debug', 'Homer', 'Simpson', 'Chunkylover53@aol.com',
+                                          'Nuclear Technician', '.travis.yml'], input='No')
         assert not result.exception
+        verbose_result = runner.invoke(
+            jobautomate.commandline.cli, ['--debug', '--verbose', 'Homer', 'Simpson',
+                                          'Chunkylover53@aol.com', 'Nuclear Technician',
+                                          '.travis.yml'], input='No')
+        assert not verbose_result.exception
