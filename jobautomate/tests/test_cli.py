@@ -1,3 +1,4 @@
+from click.testing import CliRunner
 import jobautomate.commandline
 from selenium.common.exceptions import NoSuchElementException, ElementNotVisibleException
 import pytest
@@ -33,10 +34,21 @@ class TestJobAutomate:
         selenium.implicitly_wait(7)
         try:
             jobautomate.commandline.find_apply_button(selenium, 'indeed-apply-button')
-            selenium.implicitly_wait(5)
             jobautomate.commandline.switch_frames(selenium, 'iframe[name$=modal-iframe]')
-            selenium.implicitly_wait(5)
             jobautomate.commandline.fill_application(
-                selenium, 'Homer', 'Simpson', 'Chunkylover53Aoo.com', 'resume.txt')
+                selenium, 'Homer', 'Simpson', 'Chunkylover53@aol.com', 'resume.txt')
+        except (NoSuchElementException, ElementNotVisibleException):
+            pytest.fail('Application not found.')
+
+    def test_fill_application_again(self, selenium):
+        selenium.get(
+            "http://www.indeed.com/viewjob?jk=b2eb45e8bccc4861")
+        selenium.implicitly_wait(7)
+        try:
+            jobautomate.commandline.find_apply_button(selenium, 'indeed-apply-button')
+
+            jobautomate.commandline.switch_frames(selenium, 'iframe[name$=modal-iframe]')
+            jobautomate.commandline.fill_application(
+                selenium, 'Homer', 'Simpson', 'Chunkylover53@aol.com', 'resume.txt')
         except (NoSuchElementException, ElementNotVisibleException):
             pytest.fail('Application not found.')
