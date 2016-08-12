@@ -43,3 +43,24 @@ class TestJobAutomate:
         jobautomate.commandline.switch_frames(selenium, 'iframe[name$=modal-iframe]')
         jobautomate.commandline.fill_application(
             selenium, 'Homer', 'Simpson', 'Chunkylover53@aol.com', 'resume.txt')
+
+    def test_click_apply(self, selenium):
+        selenium.get(
+            "http://www.indeed.com/cmp/Discover-Books/jobs/Full-Time-Driver-3ce56851d8772139")
+        selenium.implicitly_wait(7)
+        jobautomate.commandline.find_apply_button(selenium, 'indeed-apply-button')
+        jobautomate.commandline.switch_frames(selenium, 'iframe[name$=modal-iframe]')
+        jobautomate.commandline.fill_application(
+            selenium, 'Homer', 'Simpson', 'Chunkylover53@aol.com', 'resume.txt')
+        jobautomate.commandline.apply_or_continue(selenium, debug=True)
+
+    def test_click_apply_again(self, selenium):
+        selenium.get(
+            "http://www.indeed.com/viewjob?jk=b2eb45e8bccc4861")
+        selenium.implicitly_wait(7)
+        jobautomate.commandline.find_apply_button(selenium, 'indeed-apply-button')
+
+        jobautomate.commandline.switch_frames(selenium, 'iframe[name$=modal-iframe]')
+        jobautomate.commandline.fill_application(
+            selenium, 'Homer', 'Simpson', 'Chunkylover53@aol.com', 'resume.txt')
+        jobautomate.commandline.apply_or_continue(selenium, debug=True)
