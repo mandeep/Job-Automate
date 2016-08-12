@@ -22,7 +22,7 @@ before_script:
   - sh -e /etc/init.d/xvfb start
   - sleep 3
 script:
-  - py.test --driver Firefox
-  - coverage run --source=jobautomate -m py.test --driver Firefox
+  - py.test -s -v --driver Firefox
+  - coverage run --source=. -m py.test --driver Firefox
 after_success:
   - coveralls
