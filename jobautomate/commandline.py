@@ -135,8 +135,8 @@ def cli(debug, verbose, first_name, last_name, email_address, job_description, r
                 find_apply_button(driver, 'indeed-apply-button')
                 switch_frames(driver, 'iframe[name$=modal-iframe]')
                 fill_application(driver, first_name, last_name, email_address, resume)
-                if not debug:
-                    apply_or_continue(driver)
+                if debug:
+                    apply_or_continue(driver, debug=True)
             except (NoSuchElementException, ElementNotVisibleException):
                 if verbose:
                     print('Not an easily apply job application.')
