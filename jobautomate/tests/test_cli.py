@@ -23,32 +23,23 @@ class TestJobAutomate:
         selenium.get(
             "http://www.indeed.com/cmp/Discover-Books/jobs/Full-Time-Driver-3ce56851d8772139")
         selenium.implicitly_wait(7)
-        try:
-            jobautomate.commandline.find_apply_button(selenium, 'indeed-apply-button')
-        except NoSuchElementException:
-            pytest.fail('NoSuchElementException')
+        jobautomate.commandline.find_apply_button(selenium, 'indeed-apply-button')
 
     def test_fill_application(self, selenium):
         selenium.get(
             "http://www.indeed.com/cmp/Discover-Books/jobs/Full-Time-Driver-3ce56851d8772139")
         selenium.implicitly_wait(7)
-        try:
-            jobautomate.commandline.find_apply_button(selenium, 'indeed-apply-button')
-            jobautomate.commandline.switch_frames(selenium, 'iframe[name$=modal-iframe]')
-            jobautomate.commandline.fill_application(
-                selenium, 'Homer', 'Simpson', 'Chunkylover53@aol.com', 'resume.txt')
-        except (NoSuchElementException, ElementNotVisibleException):
-            pytest.fail('Application not found.')
+        jobautomate.commandline.find_apply_button(selenium, 'indeed-apply-button')
+        jobautomate.commandline.switch_frames(selenium, 'iframe[name$=modal-iframe]')
+        jobautomate.commandline.fill_application(
+            selenium, 'Homer', 'Simpson', 'Chunkylover53@aol.com', 'resume.txt')
 
     def test_fill_application_again(self, selenium):
         selenium.get(
             "http://www.indeed.com/viewjob?jk=b2eb45e8bccc4861")
         selenium.implicitly_wait(7)
-        try:
-            jobautomate.commandline.find_apply_button(selenium, 'indeed-apply-button')
+        jobautomate.commandline.find_apply_button(selenium, 'indeed-apply-button')
 
-            jobautomate.commandline.switch_frames(selenium, 'iframe[name$=modal-iframe]')
-            jobautomate.commandline.fill_application(
-                selenium, 'Homer', 'Simpson', 'Chunkylover53@aol.com', 'resume.txt')
-        except (NoSuchElementException, ElementNotVisibleException):
-            pytest.fail('Application not found.')
+        jobautomate.commandline.switch_frames(selenium, 'iframe[name$=modal-iframe]')
+        jobautomate.commandline.fill_application(
+            selenium, 'Homer', 'Simpson', 'Chunkylover53@aol.com', 'resume.txt')
