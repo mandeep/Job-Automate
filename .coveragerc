@@ -1,0 +1,4 @@
+[report]
+omit = 
+    setup.py
+    jobautomate/__main__.py
