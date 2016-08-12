@@ -77,14 +77,15 @@ def fill_application(driver, first_name, last_name, email, cv):
         driver.find_element_by_id('resume').send_keys(os.path.abspath(cv))
 
 
-def apply_or_continue(driver):
+def apply_or_continue(driver, debug=False):
     """There are two types of apply methods: one applies after
     clicking the apply button, and the other applies after clicking the
     continue button and answering some questions. The try/except clause
     clicks the apply button if it exists, otherwise it will click the continue
     button and select the radio buttons that indicate 'Yes'."""
     try:
-        driver.find_element_by_id('apply').click()
+        if not debug:
+            driver.find_element_by_id('apply').click()
         driver.implicitly_wait(1)
         print('Application Successful.')
     except (NoSuchElementException, ElementNotVisibleException):
@@ -92,7 +93,8 @@ def apply_or_continue(driver):
         driver.implicitly_wait(1)
         for radio_button in driver.find_elements_by_xpath('//*[@type="radio" and @value="0"]'):
             radio_button.click()
-        driver.find_element_by_id('apply').click()
+        if not debug:
+            driver.find_element_by_id('apply').click()
         driver.implicitly_wait(1)
         print('Application Successful.')
     finally:
@@ -100,15 +102,17 @@ def apply_or_continue(driver):
 
 
 @click.command()
+@click.option('--debug', is_flag=True,
+              help="Disable click on apply button found on job applications.")
 @click.option('--verbose', is_flag=True,
-              help="Print to standard output jobs that are not easily apply applications.")
+              help="Print to standard output the jobs that are not easily apply applications.")
 @click.argument('first_name')
 @click.argument('last_name')
 @click.argument('email_address')
 @click.argument('job_description')
 @click.argument('resume', type=click.Path(exists=True))
 @click.argument('job_location', default='')
-def cli(verbose, first_name, last_name, email_address, job_description, resume, job_location):
+def cli(debug, verbose, first_name, last_name, email_address, job_description, resume, job_location):
     """Job Automate requires the user's first name, last name, email address, job description,
     and resume location prior to automating a job search. The job location is an optional argument
     that is left blank by default. This allows Job Automate to search for jobs across the
@@ -131,7 +135,8 @@ def cli(verbose, first_name, last_name, email_address, job_description, resume, 
                 find_apply_button(driver, 'indeed-apply-button')
                 switch_frames(driver, 'iframe[name$=modal-iframe]')
                 fill_application(driver, first_name, last_name, email_address, resume)
-                apply_or_continue(driver)
+                if not debug:
+                    apply_or_continue(driver)
             except (NoSuchElementException, ElementNotVisibleException):
                 if verbose:
                     print('Not an easily apply job application.')
