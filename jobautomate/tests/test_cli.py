@@ -64,3 +64,10 @@ class TestJobAutomate:
         jobautomate.commandline.fill_application(
             selenium, 'Homer', 'Simpson', 'Chunkylover53@aol.com', 'resume.txt')
         jobautomate.commandline.apply_or_continue(selenium, debug=True)
+
+    def test_cli_command(self):
+        runner = CliRunner()
+        result = runner.invoke(jobautomate.commandline.cli,
+            ['--debug', 'Homer', 'Simpson', 'Chunkylover53@aol.com', 'Nuclear Technician', 
+             '.travis.yml'], input='No')
+        assert not result.exception
