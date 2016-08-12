@@ -84,15 +84,15 @@ def apply_or_continue(driver, debug=False):
     clicks the apply button if it exists, otherwise it will click the continue
     button and select the radio buttons that indicate 'Yes'."""
     try:
+        driver.find_element_by_link_text('Continue').click()
+        driver.implicitly_wait(1)
+        for radio_button in driver.find_elements_by_xpath('//*[@type="radio" and @value="0"]'):
+            radio_button.click()
         if not debug:
             driver.find_element_by_id('apply').click()
         driver.implicitly_wait(1)
         print('Application Successful.')
     except (NoSuchElementException, ElementNotVisibleException):
-        driver.find_element_by_link_text('Continue').click()
-        driver.implicitly_wait(1)
-        for radio_button in driver.find_elements_by_xpath('//*[@type="radio" and @value="0"]'):
-            radio_button.click()
         if not debug:
             driver.find_element_by_id('apply').click()
         driver.implicitly_wait(1)
