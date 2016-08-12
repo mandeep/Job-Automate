@@ -17,7 +17,7 @@ class TestJobAutomate:
         assert len(job_urls) > 1
         for url in job_urls:
             assert 'http://' in url
-"""
+
     def test_indeed_apply_button(self, selenium):
         selenium.get(
             "http://www.indeed.com/cmp/Discover-Books/jobs/Full-Time-Driver-3ce56851d8772139")
@@ -26,4 +26,3 @@ class TestJobAutomate:
             jobautomate.commandline.find_apply_button(selenium, 'indeed-apply-button')
         except NoSuchElementException:
             pytest.fail('NoSuchElementException')
-"""
