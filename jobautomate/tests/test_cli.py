@@ -74,3 +74,8 @@ class TestJobAutomate:
                                           'Chunkylover53@aol.com', 'Nuclear Technician',
                                           '.travis.yml'], input='No')
         assert not verbose_result.exception
+
+        continue_result = runner.invoke(
+            jobautomate.commandline.cli, ['--debug', 'Homer', 'Simpson', 'Chunkylover53@aol.com',
+                                          'Nuclear Technician', '.travis.yml'], input='Yes')
+        assert not continue_result.exception
