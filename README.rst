@@ -1,5 +1,6 @@
 .. image:: jobautomate/images/title.png
 
+
 |travis| |coverage|
 
 Job Automate is a command line application written in Python using the Selenium and Click libraries.
