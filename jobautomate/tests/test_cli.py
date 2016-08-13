@@ -69,12 +69,17 @@ class TestJobAutomate:
             jobautomate.commandline.cli, ['--debug', 'Homer', 'Simpson', 'Chunkylover53@aol.com',
                                           'Nuclear Technician', '.travis.yml'], input='No')
         assert not result.exception
+
+    def test_cli_verbose(self):
+        runner = CliRunner()
         verbose_result = runner.invoke(
             jobautomate.commandline.cli, ['--debug', '--verbose', 'Homer', 'Simpson',
                                           'Chunkylover53@aol.com', 'Nuclear Technician',
                                           '.travis.yml'], input='No')
         assert not verbose_result.exception
 
+    def test_cli_continue(self):
+        runner = CliRunner()
         continue_result = runner.invoke(
             jobautomate.commandline.cli, ['--debug', 'Homer', 'Simpson', 'Chunkylover53@aol.com',
                                           'Nuclear Technician', '.travis.yml'], input='Yes')
