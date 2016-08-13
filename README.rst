@@ -1,16 +1,12 @@
-=============
-Job Automate
-=============
+.. image:: jobautomate/images/title.png
+
+|travis| |coverage|
 
 Job Automate is a command line application written in Python using the Selenium and Click libraries.
 The application uses the Indeed Job Search API to find and apply to 'easily apply' jobs scraped by
 Indeed's job crawler. 
 
 Disclaimer: This project was created as a proof of concept.
-
--------------------
-|travis| |coverage|
--------------------
 
 *************
 Installation
