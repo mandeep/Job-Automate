@@ -15,6 +15,7 @@ before_install:
 install:
   - pip install coverage
   - pip install pytest
+  - pip install pytest-cov
   - pip install pytest-selenium
   - python setup.py install
 before_script:
