@@ -10,6 +10,7 @@ notifications:
   email: false
 before_install:
   - pip install coveralls
+  - pip install codecov
   - sudo apt-get update
   - sudo apt-get install -y xvfb
 install:
