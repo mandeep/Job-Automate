@@ -19,21 +19,18 @@ To install the script use the following commands in a command line prompt::
     cd Job-Automate
     pip install .
 
-The Indeed Publisher Key needs to be set as an environment variable in the form of
-API_KEY=ID.
-
 ************
 Usage
 ************
 
-Once Job Automate is installed and the environment is set, the command line application can be
-invoked with the following command and mandatory arguments::
+Job Automate accepts the Indeed Publisher ID as an environment variable or as a command line flag. In order
+to be used as an environment variable, one must export API_KEY=ID. The command line application may be invoked with the following command, flags, and arguments::
 
-    jobautomate FIRST_NAME LAST_NAME EMAIL_ADDRESS JOB_DESCRIPTION RESUME_PATH
+    jobautomate --key INDEED_PUBLISHER_ID FIRST_NAME LAST_NAME EMAIL_ADDRESS JOB_DESCRIPTION RESUME_PATH
 
     Example:
 
-    jobautomate "Bender" "Rodriguez" "bender@ilovebender.com" "Metalworking" "girder.doc"
+    jobautomate --key 123456789 "Bender" "Rodriguez" "bender@ilovebender.com" "Metalworking" "girder.doc"
 
 Once entered the script will open a Firefox webdriver instance
 and search for 'easily apply' jobs in the URLs given by the Indeed API. The output
@@ -43,5 +40,5 @@ will look similar to the image below:
 
 .. |travis| image:: https://travis-ci.org/mandeepbhutani/Job-Automate.svg?branch=master
     :target: https://travis-ci.org/mandeepbhutani/Job-Automate
-.. |coverage| image:: https://coveralls.io/repos/github/mandeepbhutani/Job-Automate/badge.svg?branch=master
-    :target: https://coveralls.io/github/mandeepbhutani/Job-Automate?branch=master
+.. |coverage| image:: https://codecov.io/gh/mandeepbhutani/Job-Automate/branch/master/graph/badge.svg
+    :target: https://codecov.io/gh/mandeepbhutani/Job-Automate
