@@ -9,7 +9,6 @@ env:
 notifications:
   email: false
 before_install:
-  - pip install coveralls
   - pip install codecov
   - sudo apt-get update
   - sudo apt-get install -y xvfb
@@ -26,5 +25,4 @@ before_script:
 script:
   - py.test -s -v --cov=. --driver Firefox
 after_success:
-  - coveralls
   - codecov
