@@ -13,7 +13,7 @@ class TestJobAutomate:
     def test_indeed_api_urls(self):
         parameters = jobautomate.commandline.indeed_parameters('Financial Analyst', 'New York City')
         job_urls = jobautomate.commandline.indeed_urls(parameters)
-        assert len(job_urls) > 1
+        assert len(job_urls) == 25
         for url in job_urls:
             assert 'http://' in url
 
