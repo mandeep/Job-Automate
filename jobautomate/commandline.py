@@ -34,13 +34,18 @@ def indeed_parameters(what, where):
     return params
 
 
-def indeed_urls(parameters):
+def indeed_urls(parameters, publisher_key=None):
     """Uses Indeed publisher ID in order to gain access to the API. With
     parameters from indeed_paramters(), returns a list of job application links."""
-    client = IndeedClient(os.environ['API_KEY'])
+    if publisher_key is None:
+        publisher_key = os.environ['API_KEY']
+    client = IndeedClient(publisher_key)
     response = client.search(**parameters)
-    urls = [str(links['url']) for links in response['results']]
-    return urls
+    try:
+        urls = [str(links['url']) for links in response['results']]
+        return urls
+    except KeyError:
+        raise NameError('Invalid Publisher ID')
 
 
 def find_apply_button(driver, button_name):
@@ -106,13 +111,15 @@ def apply_or_continue(driver, debug=False):
               help="Disable click on apply button found on job applications.")
 @click.option('--verbose', is_flag=True,
               help="Print to standard output the jobs that are not easily apply applications.")
+@click.option('--key', default=None, help="Indeed Publisher ID")
 @click.argument('first_name')
 @click.argument('last_name')
 @click.argument('email_address')
 @click.argument('job_description')
 @click.argument('resume', type=click.Path(exists=True))
 @click.argument('job_location', default='')
-def cli(debug, verbose, first_name, last_name, email_address, job_description, resume, job_location):
+def cli(debug, verbose, key, first_name, last_name, email_address,
+        job_description, resume, job_location):
     """Job Automate requires the user's first name, last name, email address, job description,
     and resume location prior to automating a job search. The job location is an optional argument
     that is left blank by default. This allows Job Automate to search for jobs across the
@@ -129,7 +136,7 @@ def cli(debug, verbose, first_name, last_name, email_address, job_description, r
     driver = webdriver.Firefox()
     user_parameters = indeed_parameters(job_description, job_location)
     while True:
-        for url in indeed_urls(user_parameters):
+        for url in indeed_urls(user_parameters, key):
             driver.get(url)
             try:
                 find_apply_button(driver, 'indeed-apply-button')
