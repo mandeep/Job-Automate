@@ -17,6 +17,13 @@ class TestJobAutomate:
         for url in job_urls:
             assert 'http://' in url
 
+    def test_false_api_key(self):
+        parameters = jobautomate.commandline.indeed_parameters('Financial Analyst', 'New York City')
+        try:
+            jobautomate.commandline.indeed_urls(parameters, 2)
+        except NameError:
+            pass
+
     def test_indeed_apply_button(self, selenium):
         selenium.get(
             "http://www.indeed.com/cmp/Discover-Books/jobs/Full-Time-Driver-3ce56851d8772139")
@@ -34,7 +41,7 @@ class TestJobAutomate:
 
     def test_fill_application_again(self, selenium):
         selenium.get(
-            "http://www.indeed.com/viewjob?jk=b2eb45e8bccc4861")
+            "http://www.indeed.com/viewjob?jk=f6c24d6728d6b55f")
         selenium.implicitly_wait(7)
         jobautomate.commandline.find_apply_button(selenium, 'indeed-apply-button')
 
@@ -54,7 +61,7 @@ class TestJobAutomate:
 
     def test_click_apply_again(self, selenium):
         selenium.get(
-            "http://www.indeed.com/viewjob?jk=b2eb45e8bccc4861")
+            "http://www.indeed.com/viewjob?jk=f6c24d6728d6b55f")
         selenium.implicitly_wait(7)
         jobautomate.commandline.find_apply_button(selenium, 'indeed-apply-button')
 
