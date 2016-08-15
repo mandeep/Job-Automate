@@ -5,7 +5,7 @@
 
 Job Automate is a command line application written in Python using the Selenium and Click libraries.
 The application uses the Indeed Job Search API to find and apply to 'easily apply' jobs scraped by
-Indeed's job crawler. 
+Indeed's job crawler. Job Automate requires access to Indeed's API with an Indeed Publisher Key. In order to obtain a key, please visit: http://www.indeed.com/publisher.
 
 Disclaimer: This project was created as a proof of concept.
 
@@ -19,11 +19,14 @@ To install the script use the following commands in a command line prompt::
     cd Job-Automate
     pip install .
 
+The Indeed Publisher Key needs to be set as an environment variable in the form of
+API_KEY=ID.
+
 ************
 Usage
 ************
 
-Once Job Automate is installed, the command line application can be
+Once Job Automate is installed and the environment is set, the command line application can be
 invoked with the following command and mandatory arguments::
 
     jobautomate FIRST_NAME LAST_NAME EMAIL_ADDRESS JOB_DESCRIPTION RESUME_PATH
