@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='jobautomate',
-      version='0.9',
+      version='1.0',
       author='Mandeep Bhutani',
       packages=['jobautomate', 'jobautomate.tests'],
       install_requires=[
