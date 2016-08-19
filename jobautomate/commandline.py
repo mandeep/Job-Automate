@@ -57,8 +57,7 @@ def switch_frames(driver, frame_name):
     """Navigates nested iframes in order to select the application
     modal dialog."""
     wait = WebDriverWait(driver, 15)
-    frame = wait.until(EC.presence_of_element_located(
-        (By.CSS_SELECTOR, frame_name)))
+    frame = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, frame_name)))
     driver.switch_to.frame(frame)
     wait.until(EC.frame_to_be_available_and_switch_to_it(0))
 
