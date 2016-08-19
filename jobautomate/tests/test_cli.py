@@ -9,6 +9,13 @@ def parameters():
     return job_search
 
 
+def fill(driver):
+    jobautomate.commandline.find_apply_button(driver, 'indeed-apply-button')
+    jobautomate.commandline.switch_frames(driver, 'iframe[name$=modal-iframe]')
+    jobautomate.commandline.fill_application(
+        driver, 'Homer', 'Simpson', 'Chunkylover53@aol.com', 'resume.txt')
+
+
 def test_indeed_api_parameters(parameters):
     assert isinstance(parameters, dict) is True
     assert 'Financial Analyst' in parameters.values()
@@ -24,7 +31,7 @@ def test_indeed_api_urls(parameters):
 
 def test_false_api_key(parameters):
     try:
-        jobautomate.commandline.indeed_urls(parameters, 2)
+        jobautomate.commandline.indeed_urls(parameters, 123456789)
     except NameError:
         pass
 
@@ -38,41 +45,26 @@ def test_indeed_apply_button(selenium):
 def test_fill_application(selenium):
     selenium.get(
         "http://www.indeed.com/cmp/Discover-Books/jobs/Full-Time-Driver-3ce56851d8772139")
-    jobautomate.commandline.find_apply_button(selenium, 'indeed-apply-button')
-    jobautomate.commandline.switch_frames(selenium, 'iframe[name$=modal-iframe]')
-    jobautomate.commandline.fill_application(
-        selenium, 'Homer', 'Simpson', 'Chunkylover53@aol.com', 'resume.txt')
+    fill(selenium)
 
 
 def test_fill_application_again(selenium):
     selenium.get(
         "http://www.indeed.com/viewjob?jk=f6c24d6728d6b55f")
-    selenium.implicitly_wait(7)
-    jobautomate.commandline.find_apply_button(selenium, 'indeed-apply-button')
-
-    jobautomate.commandline.switch_frames(selenium, 'iframe[name$=modal-iframe]')
-    jobautomate.commandline.fill_application(
-        selenium, 'Homer', 'Simpson', 'Chunkylover53@aol.com', 'resume.txt')
+    fill(selenium)
 
 
 def test_click_apply(selenium):
     selenium.get(
         "http://www.indeed.com/cmp/Discover-Books/jobs/Full-Time-Driver-3ce56851d8772139")
-    jobautomate.commandline.find_apply_button(selenium, 'indeed-apply-button')
-    jobautomate.commandline.switch_frames(selenium, 'iframe[name$=modal-iframe]')
-    jobautomate.commandline.fill_application(
-        selenium, 'Homer', 'Simpson', 'Chunkylover53@aol.com', 'resume.txt')
+    fill(selenium)
     jobautomate.commandline.apply_or_continue(selenium, debug=True)
 
 
 def test_click_apply_again(selenium):
     selenium.get(
         "http://www.indeed.com/viewjob?jk=f6c24d6728d6b55f")
-    jobautomate.commandline.find_apply_button(selenium, 'indeed-apply-button')
-
-    jobautomate.commandline.switch_frames(selenium, 'iframe[name$=modal-iframe]')
-    jobautomate.commandline.fill_application(
-        selenium, 'Homer', 'Simpson', 'Chunkylover53@aol.com', 'resume.txt')
+    fill(selenium)
     jobautomate.commandline.apply_or_continue(selenium, debug=True)
 
 
