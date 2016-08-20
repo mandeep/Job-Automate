@@ -81,7 +81,7 @@ def test_cli_command():
     runner = CliRunner()
     result = runner.invoke(
         jobautomate.commandline.cli, ['--debug', 'Homer', 'Simpson', 'Chunkylover53@aol.com',
-                                      'Nuclear Technician', '.travis.yml'], input='no')
+                                      'Nuclear Technician', '.travis.yml'], echo_stdin=True, input='no')
     assert not result.exception
 
 
@@ -90,7 +90,7 @@ def test_cli_xvfb():
     xvfb_result = runner.invoke(
         jobautomate.commandline.cli, ['--debug', '--xvfb', 'Homer', 'Simpson',
                                       'Chunkylover53@aol.com', 'Nuclear Technician',
-                                      '.travis.yml'], input='no')
+                                      '.travis.yml'], echo_stdin=True, input='no')
     assert not xvfb_result.exception
 
 
@@ -99,7 +99,7 @@ def test_cli_verbose():
     verbose_result = runner.invoke(
         jobautomate.commandline.cli, ['--debug', '--verbose', 'Homer', 'Simpson',
                                       'Chunkylover53@aol.com', 'Nuclear Technician',
-                                      '.travis.yml'], input='no')
+                                      '.travis.yml'], echo_stdin=True, input='no')
     assert not verbose_result.exception
 
 
@@ -107,5 +107,5 @@ def test_cli_continue():
     runner = CliRunner()
     continue_result = runner.invoke(
         jobautomate.commandline.cli, ['--debug', 'Homer', 'Simpson', 'Chunkylover53@aol.com',
-                                      'Nuclear Technician', '.travis.yml'], input='yes')
+                                      'Nuclear Technician', '.travis.yml'], echo_stdin=True, input='yes')
     assert not continue_result.exception
