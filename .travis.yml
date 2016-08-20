@@ -8,6 +8,26 @@ dist: trusty
 env:
   global:
     secure: "iyp8SnisZUQ41PE7Z7+hLBU+REyv8TX3z543hbLQCABSROYhz20QRjbN5MkRe7froAi+2hdWNiTONM3HVqQa9CydqkMGUl9tpDP5Bitpt1k+V/+7BpMwPhFfAi5HBbwvhfcxGidg6Ht9JrbsGb5N1Kf8lwdhJa0P3RP+pkmBk+sYdCxPotlWtf7/GUeg31MpWk4jbQeIqyyKLU1W17zFHM3AslWiHuf6eTwPbE5qzu8yiPP9qihTnNMFso0HLv/I8YMMU5Cb/jIvcu8/rPJrY+kRo9rauuRUzg0iWoG55QHQGqxmN9WH+tSh2xrEZlkaGQtmvgKNsTeJkKup5TAbi3FfHEyKhPKvKYXmpaYZqjXHwLrr4OoJulsD4zcBpQSKtvO3WjPd0CMTQf2muYbwuvEmVGbbYWExO5JSglTTVSWsuiVWvn7G+BR2eFBrCqrXt0YPVrwJc7ct+Z62smhvCaFZGEaA8jSw65qwU0sOaNXQ+epELxKeLlPu0BrjhTNx5Z1k6bw9etwDuCPI0oQZQ7FaM9tNtMiMMg7mhB6QVJxhvWpiJQ+Z/UbwYvNGm2pW2PZ1XPkEa3ysOEjGVcxfd9bPGrD68Ay0Uh5cCp5U1DOCPQXUpY6mfvK8j/tjTv8kL5vRRQCSxpmkN2KtcULzg4EJpodZEzcaCK7/IDaqyws="
+deploy:
+  provider: pypi
+  user: mandeepb
+  password:
+    secure: !!binary |
+      R3huU2ZKSldIN3F4SEVkbSszTHdPMmRsK3c1NHNkaHFURXd2MUQ1NzhxRitPT2dvWU4xQUFVZmVD
+      SlNwZCtzUkN3SXRDMDhhaW85RHM2eGxoeFFpdlpka0pSd3N1MitFbEpPSXhHRCs1U08zWVhlVGRj
+      RGNkRDFObFN1Z043VVNqcy9sRFpOYnR4bUdUcTczdk9wR3Z3bC8yUUprNjZiSlR1a3NFMHZsSHM4
+      TDBLam50UzVkUWtBckhtSm41VVNHL2N6SldIb0ZGSjBzZHhSVm1iQUVkRFdydGRmWUh1dDkwejN5
+      YkhqQ1dHdUZQeXZiWFNKMVJvTU9JRG5PZ2QyNFY1UU53ay9oTjNkdFZ6V1V1azlFeW40WW4zNmww
+      WmM5SkVGcFhJYUF1N2dKdmcyUUZSMVNXTEpSWGVCeTZnS05rWi9Wdi9wVmMySHRXT1dXSXJaUC9C
+      QjZiQzFzL0djRmgvckpqQmovZTQ3ZkI4UG92N2hpYnEra0RQRExtNm9hRmZqdnBkUjhkUS9tMVRo
+      UUl5MEg0M1NXZjhEbW5sdlVzdUYvaFRtSUtMdy9nQi9UQTAyS1EvVW9wVTRDYUM3cldCblVxZmxu
+      eDBSYlVBUFZSMHRUYm4wYVVTNVFTNjhwb25JUFhPWlFrNlBxNUpsRVlreW1XZGFnV0o4TVJVTTZX
+      Mlg0QzJIbkQ2YVVHb0JpZTZKQnNJS0hSbU1tbmNQa21zY1lia1lsWjF4ekhDa0RlTmg2UXpHQlNz
+      Rjkzekh2SGJQbWVYUXphYVJTUWJBMEgySDBlRmpLQUtIdkwvcWtIVEQzY21jbWwybzBFU0tWQkZB
+      RkVRcU9pSEtXNFNnZytQa1JlbFk0aEhtTWZ2ckJCMUIyQmM1dWFyT1A4U1ZNY0Y1ZE5yUUxXd009
+  on:
+    branch: master
+  distributions: sdist bdist_wheel
 notifications:
   email: false
 before_install:
@@ -24,3 +44,4 @@ script:
   - py.test -s -v --cov=. --driver Firefox
 after_success:
   - codecov
+
