@@ -78,34 +78,34 @@ def test_click_apply_again(selenium, application_two):
 
 
 def test_cli_command():
-    runner = CliRunner()
+    runner = CliRunner(echo_stdin=True)
     result = runner.invoke(
         jobautomate.commandline.cli, ['--debug', 'Homer', 'Simpson', 'Chunkylover53@aol.com',
-                                      'Nuclear Technician', '.travis.yml'], echo_stdin=True, input='no')
+                                      'Nuclear Technician', '.travis.yml'], input='no')
     assert not result.exception
 
 
 def test_cli_xvfb():
-    runner = CliRunner()
+    runner = CliRunner(echo_stdin=True)
     xvfb_result = runner.invoke(
         jobautomate.commandline.cli, ['--debug', '--xvfb', 'Homer', 'Simpson',
                                       'Chunkylover53@aol.com', 'Nuclear Technician',
-                                      '.travis.yml'], echo_stdin=True, input='no')
+                                      '.travis.yml'], input='no')
     assert not xvfb_result.exception
 
 
 def test_cli_verbose():
-    runner = CliRunner()
+    runner = CliRunner(echo_stdin=True)
     verbose_result = runner.invoke(
         jobautomate.commandline.cli, ['--debug', '--verbose', 'Homer', 'Simpson',
                                       'Chunkylover53@aol.com', 'Nuclear Technician',
-                                      '.travis.yml'], echo_stdin=True, input='no')
+                                      '.travis.yml'], input='no')
     assert not verbose_result.exception
 
 
 def test_cli_continue():
-    runner = CliRunner()
+    runner = CliRunner(echo_stdin=True)
     continue_result = runner.invoke(
         jobautomate.commandline.cli, ['--debug', 'Homer', 'Simpson', 'Chunkylover53@aol.com',
-                                      'Nuclear Technician', '.travis.yml'], echo_stdin=True, input='yes')
+                                      'Nuclear Technician', '.travis.yml'], input='yes')
     assert not continue_result.exception
