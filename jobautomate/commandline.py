@@ -1,11 +1,12 @@
 import click
 from indeed import IndeedClient
+import os
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import NoSuchElementException, ElementNotVisibleException
-import os
+from xvfbwrapper import Xvfb
 
 
 def indeed_parameters(what, where):
@@ -50,7 +51,9 @@ def indeed_urls(parameters, publisher_key=None):
 
 def find_apply_button(driver, button_name):
     """Searches page for the apply now button and clicks it if it exists."""
-    driver.find_element_by_class_name(button_name).click()
+    wait = WebDriverWait(driver, 2)
+    button = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, button_name)))
+    button.click()
 
 
 def switch_frames(driver, frame_name):
@@ -108,16 +111,17 @@ def apply_or_continue(driver, debug=False):
 @click.command()
 @click.option('--debug', is_flag=True,
               help="Disable click on apply button found on job applications.")
+@click.option('--key', default=None, help="Indeed Publisher ID")
+@click.option('--xvfb', is_flag=True, help="Run the application in a headless browser.")
 @click.option('--verbose', is_flag=True,
               help="Print to standard output the jobs that are not easily apply applications.")
-@click.option('--key', default=None, help="Indeed Publisher ID")
 @click.argument('first_name')
 @click.argument('last_name')
 @click.argument('email_address')
 @click.argument('job_description')
 @click.argument('resume', type=click.Path(exists=True))
 @click.argument('job_location', default='')
-def cli(debug, verbose, key, first_name, last_name, email_address,
+def cli(debug, key, xvfb, verbose, first_name, last_name, email_address,
         job_description, resume, job_location):
     """Job Automate requires the user's first name, last name, email address, job description,
     and resume location prior to automating a job search. The job location is an optional argument
@@ -151,5 +155,5 @@ def cli(debug, verbose, key, first_name, last_name, email_address,
         if click.confirm('Would you like to continue searching for jobs?'):
             user_parameters['start'] += 25
         else:
-            driver.quit()
             break
+            driver.quit()
