@@ -40,7 +40,7 @@ Once entered the script will open a Firefox webdriver instance and search for 'e
     :target: https://travis-ci.org/mandeepbhutani/Job-Automate
 .. |coverage| image:: https://codecov.io/gh/mandeepbhutani/Job-Automate/branch/master/graph/badge.svg
     :target: https://codecov.io/gh/mandeepbhutani/Job-Automate
-.. |pypi| .. image:: https://img.shields.io/pypi/v/jobautomate.svg
+.. |pypi| image:: https://img.shields.io/pypi/v/jobautomate.svg
     :target: https://pypi.python.org/pypi/jobautomate
 .. |pyversions| image:: https://img.shields.io/pypi/pyversions/jobautomate.svg
     :target: https://pypi.python.org/pypi/jobautomate 
