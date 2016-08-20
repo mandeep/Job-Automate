@@ -51,9 +51,8 @@ def indeed_urls(parameters, publisher_key=None):
 
 def find_apply_button(driver, button_name):
     """Searches page for the apply now button and clicks it if it exists."""
-    wait = WebDriverWait(driver, 2)
-    button = wait.until(EC.element_to_be_clickable((By.CLASS_NAME, button_name)))
-    button.click()
+    driver.implicitly_wait(1)
+    driver.find_element_by_class_name(button_name).click()
 
 
 def switch_frames(driver, frame_name):
@@ -136,6 +135,9 @@ def cli(debug, key, xvfb, verbose, first_name, last_name, email_address,
     the easily apply application. With the --verbose flag, jobautomate will also print to
     terminal the applications which are not easily apply applications.
     """
+    if xvfb:
+        vdisplay = Xvfb()
+        vdisplay.start()
     driver = webdriver.Firefox()
     user_parameters = indeed_parameters(job_description, job_location)
     while True:
@@ -152,8 +154,11 @@ def cli(debug, key, xvfb, verbose, first_name, last_name, email_address,
                     print('Not an easily apply job application.')
                 else:
                     pass
-        if click.confirm('Would you like to continue searching for jobs?'):
+        user_prompt = click.prompt('Would you like to continue searching for jobs? (yes/no')
+        if user_prompt == 'yes':
             user_parameters['start'] += 25
         else:
-            break
             driver.quit()
+            if xvfb:
+                vdisplay.stop()
+            break
