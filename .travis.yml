@@ -15,12 +15,9 @@ install:
   - pip install pytest
   - pip install pytest-cov
   - pip install pytest-selenium
+  - pip install pytest-xvfb
   - pip install xvfbwrapper
   - python setup.py install
-before_script:
-  - export DISPLAY=:99.0
-  - sh -e /etc/init.d/xvfb start
-  - sleep 3
 script:
   - py.test -s -v --cov=. --driver Firefox
 after_success:
