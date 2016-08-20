@@ -44,4 +44,5 @@ Once entered the script will open a Firefox webdriver instance and search for 'e
     :target: https://pypi.python.org/pypi/jobautomate
 .. |pyversions| image:: https://img.shields.io/pypi/pyversions/jobautomate.svg
     :target: https://pypi.python.org/pypi/jobautomate 
-.. |wheel| image:: https://img.shields.io/pypi/format/jobautomate.svg   :target: https://pypi.python.org/pypi/jobautomate
+.. |wheel| image:: https://img.shields.io/pypi/format/jobautomate.svg
+    :target: https://pypi.python.org/pypi/jobautomate
