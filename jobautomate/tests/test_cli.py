@@ -9,6 +9,20 @@ def parameters():
     return job_search
 
 
+@pytest.fixture
+def application_one():
+    """Returns a link with an application to test. This application combines the first name
+    and last name in the same text box."""
+    return "http://www.indeed.com/cmp/Discover-Books/jobs/Full-Time-Driver-3ce56851d8772139"
+
+
+@pytest.fixture
+def application_two():
+    """Returns a link with an application to test. This application contains a separate text
+    box for first name and last name."""
+    return "http://www.indeed.com/viewjob?jk=f6c24d6728d6b55f"
+
+
 def fill(driver):
     jobautomate.commandline.find_apply_button(driver, 'indeed-apply-button')
     jobautomate.commandline.switch_frames(driver, 'iframe[name$=modal-iframe]')
@@ -36,34 +50,29 @@ def test_false_api_key(parameters):
         pass
 
 
-def test_indeed_apply_button(selenium):
-    selenium.get(
-        "http://www.indeed.com/cmp/Discover-Books/jobs/Full-Time-Driver-3ce56851d8772139")
+def test_indeed_apply_button(selenium, application_one):
+    selenium.get(application_one)
     jobautomate.commandline.find_apply_button(selenium, 'indeed-apply-button')
 
 
-def test_fill_application(selenium):
-    selenium.get(
-        "http://www.indeed.com/cmp/Discover-Books/jobs/Full-Time-Driver-3ce56851d8772139")
+def test_fill_application(selenium, application_one):
+    selenium.get(application_one)
     fill(selenium)
 
 
-def test_fill_application_again(selenium):
-    selenium.get(
-        "http://www.indeed.com/viewjob?jk=f6c24d6728d6b55f")
+def test_fill_application_again(selenium, application_two):
+    selenium.get(application_two)
     fill(selenium)
 
 
-def test_click_apply(selenium):
-    selenium.get(
-        "http://www.indeed.com/cmp/Discover-Books/jobs/Full-Time-Driver-3ce56851d8772139")
+def test_click_apply(selenium, application_one):
+    selenium.get(application_one)
     fill(selenium)
     jobautomate.commandline.apply_or_continue(selenium, debug=True)
 
 
-def test_click_apply_again(selenium):
-    selenium.get(
-        "http://www.indeed.com/viewjob?jk=f6c24d6728d6b55f")
+def test_click_apply_again(selenium, application_two):
+    selenium.get(application_two)
     fill(selenium)
     jobautomate.commandline.apply_or_continue(selenium, debug=True)
 
