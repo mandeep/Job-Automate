@@ -107,5 +107,5 @@ def test_cli_continue():
     runner = CliRunner(echo_stdin=True)
     continue_result = runner.invoke(
         jobautomate.commandline.cli, ['--debug', 'Homer', 'Simpson', 'Chunkylover53@aol.com',
-                                      'Nuclear Technician', '.travis.yml'], input='yes')
+                                      'Nuclear Technician', '.travis.yml'], input='no')
     assert not continue_result.exception
