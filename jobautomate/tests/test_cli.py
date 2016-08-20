@@ -85,6 +85,15 @@ def test_cli_command():
     assert not result.exception
 
 
+def test_cli_xvfb():
+    runner = CliRunner()
+    xvfb_result = runner.invoke(
+        jobautomate.commandline.cli, ['--debug', '--xvfb', 'Homer', 'Simpson',
+                                      'Chunkylover53@aol.com', 'Nuclear Technician',
+                                      '.travis.yml'], input='No')
+    assert not xvfb_result.exception
+
+
 def test_cli_verbose():
     runner = CliRunner()
     verbose_result = runner.invoke(
