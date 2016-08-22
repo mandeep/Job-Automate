@@ -13,7 +13,11 @@ Disclaimer: This project was created as a proof of concept.
 Installation
 *************
 
-To install the script use the following commands in a command line prompt::
+To install the script merely run the following command in a command line prompt::
+
+    pip install jobautomate
+
+If you would rather install from source, run the following commands::
 
     git clone https://github.com/mandeepbhutani/Job-Automate.git
     cd Job-Automate
