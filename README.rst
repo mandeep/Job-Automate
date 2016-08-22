@@ -21,7 +21,7 @@ If you would rather install from source, run the following commands::
 
     git clone https://github.com/mandeepbhutani/Job-Automate.git
     cd Job-Automate
-    pip install .
+    python install setup.py
 
 ************
 Usage
