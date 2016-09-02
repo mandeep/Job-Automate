@@ -13,7 +13,7 @@ def parameters():
 def application_one():
     """Returns a link with an application to test. This application combines the first name
     and last name in the same text box."""
-    return "http://www.indeed.com/cmp/Discover-Books/jobs/Full-Time-Driver-3ce56851d8772139"
+    return "http://www.indeed.com/cmp/iCall-Services,-Inc./jobs/Sales-Professional-edfcb63f61b69c08"
 
 
 @pytest.fixture
