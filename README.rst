@@ -1,7 +1,7 @@
 .. image:: jobautomate/images/title.png
 
 
-|travis| |coverage| |pypi| |pyversions| |wheel|
+|travis| |coverage| |dependencies| |quality| |pyversions| |pypi| |status| |wheel| |license|
 
 Job Automate is a command line application written in Python using the Selenium and Click libraries.
 The application uses the Indeed Job Search API to find and apply to 'easily apply' jobs scraped by
@@ -44,9 +44,17 @@ Once entered the script will open a Firefox webdriver instance and search for 'e
     :target: https://travis-ci.org/mandeep/Job-Automate
 .. |coverage| image:: https://coveralls.io/repos/github/mandeep/Job-Automate/badge.svg?branch=master 
     :target: https://coveralls.io/github/mandeep/Job-Automate?branch=master
+.. |dependencies| image:: https://img.shields.io/librariesio/github/mandeep/Job-Automate.svg
+    :target: https://dependencyci.com/github/mandeep/Job-Automate
+.. |quality| image:: https://img.shields.io/codacy/grade/3f52ff806b7747e7a15a60ef8242c574.svg
+    :target: https://www.codacy.com/app/bhutanimandeep/Job-Automate/dashboard
 .. |pypi| image:: https://img.shields.io/pypi/v/jobautomate.svg
+    :target: https://pypi.python.org/pypi/jobautomate
+.. |status| image:: https://img.shields.io/pypi/status/jobautomate.svg
     :target: https://pypi.python.org/pypi/jobautomate
 .. |pyversions| image:: https://img.shields.io/pypi/pyversions/jobautomate.svg
     :target: https://pypi.python.org/pypi/jobautomate 
 .. |wheel| image:: https://img.shields.io/pypi/format/jobautomate.svg
+    :target: https://pypi.python.org/pypi/jobautomate
+.. |license| image:: https://img.shields.io/pypi/l/jobautomate.svg
     :target: https://pypi.python.org/pypi/jobautomate
