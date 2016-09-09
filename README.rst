@@ -40,10 +40,10 @@ Once entered the script will open a Firefox webdriver instance and search for 'e
 
 .. image:: jobautomate/images/cli.png
 
-.. |travis| image:: https://travis-ci.org/mandeepbhutani/Job-Automate.svg?branch=master
+.. |travis| image:: https://travis-ci.org/mandeep/Job-Automate.svg?branch=master
     :target: https://travis-ci.org/mandeepbhutani/Job-Automate
-.. |coverage| image:: https://codecov.io/gh/mandeepbhutani/Job-Automate/branch/master/graph/badge.svg
-    :target: https://codecov.io/gh/mandeepbhutani/Job-Automate
+.. |coverage| image:: https://coveralls.io/repos/github/mandeep/Job-Automate/badge.svg?branch=master 
+    :target: https://coveralls.io/github/mandeep/Job-Automate?branch=master
 .. |pypi| image:: https://img.shields.io/pypi/v/jobautomate.svg
     :target: https://pypi.python.org/pypi/jobautomate
 .. |pyversions| image:: https://img.shields.io/pypi/pyversions/jobautomate.svg
