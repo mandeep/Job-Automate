@@ -1,21 +1,22 @@
 from setuptools import setup
 
 setup(name='jobautomate',
-      version='1.0.1',
+      version='0.16.0',
       author='Mandeep Bhutani',
       packages=['jobautomate', 'jobautomate.tests'],
       license='GPLv3+',
       install_requires=[
-        'indeed',
-        'selenium',
-        'click',
-        'xvfbwrapper'
+        'indeed==0.0.4',
+        'selenium==2.53.6',
+        'click==6.6',
+        'xvfbwrapper==0.2.8'
       ],
       entry_points='''
         [console_scripts]
         jobautomate=jobautomate.commandline:cli
         ''',
       classifiers=[
+        'Development Status :: 3 - Alpha',
         'License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)',
         'Programming Language :: Python :: 2.7',
         'Programming Language :: Python :: 3.4',
