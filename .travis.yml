@@ -31,17 +31,18 @@ deploy:
 notifications:
   email: false
 before_install:
-  - pip install codecov
+  - pip install coveralls
 install:
   - pip install coverage
   - pip install pytest
   - pip install pytest-cov
   - pip install pytest-selenium
   - pip install pytest-xvfb
+  - pip install pytest-faulthandler
   - pip install xvfbwrapper
   - python setup.py install
 script:
-  - py.test -s -v --cov=. --driver Firefox
+  - py.test -s -v -x --cov=. --driver Firefox
 after_success:
-  - codecov
+  - coveralls
 
