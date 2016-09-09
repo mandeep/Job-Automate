@@ -44,7 +44,7 @@ Once entered the script will open a Firefox webdriver instance and search for 'e
     :target: https://travis-ci.org/mandeep/Job-Automate
 .. |coverage| image:: https://coveralls.io/repos/github/mandeep/Job-Automate/badge.svg?branch=master 
     :target: https://coveralls.io/github/mandeep/Job-Automate?branch=master
-.. |dependencies| image:: https://img.shields.io/librariesio/github/mandeep/Job-Automate.svg
+.. |dependencies| image:: https://img.shields.io/librariesio/github/mandeepbhutani/Job-Automate.svg
     :target: https://dependencyci.com/github/mandeep/Job-Automate
 .. |quality| image:: https://img.shields.io/codacy/grade/3f52ff806b7747e7a15a60ef8242c574.svg
     :target: https://www.codacy.com/app/bhutanimandeep/Job-Automate/dashboard
