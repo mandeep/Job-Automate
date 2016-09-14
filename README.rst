@@ -15,13 +15,13 @@ Installation
 
 To install the script merely run the following command in a command line prompt::
 
-    pip install jobautomate
+    $  pip install jobautomate
 
 If you would rather install from source, run the following commands::
 
-    git clone https://github.com/mandeepbhutani/Job-Automate.git
-    cd Job-Automate
-    python install setup.py
+    $  git clone https://github.com/mandeepbhutani/Job-Automate.git
+    $  cd Job-Automate
+    $  python install setup.py
 
 ************
 Usage
@@ -30,8 +30,8 @@ Usage
 Job Automate accepts the Indeed Publisher ID as an environment variable or as a command line flag. In order
 to be used as an environment variable, one must export API_KEY=ID. The command line application may be invoked with the following command, flags, and arguments::
 
-    jobautomate --key INDEED_PUBLISHER_ID FIRST_NAME LAST_NAME EMAIL_ADDRESS JOB_DESCRIPTION RESUME_PATH
-        [JOB_LOCATION]
+    $  jobautomate --key INDEED_PUBLISHER_ID FIRST_NAME LAST_NAME EMAIL_ADDRESS JOB_DESCRIPTION RESUME_PATH
+           [JOB_LOCATION]
 
     Optional arguments:
         --verbose         Print to stdout the jobs that are not easily apply applications
@@ -39,7 +39,7 @@ to be used as an environment variable, one must export API_KEY=ID. The command l
 
     Example:
 
-    jobautomate --key 123456789 "Bender" "Rodriguez" "bender@ilovebender.com" "Metalworking" "girder.doc"
+    $  jobautomate --key 123456789 "Bender" "Rodriguez" "bender@ilovebender.com" "Metalworking" "girder.doc"
 
 Once entered the script will open a Firefox webdriver instance and search for 'easily apply' jobs in the URLs given by the Indeed API. Due to the API only allowing 25 urls at a given time, the application will prompt for continuation after 25 urls have been traversed. The output will look similar to the image below:
 
