@@ -19,7 +19,7 @@ To install the script merely run the following command in a command line prompt:
 
 If you would rather install from source, run the following commands::
 
-    $  git clone https://github.com/mandeepbhutani/Job-Automate.git
+    $  git clone https://github.com/mandeep/Job-Automate.git
     $  cd Job-Automate
     $  python install setup.py
 
