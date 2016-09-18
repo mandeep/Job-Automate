@@ -39,8 +39,7 @@ def test_indeed_api_parameters(parameters):
 def test_indeed_api_urls(parameters):
     job_urls = jobautomate.commandline.indeed_urls(parameters)
     assert len(job_urls) == 25
-    for url in job_urls:
-        assert 'http://' in url
+    assert all('http://' in url for url in job_urls)
 
 
 def test_false_api_key(parameters):
