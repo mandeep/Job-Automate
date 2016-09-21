@@ -1,13 +1,7 @@
-language: python
-python:
-  - "3.3"
-  - "3.4"
-  - "3.5"
-sudo: required
-dist: trusty
-env:
-  global:
-    secure: "iyp8SnisZUQ41PE7Z7+hLBU+REyv8TX3z543hbLQCABSROYhz20QRjbN5MkRe7froAi+2hdWNiTONM3HVqQa9CydqkMGUl9tpDP5Bitpt1k+V/+7BpMwPhFfAi5HBbwvhfcxGidg6Ht9JrbsGb5N1Kf8lwdhJa0P3RP+pkmBk+sYdCxPotlWtf7/GUeg31MpWk4jbQeIqyyKLU1W17zFHM3AslWiHuf6eTwPbE5qzu8yiPP9qihTnNMFso0HLv/I8YMMU5Cb/jIvcu8/rPJrY+kRo9rauuRUzg0iWoG55QHQGqxmN9WH+tSh2xrEZlkaGQtmvgKNsTeJkKup5TAbi3FfHEyKhPKvKYXmpaYZqjXHwLrr4OoJulsD4zcBpQSKtvO3WjPd0CMTQf2muYbwuvEmVGbbYWExO5JSglTTVSWsuiVWvn7G+BR2eFBrCqrXt0YPVrwJc7ct+Z62smhvCaFZGEaA8jSw65qwU0sOaNXQ+epELxKeLlPu0BrjhTNx5Z1k6bw9etwDuCPI0oQZQ7FaM9tNtMiMMg7mhB6QVJxhvWpiJQ+Z/UbwYvNGm2pW2PZ1XPkEa3ysOEjGVcxfd9bPGrD68Ay0Uh5cCp5U1DOCPQXUpY6mfvK8j/tjTv8kL5vRRQCSxpmkN2KtcULzg4EJpodZEzcaCK7/IDaqyws="
+after_success:
+- coveralls
+before_install:
+- pip install coveralls
 deploy:
   provider: pypi
   user: mandeepb
@@ -25,24 +19,41 @@ deploy:
       Mlg0QzJIbkQ2YVVHb0JpZTZKQnNJS0hSbU1tbmNQa21zY1lia1lsWjF4ekhDa0RlTmg2UXpHQlNz
       Rjkzekh2SGJQbWVYUXphYVJTUWJBMEgySDBlRmpLQUtIdkwvcWtIVEQzY21jbWwybzBFU0tWQkZB
       RkVRcU9pSEtXNFNnZytQa1JlbFk0aEhtTWZ2ckJCMUIyQmM1dWFyT1A4U1ZNY0Y1ZE5yUUxXd009
-  on:
-    branch: master
   distributions: sdist bdist_wheel
+  true:
+    branch: master
+dist: trusty
+env:
+  global:
+    secure: !!binary |
+      Y3ExSktDaFRUaWgvQWhKYXNDa1RJZUJ3RzJYKzRUSlVWWm5EMGpZSkhydml6L1Y0UmtPSlhUUStK
+      MVBpMGRyRVlYaVhYM2lTaU1ONS9CaTVNQjB4NVNVUkhzTm8ydXVyelhIUFVwUnFQS2NpbnFxOW1D
+      Vm5QbW5ZM09tUEdYM2hyNlE0R2htbHZvYjYzVngzTVVFbStJWmE3R1pxT29NVWJVQmRkZmZZNGo3
+      dWVBU0NWQmsyTHUrVHhEQ2cvM0UrR043YjdRZUVsNFJjcmNNOVQxbTZUVkZFdG4vYk1mRFhCaGYv
+      MTRrOHF2RExGOHRjR285S3ZRaTBYUHMyTTNXRUp3WXN5WVY1Z0xzcEhNNlRua0tDRDY5SzQ0OExF
+      WklESGV5M1FvaDVzeElJamU3K0hrOUtRdlY2dTdBYStYaGNKUHRRaDYzRTdwM3VyOHNFcXZIRDlH
+      NUF4Kzl5YzFoWTNsRVppVm1rQ0hRVkdBRGk2NUtwWlFJaDZ3ai9yZkx6V1Y1SGFwT1hLdERGaDAy
+      TnhWc2tLOG9kek1IQ1hXRWR1VkdXOWRhSVhWNjQrNDkxMGJhWVdQMVd3SnV4MFluK1k5MjloZlcz
+      OWhCZjk0LzQzNi95Nm1TYzJGVUx1WDNYdFpDWkpITHZJVXRrZW8zNkIvNkREdkVJTEt6RFgySmM5
+      UnVNRHZQQ3NQd1lvMjFqMmlScDVUSUVObHZHQzhERkorOEN2RWFnL0Jwa1U5VmFoU0VieWxTbVo4
+      UGJscU1sSFNpb3ltU3ZHQ2JmY29ZMEpzSFI3RWZFanN0SGlpYUdWNGcrdmxVeE5iMGpaYUtGdjNo
+      SytNTERTcEl6Tjg5OUFGcTAvS0JILzNIK1J3Y3hWK0FQUUpvaU9YZldVeVI4QnBGR3NxYmtMaTQ9
+install:
+- pip install coverage
+- pip install pytest
+- pip install pytest-cov
+- pip install pytest-selenium
+- pip install pytest-xvfb
+- pip install pytest-faulthandler
+- pip install xvfbwrapper
+- python setup.py install
+language: python
 notifications:
   email: false
-before_install:
-  - pip install coveralls
-install:
-  - pip install coverage
-  - pip install pytest
-  - pip install pytest-cov
-  - pip install pytest-selenium
-  - pip install pytest-xvfb
-  - pip install pytest-faulthandler
-  - pip install xvfbwrapper
-  - python setup.py install
+python:
+- '3.3'
+- '3.4'
+- '3.5'
 script:
-  - py.test -s -v -x --cov=. --driver Firefox
-after_success:
-  - coveralls
-
+- py.test -s -v -x --cov=. --driver Firefox
+sudo: required
