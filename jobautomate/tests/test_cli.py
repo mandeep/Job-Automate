@@ -13,14 +13,14 @@ def parameters():
 def application_one():
     """Returns a link with an application to test. This application combines the first name
     and last name in the same text box."""
-    return "http://www.indeed.com/cmp/iCall-Services,-Inc./jobs/Sales-Professional-edfcb63f61b69c08"
+    return 'http://www.indeed.com/cmp/Fidelity-Janitorial-Services/jobs/Janitorial-Worker-90d643361f3f3774'
 
 
 @pytest.fixture
 def application_two():
     """Returns a link with an application to test. This application contains a separate text
     box for first name and last name."""
-    return "http://www.indeed.com/viewjob?jk=f6c24d6728d6b55f"
+    return 'http://www.indeed.com/viewjob?jk=f6c24d6728d6b55f'
 
 
 def fill(driver):
