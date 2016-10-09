@@ -10,10 +10,9 @@ def parameters():
 
 
 @pytest.fixture
-def application_one():
-    """Returns a link with an application to test. This application combines the first name
-    and last name in the same text box."""
-    return 'http://www.indeed.com/cmp/Fidelity-Janitorial-Services/jobs/Janitorial-Worker-90d643361f3f3774'
+def application():
+    return ('http://www.indeed.com/cmp/Fidelity-Janitorial-Services/jobs/'
+            'Janitorial-Worker-90d643361f3f3774')
 
 
 def fill(driver):
@@ -42,18 +41,18 @@ def test_false_api_key(parameters):
         pass
 
 
-def test_indeed_apply_button(selenium, application_one):
-    selenium.get(application_one)
+def test_indeed_apply_button(selenium, application):
+    selenium.get(application)
     jobautomate.commandline.find_apply_button(selenium, 'indeed-apply-button')
 
 
-def test_fill_application(selenium, application_one):
-    selenium.get(application_one)
+def test_fill_application(selenium, application):
+    selenium.get(application)
     fill(selenium)
 
 
-def test_click_apply(selenium, application_one):
-    selenium.get(application_one)
+def test_click_apply(selenium, application):
+    selenium.get(application)
     fill(selenium)
     jobautomate.commandline.apply_or_continue(selenium, debug=True)
 
