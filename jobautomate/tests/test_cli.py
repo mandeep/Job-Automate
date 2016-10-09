@@ -58,12 +58,6 @@ def test_click_apply(selenium, application_one):
     jobautomate.commandline.apply_or_continue(selenium, debug=True)
 
 
-def test_click_apply_again(selenium, application_two):
-    selenium.get(application_two)
-    fill(selenium)
-    jobautomate.commandline.apply_or_continue(selenium, debug=True)
-
-
 def test_cli_command():
     runner = CliRunner(echo_stdin=True)
     result = runner.invoke(
