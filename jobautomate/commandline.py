@@ -1,8 +1,7 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
+import os
+
 import click
 from indeed import IndeedClient
-import os
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -12,7 +11,8 @@ from xvfbwrapper import Xvfb
 
 
 def indeed_parameters(what, where):
-    """Use Indeed API to obtain job application links.
+    """Send parameters to the Indeed API.
+
     :param q: job description
     :param l: job location; searches entire U.S. when left blank
     :param sort: sort results by relevance or date
@@ -38,8 +38,7 @@ def indeed_parameters(what, where):
 
 
 def indeed_urls(parameters, publisher_key=None):
-    """Uses Indeed publisher ID in order to gain access to the API. With
-    parameters from indeed_paramters(), returns a list of job application links."""
+    """Use Indeed publisher ID to retrieve URLs from the Indeed API."""
     if publisher_key is None:
         publisher_key = os.environ['API_KEY']
     client = IndeedClient(publisher_key)
@@ -52,14 +51,13 @@ def indeed_urls(parameters, publisher_key=None):
 
 
 def find_apply_button(driver, button_name):
-    """Searches page for the apply now button and clicks it if it exists."""
+    """Search page for the apply now button and click it if it exists."""
     driver.implicitly_wait(1)
     driver.find_element_by_class_name(button_name).click()
 
 
 def switch_frames(driver, frame_name):
-    """Navigates nested iframes in order to select the application
-    modal dialog."""
+    """Navigate nested iframes to select the application modal dialog."""
     wait = WebDriverWait(driver, 15)
     frame = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, frame_name)))
     driver.switch_to.frame(frame)
@@ -67,10 +65,13 @@ def switch_frames(driver, frame_name):
 
 
 def fill_application(driver, first_name, last_name, email, cv):
-    """There are two application types: one that requires a full name in a
+    """Fill Indeed Easily Apply application automatically.
+
+    There are two application types: one that requires a full name in a
     single text box and one that requires a first and last name in separate
     text boxes. The try/except clause fills the application based on which
-    application type is identified."""
+    application type is identified.
+    """
     job_title = driver.find_element_by_class_name("jobtitle").text
     company = driver.find_element_by_class_name("jobcompany").text
     print("Applying for: {} at {}".format(job_title, company))
@@ -86,11 +87,14 @@ def fill_application(driver, first_name, last_name, email, cv):
 
 
 def apply_or_continue(driver, debug=False):
-    """There are two types of apply methods: one applies after
+    """Click the apply button and submit the application.
+
+    There are two types of apply methods: one applies after
     clicking the apply button, and the other applies after clicking the
     continue button and answering some questions. The try/except clause
     clicks the apply button if it exists, otherwise it will click the continue
-    button and select the radio buttons that indicate 'Yes'."""
+    button and select the radio buttons that indicate 'Yes'.
+    """
     try:
         driver.find_element_by_link_text('Continue').click()
         driver.implicitly_wait(1)
@@ -124,7 +128,9 @@ def apply_or_continue(driver, debug=False):
 @click.argument('job_location', default='')
 def cli(debug, key, xvfb, verbose, first_name, last_name, email_address,
         job_description, resume, job_location):
-    """Job Automate requires the user's first name, last name, email address, job description,
+    """Apply to jobs automatically with Job Automate.
+
+    Job Automate requires the user's first name, last name, email address, job description,
     and resume location prior to automating a job search. The job location is an optional argument
     that is left blank by default. This allows Job Automate to search for jobs across the
     entire United States. Each of the command line arguments requires a string data type. In
