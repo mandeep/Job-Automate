@@ -16,13 +16,6 @@ def application_one():
     return 'http://www.indeed.com/cmp/Fidelity-Janitorial-Services/jobs/Janitorial-Worker-90d643361f3f3774'
 
 
-@pytest.fixture
-def application_two():
-    """Returns a link with an application to test. This application contains a separate text
-    box for first name and last name."""
-    return 'http://www.indeed.com/viewjob?jk=f6c24d6728d6b55f'
-
-
 def fill(driver):
     jobautomate.commandline.find_apply_button(driver, 'indeed-apply-button')
     jobautomate.commandline.switch_frames(driver, 'iframe[name$=modal-iframe]')
@@ -56,11 +49,6 @@ def test_indeed_apply_button(selenium, application_one):
 
 def test_fill_application(selenium, application_one):
     selenium.get(application_one)
-    fill(selenium)
-
-
-def test_fill_application_again(selenium, application_two):
-    selenium.get(application_two)
     fill(selenium)
 
 
