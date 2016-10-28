@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='jobautomate',
-      version='0.17.0',
+      version='0.18.0',
       author='Mandeep Bhutani',
       packages=['jobautomate', 'jobautomate.tests'],
       license='GPLv3+',
