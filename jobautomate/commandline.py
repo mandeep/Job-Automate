@@ -65,25 +65,13 @@ def switch_frames(driver, frame_name):
 
 
 def fill_application(driver, first_name, last_name, email, cv):
-    """Fill Indeed Easily Apply application automatically.
-
-    There are two application types: one that requires a full name in a
-    single text box and one that requires a first and last name in separate
-    text boxes. The try/except clause fills the application based on which
-    application type is identified.
-    """
+    """Fill Indeed Easily Apply application automatically."""
     job_title = driver.find_element_by_class_name("jobtitle").text
     company = driver.find_element_by_class_name("jobcompany").text
     print("Applying for: {} at {}".format(job_title, company))
-    try:
-        driver.find_element_by_id('applicant.name').send_keys("{} {}" .format(first_name, last_name))
-        driver.find_element_by_id('applicant.email').send_keys(email)
-        driver.find_element_by_id('resume').send_keys(os.path.abspath(cv))
-    except (NoSuchElementException, ElementNotVisibleException):
-        driver.find_element_by_id('applicant.firstName').send_keys(first_name)
-        driver.find_element_by_id('applicant.lastName').send_keys(last_name)
-        driver.find_element_by_id('applicant.email').send_keys(email)
-        driver.find_element_by_id('resume').send_keys(os.path.abspath(cv))
+    driver.find_element_by_id('applicant.name').send_keys("{} {}" .format(first_name, last_name))
+    driver.find_element_by_id('applicant.email').send_keys(email)
+    driver.find_element_by_id('resume').send_keys(os.path.abspath(cv))
 
 
 def apply_or_continue(driver, debug=False):
