@@ -41,9 +41,7 @@ to be used as an environment variable, one must export API_KEY=ID. The command l
 
     $  jobautomate --key 12345 "Bender" "Rodriguez" "bender@ilovebender.com" "Metalworking" "girder.doc"
 
-Once entered the script will open a Firefox webdriver instance and search for 'easily apply' jobs in the URLs given by the Indeed API. Due to the API only allowing 25 urls at a given time, the application will prompt for continuation after 25 urls have been traversed. The output will look similar to the image below:
-
-.. image:: jobautomate/images/cli.png
+Once entered the script will open a Firefox webdriver instance and search for 'easily apply' jobs in the URLs given by the Indeed API. Due to the API only allowing 25 urls at a given time, the application will prompt for continuation after 25 urls have been traversed. 
 
 .. |travis| image:: https://travis-ci.org/mandeep/Job-Automate.svg?branch=master
     :target: https://travis-ci.org/mandeep/Job-Automate
