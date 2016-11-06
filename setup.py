@@ -1,8 +1,8 @@
 from setuptools import setup
 
 setup(name='jobautomate',
-      version='0.18.0',
-      author='Mandeep Bhutani',
+      version='0.18.1',
+      author='Mandeep',
       packages=['jobautomate', 'jobautomate.tests'],
       license='GPLv3+',
       install_requires=[
