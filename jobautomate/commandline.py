@@ -45,25 +45,27 @@ def indeed_parameters(what, where):
     return params
 
 
-def retrieve_indeed_urls(parameters, publisher_key=None):
-    """Use the Indeed publisher ID to retrieve job URLs from the Indeed API.
+def access_indeed_api(parameters, publisher_key=None):
+    """Access the Indeed API using the given parameters and publishey key.
 
     Positional argument:
-    parameters -- the parameters to send to the Indeed API (see indeed_parameters function)
-
-    Keyword argument:
-    publisher_key -- the unique API key for the Indeed API: https://www.indeed.com/publisher
+    parameters -- a dictionary of the parameters to send to Indeed's API
     """
     if publisher_key is None:
         publisher_key = os.environ['API_KEY']
     client = IndeedClient(publisher_key)
     response = client.search(**parameters)
+    return response
 
-    if response == {'error': 'Invalid publisher number provided.'}:
-        raise InvalidAPIKey(response)
-    else:
-        urls = [str(links['url']) for links in response['results']]
-        return urls
+
+def retrieve_indeed_urls(response):
+    """Use the response from Indeed's API to retrieve job application URLs.
+
+    Positional argument:
+    response -- the HTTP response from Indeed's API
+    """
+    urls = [str(links['url']) for links in response['results']]
+    return urls
 
 
 def open_application(driver, button_name):
@@ -177,10 +179,16 @@ def cli(debug, key, xvfb, verbose, first_name, last_name, email_address,
     if xvfb:
         vdisplay = Xvfb()
         vdisplay.start()
-    driver = webdriver.Firefox()
+
     user_parameters = indeed_parameters(job_description, job_location)
+    response = access_indeed_api(user_parameters, key)
+
+    if response == {'error': 'Invalid publisher number provided.'}:
+        raise InvalidAPIKey(response)
+
+    driver = webdriver.Firefox()
     while True:
-        for url in retrieve_indeed_urls(user_parameters, key):
+        for url in retrieve_indeed_urls(response):
             driver.get(url)
             try:
                 open_application(driver, 'indeed-apply-button')
