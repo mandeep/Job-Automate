@@ -65,6 +65,15 @@ def test_cli_command():
     assert not result.exception
 
 
+def test_cli_false_key():
+    runner = CliRunner(echo_stdin=True)
+    result = runner.invoke(
+        jobautomate.commandline.cli, ['--debug', '--key', 'FALSEAPIKEY', 'Homer', 'Simpson',
+                                      'Chunkylover53@aol.com', 'Nuclear Technician',
+                                      '.travis.yml'], input='no')
+    assert result.exception
+
+
 def test_cli_xvfb():
     runner = CliRunner(echo_stdin=True)
     xvfb_result = runner.invoke(
