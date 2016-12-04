@@ -29,16 +29,16 @@ def test_indeed_api_parameters(parameters):
 
 
 def test_retrieve_indeed_urls(selenium, parameters):
-    job_urls = jobautomate.commandline.retrieve_indeed_urls(parameters)
+    response = jobautomate.commandline.access_indeed_api(parameters)
+    job_urls = jobautomate.commandline.retrieve_indeed_urls(response)
     assert len(job_urls) == 25
     assert all('http://' in url for url in job_urls)
 
 
 def test_false_api_key(parameters):
-    try:
-        jobautomate.commandline.retrieve_indeed_urls(parameters, 123456789)
-    except jobautomate.commandline.InvalidAPIKey:
-        pass
+    assert jobautomate.commandline.access_indeed_api(
+        parameters,
+        123456789) == {'error': 'Invalid publisher number provided.'}
 
 
 def test_open_application(selenium, application):
