@@ -29,11 +29,12 @@ Usage
 ************
 
 Job Automate accepts the Indeed Publisher ID as an environment variable or as a command line flag. In order
-to be used as an environment variable, one must export API_KEY=ID. The command line application may be invoked with the following command, flags, and arguments::
+to be used as an environment variable, one must export API_KEY=ID to PATH. The command line application may be invoked with the following command, flags, and arguments::
 
     Usage: jobautomate [OPTIONS] FIRST_NAME LAST_NAME EMAIL JOB_DESCRIPTION RESUME_PATH [JOB_LOCATION]
 
     Optional arguments:
+        --key             Use the provided publisher key to access the Indeed API
         --verbose         Print to stdout the jobs that are not easily apply applications
         --vxfb            Run the application in a virtual display (Linux only)
 
