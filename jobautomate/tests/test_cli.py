@@ -11,7 +11,7 @@ def parameters():
 
 @pytest.fixture
 def application():
-    return ('http://www.indeed.com/cmp/EK-Health-Services/jobs/Indexer-d75700b9abdbc908')
+    return ('http://www.indeed.com/viewjob?jk=237a2528b1fdab9e')
 
 
 def fill(driver):
