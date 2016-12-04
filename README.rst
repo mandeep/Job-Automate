@@ -8,7 +8,7 @@ The application uses the Indeed Job Search API to find and automatically apply t
 Indeed's job crawler. Job Automate requires access to Indeed's API with an Indeed Publisher Key. To obtain a key, please visit: http://www.indeed.com/publisher.
 
 Due to Mozilla's move to the GeckoDriver for WebDriver instances, Job Automate does not currently
-support FireFox versions above 47.0.
+support Firefox versions above 47.0.
 
 *************
 Installation
@@ -31,15 +31,13 @@ Usage
 Job Automate accepts the Indeed Publisher ID as an environment variable or as a command line flag. In order
 to be used as an environment variable, one must export API_KEY=ID. The command line application may be invoked with the following command, flags, and arguments::
 
-    $  jobautomate --key INDEED_PUBLISHER_ID FIRST_NAME LAST_NAME EMAIL_ADDRESS JOB_DESCRIPTION
-            RESUME_PATH [JOB_LOCATION]
+    Usage: jobautomate [OPTIONS] FIRST_NAME LAST_NAME EMAIL JOB_DESCRIPTION RESUME_PATH [JOB_LOCATION]
 
     Optional arguments:
         --verbose         Print to stdout the jobs that are not easily apply applications
         --vxfb            Run the application in a virtual display (Linux only)
 
     Example:
-
     $  jobautomate --key 12345 "Bender" "Rodriguez" "bender@ilovebender.com" "Metalworking" "girder.doc"
 
 Once entered the script will open a Firefox webdriver instance and search for 'easily apply' jobs in the URLs given by the Indeed API. Due to the API only allowing 25 urls at a given time, the application will prompt for continuation after 25 urls have been traversed. 
