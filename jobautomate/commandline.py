@@ -13,6 +13,10 @@ from xvfbwrapper import Xvfb
 def indeed_parameters(what, where):
     """Send parameters to the Indeed API.
 
+    Positional arguments:
+    what -- the description of the desired job
+    where -- the location of the desired job
+
     :param q: job description
     :param l: job location; searches entire U.S. when left blank
     :param sort: sort results by relevance or date
@@ -37,8 +41,15 @@ def indeed_parameters(what, where):
     return params
 
 
-def indeed_urls(parameters, publisher_key=None):
-    """Use Indeed publisher ID to retrieve URLs from the Indeed API."""
+def retrieve_indeed_urls(parameters, publisher_key=None):
+    """Use the Indeed publisher ID to retrieve job URLs from the Indeed API.
+
+    Positional argument:
+    parameters -- the parameters to send to the Indeed API (see indeed_parameters function)
+
+    Keyword argument:
+    publisher_key -- the unique API key for the Indeed API: https://www.indeed.com/publisher
+    """
     if publisher_key is None:
         publisher_key = os.environ['API_KEY']
     client = IndeedClient(publisher_key)
@@ -50,14 +61,27 @@ def indeed_urls(parameters, publisher_key=None):
         raise NameError('Invalid Publisher ID')
 
 
-def find_apply_button(driver, button_name):
-    """Search page for the apply now button and click it if it exists."""
+def open_application(driver, button_name):
+    """Search the job page for the Apply Now button and click it if it exists.
+
+    Positional arguments:
+    driver -- the Selenium webdriver instance
+    button_name -- the class name of the button to click
+
+    When the Apply Now button is clicked, the job application dialog
+    opens in a new frame.
+    """
     driver.implicitly_wait(1)
     driver.find_element_by_class_name(button_name).click()
 
 
 def switch_frames(driver, frame_name):
-    """Navigate nested iframes to select the application modal dialog."""
+    """Navigate nested iFrames to select the application modal dialog.
+
+    Positional arguments:
+    driver -- the Selenium webdriver instance
+    frame_name -- the CSS selector of the frame to switch to
+    """
     wait = WebDriverWait(driver, 15)
     frame = wait.until(EC.presence_of_element_located((By.CSS_SELECTOR, frame_name)))
     driver.switch_to.frame(frame)
@@ -65,7 +89,15 @@ def switch_frames(driver, frame_name):
 
 
 def fill_application(driver, first_name, last_name, email, cv):
-    """Fill Indeed Easily Apply application automatically."""
+    """Fill the Indeed Easily Apply job application with the given arguments.
+
+    Positional arguments:
+    driver -- the Selenium webdriver instance
+    first_name -- the first name to use on the job application
+    last_name -- the last name to use on the job application
+    email -- the email address to use on the job appication
+    cv -- the file path of the resume to use on the job application
+    """
     job_title = driver.find_element_by_class_name("jobtitle").text
     company = driver.find_element_by_class_name("jobcompany").text
     print("Applying for: {} at {}".format(job_title, company))
@@ -74,8 +106,14 @@ def fill_application(driver, first_name, last_name, email, cv):
     driver.find_element_by_id('resume').send_keys(os.path.abspath(cv))
 
 
-def apply_or_continue(driver, debug=False):
+def submit_application(driver, debug=False):
     """Click the apply button and submit the application.
+
+    Positional argument:
+    driver -- the Selenium webdriver instance
+
+    Keyword argument:
+    debug -- flag used for testing to omit application submission
 
     There are two types of apply methods: one applies after
     clicking the apply button, and the other applies after clicking the
@@ -137,14 +175,14 @@ def cli(debug, key, xvfb, verbose, first_name, last_name, email_address,
     driver = webdriver.Firefox()
     user_parameters = indeed_parameters(job_description, job_location)
     while True:
-        for url in indeed_urls(user_parameters, key):
+        for url in retrieve_indeed_urls(user_parameters, key):
             driver.get(url)
             try:
-                find_apply_button(driver, 'indeed-apply-button')
+                open_application(driver, 'indeed-apply-button')
                 switch_frames(driver, 'iframe[name$=modal-iframe]')
                 fill_application(driver, first_name, last_name, email_address, resume)
                 if debug:
-                    apply_or_continue(driver, debug=True)
+                    submit_application(driver, debug=True)
             except (NoSuchElementException, ElementNotVisibleException):
                 if verbose:
                     print('Not an easily apply job application.')

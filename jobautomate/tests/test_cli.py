@@ -1,6 +1,7 @@
 from click.testing import CliRunner
-import jobautomate.commandline
 import pytest
+
+import jobautomate.commandline
 
 
 @pytest.fixture
@@ -15,7 +16,7 @@ def application():
 
 
 def fill(driver):
-    jobautomate.commandline.find_apply_button(driver, 'indeed-apply-button')
+    jobautomate.commandline.open_application(driver, 'indeed-apply-button')
     jobautomate.commandline.switch_frames(driver, 'iframe[name$=modal-iframe]')
     jobautomate.commandline.fill_application(
         driver, 'Homer', 'Simpson', 'Chunkylover53@aol.com', 'resume.txt')
@@ -27,22 +28,22 @@ def test_indeed_api_parameters(parameters):
     assert 'New York City' in parameters.values()
 
 
-def test_indeed_api_urls(parameters):
-    job_urls = jobautomate.commandline.indeed_urls(parameters)
+def test_retrieve_indeed_urls(parameters):
+    job_urls = jobautomate.commandline.retrieve_indeed_urls(parameters)
     assert len(job_urls) == 25
     assert all('http://' in url for url in job_urls)
 
 
 def test_false_api_key(parameters):
     try:
-        jobautomate.commandline.indeed_urls(parameters, 123456789)
+        jobautomate.commandline.retrieve_indeed_urls(parameters, 123456789)
     except NameError:
         pass
 
 
-def test_indeed_apply_button(selenium, application):
+def test_open_application(selenium, application):
     selenium.get(application)
-    jobautomate.commandline.find_apply_button(selenium, 'indeed-apply-button')
+    jobautomate.commandline.open_application(selenium, 'indeed-apply-button')
 
 
 def test_fill_application(selenium, application):
@@ -50,10 +51,10 @@ def test_fill_application(selenium, application):
     fill(selenium)
 
 
-def test_click_apply(selenium, application):
+def test_application_submission(selenium, application):
     selenium.get(application)
     fill(selenium)
-    jobautomate.commandline.apply_or_continue(selenium, debug=True)
+    jobautomate.commandline.submit_application(selenium, debug=True)
 
 
 def test_cli_command():
