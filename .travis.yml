@@ -42,7 +42,7 @@ install:
 - pip install coverage
 - pip install pytest
 - pip install pytest-cov
-- pip install pytest-selenium
+- pip install pytest-selenium==1.3.1
 - pip install pytest-xvfb
 - pip install pytest-faulthandler
 - pip install xvfbwrapper
