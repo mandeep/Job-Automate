@@ -10,6 +10,10 @@ from selenium.common.exceptions import NoSuchElementException, ElementNotVisible
 from xvfbwrapper import Xvfb
 
 
+class InvalidAPIKey(NameError):
+    """Raise when an invalid API key is supplied."""
+
+
 def indeed_parameters(what, where):
     """Send parameters to the Indeed API.
 
@@ -54,11 +58,12 @@ def retrieve_indeed_urls(parameters, publisher_key=None):
         publisher_key = os.environ['API_KEY']
     client = IndeedClient(publisher_key)
     response = client.search(**parameters)
-    try:
+
+    if response == {'error': 'Invalid publisher number provided.'}:
+        raise InvalidAPIKey(response)
+    else:
         urls = [str(links['url']) for links in response['results']]
         return urls
-    except KeyError:
-        raise NameError('Invalid Publisher ID')
 
 
 def open_application(driver, button_name):

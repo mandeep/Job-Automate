@@ -29,14 +29,14 @@ def test_indeed_api_parameters(parameters):
 
 
 def test_retrieve_indeed_urls(selenium, parameters):
-    job_urls = jobautomate.commandline.retrieve_indeed_urls(selenium, parameters)
+    job_urls = jobautomate.commandline.retrieve_indeed_urls(parameters)
     assert len(job_urls) == 25
     assert all('http://' in url for url in job_urls)
 
 
-def test_false_api_key(selenium, parameters):
+def test_false_api_key(parameters):
     try:
-        jobautomate.commandline.retrieve_indeed_urls(selenium, parameters, 123456789)
+        jobautomate.commandline.retrieve_indeed_urls(parameters, 123456789)
     except jobautomate.commandline.InvalidAPIKey:
         pass
 
