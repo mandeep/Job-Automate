@@ -4,8 +4,9 @@
 |travis| |coverage| |dependencies| |quality| |pyversions| |pypi| |status| |wheel| |license|
 
 Job Automate is a command line application written in Python using the Selenium and Click libraries.
-The application uses the Indeed Job Search API to find and automatically apply to 'easily apply' jobs scraped by
-Indeed's job crawler. Job Automate requires access to Indeed's API with an Indeed Publisher Key. To obtain a key, please visit: http://www.indeed.com/publisher.
+The application uses the Indeed Job Search API to find and automatically apply to 'easily apply' jobs 
+published by employers on Indeed.com. Job Automate requires access to Indeed's API with an Indeed
+Publisher Key. To obtain a key, please visit: http://www.indeed.com/publisher.
 
 Due to Mozilla's move to the GeckoDriver for WebDriver instances, Job Automate does not currently
 support Firefox versions above 47.0.
@@ -34,6 +35,7 @@ to be used as an environment variable, one must export API_KEY=ID to PATH. The c
     Usage: jobautomate [OPTIONS] FIRST_NAME LAST_NAME EMAIL JOB_DESCRIPTION RESUME_PATH [JOB_LOCATION]
 
     Optional arguments:
+        --help            Show a help message and quit
         --key             Use the provided publisher key to access the Indeed API
         --verbose         Print to stdout the jobs that are not easily apply applications
         --vxfb            Run the application in a virtual display (Linux only)
@@ -41,7 +43,7 @@ to be used as an environment variable, one must export API_KEY=ID to PATH. The c
     Example:
     $  jobautomate --key 12345 "Bender" "Rodriguez" "bender@ilovebender.com" "Metalworking" "girder.doc"
 
-Once entered the script will open a Firefox webdriver instance and search for 'easily apply' jobs in the URLs given by the Indeed API. Due to the API only allowing 25 urls at a given time, the application will prompt for continuation after 25 urls have been traversed. 
+Once entered the script will open a Firefox WebDriver instance and search for 'easily apply' jobs in the URLs given by the Indeed API. Due to the API only allowing 25 urls at a given time, the application will prompt for continuation after 25 urls have been traversed. 
 
 .. |travis| image:: https://travis-ci.org/mandeep/Job-Automate.svg?branch=master
     :target: https://travis-ci.org/mandeep/Job-Automate
