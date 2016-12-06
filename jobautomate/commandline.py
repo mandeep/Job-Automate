@@ -10,12 +10,12 @@ from selenium.common.exceptions import NoSuchElementException, ElementNotVisible
 from xvfbwrapper import Xvfb
 
 
-class InvalidAPIKey(NameError):
+class InvalidAPIKey(Exception):
     """Raise when an invalid API key is supplied."""
 
 
 def indeed_parameters(what, where):
-    """Send parameters to the Indeed API.
+    """Store parameters for use with the Indeed API.
 
     Positional arguments:
     what -- the description of the desired job
@@ -46,10 +46,13 @@ def indeed_parameters(what, where):
 
 
 def access_indeed_api(parameters, publisher_key=None):
-    """Access the Indeed API using the given parameters and publishey key.
+    """Access the Indeed API using the given parameters and publisher key.
 
     Positional argument:
     parameters -- a dictionary of the parameters to send to Indeed's API
+
+    Keyword argument:
+    publisher_key -- the publisher key for Indeed's API, defaults to environment variable
     """
     if publisher_key is None:
         publisher_key = os.environ['API_KEY']
@@ -169,8 +172,8 @@ def cli(debug, key, xvfb, verbose, first_name, last_name, email_address,
     entire United States. Each of the command line arguments requires a string data type. In
     order to pass a string to each argument, type each argument inside quotation marks.
 
-    An example usage: jobautomate "Homer" "Simpson" "Chunkylover53@aol.com" "Nuclear Technician"
-    "/path/to/resume.txt" "Springfield"
+    An example usage: jobautomate --key ABC123 "Homer" "Simpson" "Chunkylover53@aol.com"
+    "Nuclear Technician" "/path/to/resume.txt" "Springfield"
 
     When run, jobautomate will print to terminal the job position and company name tied to
     the easily apply application. With the --verbose flag, jobautomate will also print to
@@ -196,12 +199,15 @@ def cli(debug, key, xvfb, verbose, first_name, last_name, email_address,
                 fill_application(driver, first_name, last_name, email_address, resume)
                 if debug:
                     submit_application(driver, debug=True)
+                else:
+                    submit_application(driver)
             except (NoSuchElementException, ElementNotVisibleException):
                 if verbose:
                     print('Not an easily apply job application.')
                 else:
                     pass
-        user_prompt = click.prompt('Would you like to continue searching for jobs? (yes/no')
+
+        user_prompt = click.prompt('Would you like to continue searching for jobs? (yes/no)')
         if user_prompt == 'yes':
             user_parameters['start'] += 25
         else:
