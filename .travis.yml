@@ -3,8 +3,9 @@ after_success:
 before_install:
 - pip install coveralls
 deploy:
-  provider: pypi
   user: mandeepb
+  provider: pypi
+  distributions: sdist bdist_wheel
   password:
     secure: !!binary |
       R3huU2ZKSldIN3F4SEVkbSszTHdPMmRsK3c1NHNkaHFURXd2MUQ1NzhxRitPT2dvWU4xQUFVZmVD
@@ -19,25 +20,12 @@ deploy:
       Mlg0QzJIbkQ2YVVHb0JpZTZKQnNJS0hSbU1tbmNQa21zY1lia1lsWjF4ekhDa0RlTmg2UXpHQlNz
       Rjkzekh2SGJQbWVYUXphYVJTUWJBMEgySDBlRmpLQUtIdkwvcWtIVEQzY21jbWwybzBFU0tWQkZB
       RkVRcU9pSEtXNFNnZytQa1JlbFk0aEhtTWZ2ckJCMUIyQmM1dWFyT1A4U1ZNY0Y1ZE5yUUxXd009
-  distributions: sdist bdist_wheel
   true:
     branch: master
 dist: trusty
 env:
   global:
-    secure: !!binary |
-      Y3ExSktDaFRUaWgvQWhKYXNDa1RJZUJ3RzJYKzRUSlVWWm5EMGpZSkhydml6L1Y0UmtPSlhUUStK
-      MVBpMGRyRVlYaVhYM2lTaU1ONS9CaTVNQjB4NVNVUkhzTm8ydXVyelhIUFVwUnFQS2NpbnFxOW1D
-      Vm5QbW5ZM09tUEdYM2hyNlE0R2htbHZvYjYzVngzTVVFbStJWmE3R1pxT29NVWJVQmRkZmZZNGo3
-      dWVBU0NWQmsyTHUrVHhEQ2cvM0UrR043YjdRZUVsNFJjcmNNOVQxbTZUVkZFdG4vYk1mRFhCaGYv
-      MTRrOHF2RExGOHRjR285S3ZRaTBYUHMyTTNXRUp3WXN5WVY1Z0xzcEhNNlRua0tDRDY5SzQ0OExF
-      WklESGV5M1FvaDVzeElJamU3K0hrOUtRdlY2dTdBYStYaGNKUHRRaDYzRTdwM3VyOHNFcXZIRDlH
-      NUF4Kzl5YzFoWTNsRVppVm1rQ0hRVkdBRGk2NUtwWlFJaDZ3ai9yZkx6V1Y1SGFwT1hLdERGaDAy
-      TnhWc2tLOG9kek1IQ1hXRWR1VkdXOWRhSVhWNjQrNDkxMGJhWVdQMVd3SnV4MFluK1k5MjloZlcz
-      OWhCZjk0LzQzNi95Nm1TYzJGVUx1WDNYdFpDWkpITHZJVXRrZW8zNkIvNkREdkVJTEt6RFgySmM5
-      UnVNRHZQQ3NQd1lvMjFqMmlScDVUSUVObHZHQzhERkorOEN2RWFnL0Jwa1U5VmFoU0VieWxTbVo4
-      UGJscU1sSFNpb3ltU3ZHQ2JmY29ZMEpzSFI3RWZFanN0SGlpYUdWNGcrdmxVeE5iMGpaYUtGdjNo
-      SytNTERTcEl6Tjg5OUFGcTAvS0JILzNIK1J3Y3hWK0FQUUpvaU9YZldVeVI4QnBGR3NxYmtMaTQ9
+    secure: YlExAyzjh2h77a0pl2TqxO6l7wTgNutZzYL3GopOoJcNiP1WK5pirBbG+K+ImClDawTU3ju/FdUTfBBtKaPDKi1N7LQV+cGZhlbhxOkERP6zJjzahLkPbH7/c2IhZSSWcGgPemvropxnJCn2OPsbLrM90n2u52aJogxtULPKXYVgEp4WkRk52Qe6fNpcU9tdtDJ8wkNiU3AMY9yJaQxjf+t3Uf6Oy3RsfevCaDwq28u4pFZMN+MegbRRU3yd9WdFIayaPJhepx0nXXAEWm7BxjQFyBADaRpYxLLdDwQsMnsIpPJdOd/jwOY1FSVgWkRU7nH5GEh4bczW2M+/vhOJVdgy+0g6OVhpmf44ubHRwgkH7OAMX3nWpFgcNBmb2vWfYbwB1+wmOY8Bie+tQSXYTH5DAmmwUr5m6A1wSVNGYkyshq6z1KznsRyCY0OA5TqMH/QRN3Uekhl3t8Y8htpOq0t0XiZWCQjbYlr2RxgPEyYTHio0xfXNCETd0GKp4dn1Kkfe3NHPK+FDMmW5sUpCGQmnxsHmfOnjCxGK11in6MnDBYrnFwNk81yfsOTaVKa1opQtTBuXn/sCR+NhoJzCNXgGeE9sjgMudSVgSRtee6QBJGaGf5Wj8kkAmpvmjXLTqPigB7Ec/VA986nsCHejB5ucDBY34o1Vi1JY4L+67X4=
 install:
 - pip install coverage
 - pip install pytest
