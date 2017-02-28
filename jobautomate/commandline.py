@@ -210,6 +210,7 @@ def cli(debug, key, xvfb, verbose, first_name, last_name, email_address,
         user_prompt = click.prompt('Would you like to continue searching for jobs? (yes/no)')
         if user_prompt == 'yes':
             user_parameters['start'] += 25
+            response = access_indeed_api(user_parameters, key)
         else:
             driver.quit()
             if xvfb:
