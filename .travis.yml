@@ -55,5 +55,5 @@ python:
 - '3.4'
 - '3.5'
 script:
-- py.test -s -v -x --cov=. --driver Firefox
+- py.test -s -v --cov=. --driver Firefox
 sudo: required
