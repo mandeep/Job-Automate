@@ -2,6 +2,8 @@ after_success:
 - coveralls
 before_install:
 - pip install coveralls
+addons:
+  firefox: "47.0"
 deploy:
   user: mandeepb
   provider: pypi
