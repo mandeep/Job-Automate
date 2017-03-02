@@ -15,13 +15,12 @@ env:
   global:
     secure: YlExAyzjh2h77a0pl2TqxO6l7wTgNutZzYL3GopOoJcNiP1WK5pirBbG+K+ImClDawTU3ju/FdUTfBBtKaPDKi1N7LQV+cGZhlbhxOkERP6zJjzahLkPbH7/c2IhZSSWcGgPemvropxnJCn2OPsbLrM90n2u52aJogxtULPKXYVgEp4WkRk52Qe6fNpcU9tdtDJ8wkNiU3AMY9yJaQxjf+t3Uf6Oy3RsfevCaDwq28u4pFZMN+MegbRRU3yd9WdFIayaPJhepx0nXXAEWm7BxjQFyBADaRpYxLLdDwQsMnsIpPJdOd/jwOY1FSVgWkRU7nH5GEh4bczW2M+/vhOJVdgy+0g6OVhpmf44ubHRwgkH7OAMX3nWpFgcNBmb2vWfYbwB1+wmOY8Bie+tQSXYTH5DAmmwUr5m6A1wSVNGYkyshq6z1KznsRyCY0OA5TqMH/QRN3Uekhl3t8Y8htpOq0t0XiZWCQjbYlr2RxgPEyYTHio0xfXNCETd0GKp4dn1Kkfe3NHPK+FDMmW5sUpCGQmnxsHmfOnjCxGK11in6MnDBYrnFwNk81yfsOTaVKa1opQtTBuXn/sCR+NhoJzCNXgGeE9sjgMudSVgSRtee6QBJGaGf5Wj8kkAmpvmjXLTqPigB7Ec/VA986nsCHejB5ucDBY34o1Vi1JY4L+67X4=
 install:
-- pip install coverage
-- pip install pytest
-- pip install pytest-cov
+- pip install pytest==3.0.1
+- pip install pytest-cov==2.4.0
 - pip install pytest-selenium==1.3.1
-- pip install pytest-xvfb
-- pip install pytest-faulthandler
-- pip install xvfbwrapper
+- pip install pytest-xvfb==1.0.0
+- pip install pytest-faulthandler==1.3.1
+- pip install xvfbwrapper==0.2.8
 - python setup.py install
 language: python
 notifications:
@@ -31,5 +30,5 @@ python:
 - '3.4'
 - '3.5'
 script:
-- py.test -s -v -x --cov=. --driver Firefox
+- py.test -s -v --cov=. --driver Firefox
 sudo: required
