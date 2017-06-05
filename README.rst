@@ -51,8 +51,8 @@ Once entered the script will open a Firefox WebDriver instance and search for 'e
     :target: https://coveralls.io/github/mandeep/Job-Automate?branch=master
 .. |dependencies| image:: https://dependencyci.com/github/mandeep/Job-Automate/badge
     :target: https://dependencyci.com/github/mandeep/Job-Automate
-.. |quality| image:: https://img.shields.io/codacy/grade/3f52ff806b7747e7a15a60ef8242c574.svg
-    :target: https://www.codacy.com/app/bhutanimandeep/Job-Automate/dashboard
+.. |quality| image:: https://img.shields.io/scrutinizer/g/mandeep/Job-Automate.svg
+    :target: https://scrutinizer-ci.com/g/mandeep/Job-Automate/
 .. |pypi| image:: https://img.shields.io/pypi/v/jobautomate.svg
     :target: https://pypi.python.org/pypi/jobautomate
 .. |status| image:: https://img.shields.io/pypi/status/jobautomate.svg
