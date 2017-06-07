@@ -1,7 +1,7 @@
 from setuptools import setup
 
 setup(name='jobautomate',
-      version='0.18.8',
+      version='0.18.9',
       author='Mandeep Bhutani',
       description='Automate a job search with Indeed',
       url='https://github.com/mandeep/Job-Automate',
