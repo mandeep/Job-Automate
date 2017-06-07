@@ -14,7 +14,7 @@ def parameters():
 @pytest.fixture
 def application():
     """Link to a working job application."""
-    return ('http://www.indeed.com/viewjob?jk=237a2528b1fdab9e')
+    return ('https://www.indeed.com/viewjob?jk=057f0c06ba15ff48')
 
 
 def fill(driver):
