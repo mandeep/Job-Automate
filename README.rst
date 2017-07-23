@@ -1,4 +1,4 @@
-.. image:: jobautomate/images/title.png
+.. image:: title.png
 
 
 |travis| |coverage| |dependencies| |quality| |pyversions| |pypi| |status| |wheel| |license|
@@ -44,6 +44,13 @@ to be used as an environment variable, one must export API_KEY=ID to PATH. The c
     $  jobautomate --key 12345 "Bender" "Rodriguez" "bender@ilovebender.com" "Metalworking" "girder.doc"
 
 Once entered the script will open a Firefox WebDriver instance and search for 'easily apply' jobs in the URLs given by the Indeed API. Due to the API only allowing 25 urls at a given time, the application will prompt for continuation after 25 urls have been traversed. 
+
+************
+Screenshot
+************
+
+.. image:: cli.png
+
 
 .. |travis| image:: https://travis-ci.org/mandeep/Job-Automate.svg?branch=master
     :target: https://travis-ci.org/mandeep/Job-Automate

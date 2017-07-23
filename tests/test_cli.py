@@ -14,7 +14,7 @@ def parameters():
 @pytest.fixture
 def application():
     """Link to a working job application."""
-    return ('https://www.indeed.com/viewjob?jk=057f0c06ba15ff48')
+    return ('https://www.indeed.com/cmp/Indeed-Hire-Master-Account/jobs/Senior-API-Developer-6aeb0ad94f04299b')
 
 
 def fill(driver):

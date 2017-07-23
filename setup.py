@@ -1,11 +1,11 @@
 from setuptools import setup
 
 setup(name='jobautomate',
-      version='0.18.9',
+      version='0.18.10',
       author='Mandeep Bhutani',
       description='Automate a job search with Indeed',
       url='https://github.com/mandeep/Job-Automate',
-      packages=['jobautomate', 'jobautomate.tests'],
+      packages=['jobautomate'],
       license='GPLv3+',
       install_requires=[
         'indeed==0.0.4',
