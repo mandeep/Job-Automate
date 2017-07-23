@@ -2,5 +2,5 @@
 omit = 
     setup.py
     jobautomate/__main__.py
-    jobautomate/tests/*
+    tests/*
     */__init__.py
