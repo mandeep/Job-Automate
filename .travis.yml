@@ -1,19 +1,19 @@
-after_success:
-- coveralls
+notifications:
+  email: false
+
+dist: trusty
+group: deprecated-2017Q2
+sudo: required
+
+language: python
+python:
+- '3.4'
+- '3.5'
+- '3.6'
+
 before_install:
 - pip install coveralls
-deploy:
-  user: mandeepb
-  provider: pypi
-  distributions: sdist bdist_wheel
-  password:
-    secure: "uvd3F0D7YyfUtF5WJmUccrJFLNZpV38UaQLKl3XIcVPiKrAEhYabToBizOIPMHb4LpxMBvZrnhQ7+2cigeyB9YmBSOJMuxquupLdJN67nManoIL2iAI30xXKj5bq90PsJj0QK5Yv7lcPqaijb1CBO52sjkl2NcJluAIhdZBMWHu9iXWYSfWmlL/d3Un4Hlsd0JrqIXsod11yZ4QGHc+jRJQlbXgxWMPbsO/FTkRPKtSeLCyW14h2y7UOvkjFlM2EJylofUlaO/DBXW/7FafRLQE7YL/MTMjlJQY0tpfghl3t8+zvMD4R48kvU23reHl4jMzvsn4SnfvGcIBmm2/JOVBeIPls7urmb90zqx2YMUXfW6aREWLS8K9uh8mNKazzVp+2oaF/d3XRb/IeZt4N7sWslLBtIyUZG/CeDYX7hSoz3VQnoDtCygeCCI7EUystI0tdmzPv6+NCLxT+WlyVLU5C2sceQtAOFRJNL8p8MwJf+tqStMp+YriVg/w4qhjGeUvlnKddHW8/Qjz9ieIHp+5w0h09rKWGP5Oav5xxPWWU143Nzs5nZK45CxPgnmNQhElFN+u8UjPAn4CVc0MIyyt+QV/gQJ7/EuRjNMu/v977C2/5ztwVokLu7ojLNn+zygZ1aLFpkVpwVpA54Mclc70kAk8zB8Pq+/Eb7+puG64="
-  true:
-    branch: master
-dist: trusty
-env:
-  global:
-    secure: YlExAyzjh2h77a0pl2TqxO6l7wTgNutZzYL3GopOoJcNiP1WK5pirBbG+K+ImClDawTU3ju/FdUTfBBtKaPDKi1N7LQV+cGZhlbhxOkERP6zJjzahLkPbH7/c2IhZSSWcGgPemvropxnJCn2OPsbLrM90n2u52aJogxtULPKXYVgEp4WkRk52Qe6fNpcU9tdtDJ8wkNiU3AMY9yJaQxjf+t3Uf6Oy3RsfevCaDwq28u4pFZMN+MegbRRU3yd9WdFIayaPJhepx0nXXAEWm7BxjQFyBADaRpYxLLdDwQsMnsIpPJdOd/jwOY1FSVgWkRU7nH5GEh4bczW2M+/vhOJVdgy+0g6OVhpmf44ubHRwgkH7OAMX3nWpFgcNBmb2vWfYbwB1+wmOY8Bie+tQSXYTH5DAmmwUr5m6A1wSVNGYkyshq6z1KznsRyCY0OA5TqMH/QRN3Uekhl3t8Y8htpOq0t0XiZWCQjbYlr2RxgPEyYTHio0xfXNCETd0GKp4dn1Kkfe3NHPK+FDMmW5sUpCGQmnxsHmfOnjCxGK11in6MnDBYrnFwNk81yfsOTaVKa1opQtTBuXn/sCR+NhoJzCNXgGeE9sjgMudSVgSRtee6QBJGaGf5Wj8kkAmpvmjXLTqPigB7Ec/VA986nsCHejB5ucDBY34o1Vi1JY4L+67X4=
+
 install:
 - pip install selenium==2.53.6
 - pip install py==1.4.29
@@ -26,13 +26,22 @@ install:
 - pip install pytest-faulthandler==1.3.1
 - pip install xvfbwrapper==0.2.8
 - python setup.py install
-language: python
-notifications:
-  email: false
-python:
-- '3.4'
-- '3.5'
-- '3.6'
+
 script:
-- py.test -s -v --cov=. --driver Firefox
-sudo: required
+- pytest -v --cov=. --driver Firefox
+
+after_success:
+- coveralls
+
+deploy:
+  user: mandeepb
+  provider: pypi
+  distributions: sdist bdist_wheel
+  password:
+    secure: "uvd3F0D7YyfUtF5WJmUccrJFLNZpV38UaQLKl3XIcVPiKrAEhYabToBizOIPMHb4LpxMBvZrnhQ7+2cigeyB9YmBSOJMuxquupLdJN67nManoIL2iAI30xXKj5bq90PsJj0QK5Yv7lcPqaijb1CBO52sjkl2NcJluAIhdZBMWHu9iXWYSfWmlL/d3Un4Hlsd0JrqIXsod11yZ4QGHc+jRJQlbXgxWMPbsO/FTkRPKtSeLCyW14h2y7UOvkjFlM2EJylofUlaO/DBXW/7FafRLQE7YL/MTMjlJQY0tpfghl3t8+zvMD4R48kvU23reHl4jMzvsn4SnfvGcIBmm2/JOVBeIPls7urmb90zqx2YMUXfW6aREWLS8K9uh8mNKazzVp+2oaF/d3XRb/IeZt4N7sWslLBtIyUZG/CeDYX7hSoz3VQnoDtCygeCCI7EUystI0tdmzPv6+NCLxT+WlyVLU5C2sceQtAOFRJNL8p8MwJf+tqStMp+YriVg/w4qhjGeUvlnKddHW8/Qjz9ieIHp+5w0h09rKWGP5Oav5xxPWWU143Nzs5nZK45CxPgnmNQhElFN+u8UjPAn4CVc0MIyyt+QV/gQJ7/EuRjNMu/v977C2/5ztwVokLu7ojLNn+zygZ1aLFpkVpwVpA54Mclc70kAk8zB8Pq+/Eb7+puG64="
+  true:
+    branch: master
+
+env:
+  global:
+    secure: YlExAyzjh2h77a0pl2TqxO6l7wTgNutZzYL3GopOoJcNiP1WK5pirBbG+K+ImClDawTU3ju/FdUTfBBtKaPDKi1N7LQV+cGZhlbhxOkERP6zJjzahLkPbH7/c2IhZSSWcGgPemvropxnJCn2OPsbLrM90n2u52aJogxtULPKXYVgEp4WkRk52Qe6fNpcU9tdtDJ8wkNiU3AMY9yJaQxjf+t3Uf6Oy3RsfevCaDwq28u4pFZMN+MegbRRU3yd9WdFIayaPJhepx0nXXAEWm7BxjQFyBADaRpYxLLdDwQsMnsIpPJdOd/jwOY1FSVgWkRU7nH5GEh4bczW2M+/vhOJVdgy+0g6OVhpmf44ubHRwgkH7OAMX3nWpFgcNBmb2vWfYbwB1+wmOY8Bie+tQSXYTH5DAmmwUr5m6A1wSVNGYkyshq6z1KznsRyCY0OA5TqMH/QRN3Uekhl3t8Y8htpOq0t0XiZWCQjbYlr2RxgPEyYTHio0xfXNCETd0GKp4dn1Kkfe3NHPK+FDMmW5sUpCGQmnxsHmfOnjCxGK11in6MnDBYrnFwNk81yfsOTaVKa1opQtTBuXn/sCR+NhoJzCNXgGeE9sjgMudSVgSRtee6QBJGaGf5Wj8kkAmpvmjXLTqPigB7Ec/VA986nsCHejB5ucDBY34o1Vi1JY4L+67X4=
