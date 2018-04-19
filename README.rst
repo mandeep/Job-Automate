@@ -3,13 +3,15 @@
 
 |travis| |coverage| |dependencies| |quality| |pyversions| |pypi| |status| |wheel| |license|
 
+
+Due to changes in Indeed's easily apply application process. Job Automate no longer works on Indeed and thus is no longer maintained.
+
+
 Job Automate is a command line application written in Python using the Selenium and Click libraries.
 The application uses the Indeed Job Search API to find and automatically apply to 'easily apply' jobs 
 published by employers on Indeed.com. Job Automate requires access to Indeed's API with an Indeed
 Publisher Key. To obtain a key, please visit: http://www.indeed.com/publisher.
 
-Due to Mozilla's move to the GeckoDriver for WebDriver instances, Job Automate does not currently
-support Firefox versions above 47.0.
 
 *************
 Installation
